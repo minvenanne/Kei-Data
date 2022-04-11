@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="30dp"
         android:background="@drawable/radiogroup"
         android:gravity="center"
@@ -209,9 +209,9 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="700dp"
         android:background="@drawable/navigationbar"
-        app:menu="@menu/botton_navmenu"/>
+        app:menu="@menu/botton_navmenu"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="668dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
