@@ -164,7 +164,9 @@ obj/
 *.iws
 /out/
 
-# User-specific configurations
+# User-specific configuration
+.idea/
+.idea
 .idea/caches/
 .idea/libraries/
 .idea/shelf/
