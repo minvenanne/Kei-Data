@@ -3,7 +3,6 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Helena/Documents/GitHub/P8_new/Kei-Data/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-anydpi/ic_category.xml" value="0.2275" />
         <entry key="app/src/main/res/drawable-anydpi/ic_device.xml" value="0.2275" />
         <entry key="app/src/main/res/drawable-anydpi/ic_display.xml" value="0.2275" />
@@ -13,6 +12,22 @@
         <entry key="app/src/main/res/drawable/round_corners.xml" value="0.201" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23020833333333332" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1285" />
+        <entry key="app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1285" />
+        <entry key="app/src/main/res/drawable/navigationbar.xml" value="0.1495" />
+        <entry key="app/src/main/res/drawable/radiobutton.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/radiobutton_selected.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/radiobutton_selector.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/radiobutton_textcolor.xml" value="0.1995" />
+        <entry key="app/src/main/res/drawable/radiogroup.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/title_kei_data.xml" value="0.1285" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.26246719160104987" />
+        <entry key="app/src/main/res/menu/botton_navmenu.xml" value="0.15520833333333334" />
       </map>
     </option>
   </component>
