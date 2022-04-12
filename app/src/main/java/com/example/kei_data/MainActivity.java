@@ -9,21 +9,35 @@ import android.widget.Button;
 import android.content.Intent;
 
 import android.view.View;
+import android.widget.ImageButton;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
-    public Button button;
+   // public Button button;
+    public ImageButton settingsButton;
+    public ImageButton categoriesbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        settingsButton = (ImageButton) findViewById(R.id.Settings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this,Settings_activity1.class);
                 startActivity(intent);
+            }
+        });
+
+        categoriesbutton = (ImageButton) findViewById(R.id.Categories);
+        categoriesbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(MainActivity.this,Categories_activity.class);
+                startActivity(intent1);
             }
         });
 
