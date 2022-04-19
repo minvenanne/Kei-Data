@@ -11,6 +11,8 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_user.xml" value="0.2275" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1285" />
         <entry key="app/src/main/res/drawable/allround.xml" value="0.2275" />
+        <entry key="app/src/main/res/drawable/allround_pressed.xml" value="0.2155" />
+        <entry key="app/src/main/res/drawable/home_pressed.xml" value="0.2155" />
         <entry key="app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1495" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.1645" />
