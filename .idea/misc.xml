@@ -3,23 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-anydpi/ic_display.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_settings.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/categorybuttons.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_sentiment_very_satisfied_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_sports_esports_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_baseline_work_24.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/radiobutton_textcolor.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/radiogroup.xml" value="0.2085" />
-        <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.147" />
-        <entry key="app/src/main/res/drawable/title_kei_data.xml" value="0.2085" />
-        <entry key="app/src/main/res/layout/activity_categories.xml" value="0.3435958862304687" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.269793701171875" />
-        <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.19610507246376813" />
+
       </map>
     </option>
   </component>
