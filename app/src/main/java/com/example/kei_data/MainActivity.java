@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class MainActivity extends AppCompatActivity {
    // public Button button;
     public ImageButton settingsButton;
-    public ImageButton categoriesbutton;
+    public ImageButton categoriesButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,19 +27,21 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this,Settings_activity1.class);
+                Intent intent = new Intent(MainActivity.this, Settings_activity1.class);
                 startActivity(intent);
             }
         });
 
-        categoriesbutton = (ImageButton) findViewById(R.id.Categories);
-        categoriesbutton.setOnClickListener(new View.OnClickListener() {
+        categoriesButton = (ImageButton) findViewById(R.id.Categories);
+        categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent1 = new Intent(MainActivity.this,Categories_activity.class);
+            public void onClick(View m) {
+                Intent intent1 = new Intent(MainActivity.this, Categories_activity.class);
                 startActivity(intent1);
             }
         });
 
+
     }
+
 }
