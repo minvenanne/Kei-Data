@@ -5,11 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 public class Settings_activity1 extends AppCompatActivity {
     public ImageButton homeButton;
     public ImageButton categoriesButton;
+    public Button displayButton;
+    public Button devicesButton;
+    public Button userButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,33 @@ public class Settings_activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings_activity1.this, Categories_activity.class);
+                startActivity(intent);
+            }
+        });
+
+        displayButton = findViewById(R.id.Display);
+        displayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings_activity1.this, Display_activity.class);
+                startActivity(intent);
+            }
+        });
+
+        devicesButton = findViewById(R.id.Devices);
+        devicesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings_activity1.this, Devices_activity.class);
+                startActivity(intent);
+            }
+        });
+
+        userButton = findViewById(R.id.User);
+        userButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Settings_activity1.this, User_activity.class);
                 startActivity(intent);
             }
         });
