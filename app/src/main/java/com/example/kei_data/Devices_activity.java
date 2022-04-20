@@ -20,7 +20,7 @@ public class Devices_activity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display);
+        setContentView(R.layout.activity_devices);
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {

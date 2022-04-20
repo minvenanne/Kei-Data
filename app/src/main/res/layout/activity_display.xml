@@ -12,7 +12,7 @@
         android:id="@+id/imageView3"
         android:layout_width="411dp"
         android:layout_height="675dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/navigationbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -41,7 +41,7 @@
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="240dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="390dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround_pressed"
@@ -58,7 +58,7 @@
         android:id="@+id/Total"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="390dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
@@ -76,7 +76,7 @@
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
-        android:layout_marginBottom="400dp"
+        android:layout_marginBottom="390dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
@@ -93,8 +93,6 @@
         android:id="@+id/Display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
-        android:layout_marginTop="150dp"
         android:text="Display"
         android:textColor="#000"
         android:textSize="48sp"
@@ -103,21 +101,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Title" />
+        app:layout_constraintTop_toBottomOf="@id/Total" />
 
     <TextView
         android:id="@+id/subtext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="24dp"
         android:text="Pick your display"
         android:textColor="#000"
         android:textSize="30sp"
         android:typeface="monospace"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Display" />
 

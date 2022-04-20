@@ -20,7 +20,7 @@ public class User_activity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display);
+        setContentView(R.layout.activity_user);
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
