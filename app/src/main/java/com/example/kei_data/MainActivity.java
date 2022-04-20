@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         categoriesButton = (ImageButton) findViewById(R.id.Categories);
         categoriesButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View m) {
-                Intent intent1 = new Intent(MainActivity.this, Categories_activity.class);
-                startActivity(intent1);
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Categories_activity.class);
+                startActivity(intent);
             }
         });
 

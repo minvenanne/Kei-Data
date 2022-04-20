@@ -269,6 +269,6 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
-        app:srcCompat="@drawable/ic_category" />
+        app:srcCompat="@drawable/ic_category"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
