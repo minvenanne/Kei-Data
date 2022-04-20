@@ -146,7 +146,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day"
-        app:srcCompat="@drawable/_78159608_1620670461628253_7978792602475452392_n" />
+        app:srcCompat="@drawable/testgraph" />
 
     <Switch
         android:id="@+id/household"
