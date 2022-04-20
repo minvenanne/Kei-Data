@@ -14,8 +14,6 @@
         android:layout_height="675dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/navigationbar"
-        app:layout_constraintEnd_toEndOf="@id/speedometer"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 

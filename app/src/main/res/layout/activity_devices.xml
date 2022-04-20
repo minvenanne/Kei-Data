@@ -89,4 +89,43 @@
         app:layout_constraintTop_toBottomOf="@+id/Title"
         app:srcCompat="@drawable/ic_baseline_category_24" />
 
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Devices"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Total" />
+
+    <Button
+        android:id="@+id/Display"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_corners"
+        android:drawableLeft="@drawable/ic_baseline_add_circle_outline_24"
+        android:fontFamily="monospace"
+        android:padding="10dp"
+        android:text="Add device"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Your private devices"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Display" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
