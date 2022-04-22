@@ -24,7 +24,6 @@ public class Devices_activity extends AppCompatActivity{
     ListView sharedDevices;
     ListView simpleListPrivate;
     ListView simpleListShared;
-    String countryList[] = {"India", "China", "australia", "Portugal"};
     int flags[] = {R.drawable.ic_user, R.drawable.ic_baseline_work_24, R.drawable.ic_baseline_sentiment_very_satisfied_24, R.drawable.ic_settings};
 
     @Override

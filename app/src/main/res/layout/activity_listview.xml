@@ -9,7 +9,7 @@
         android:id="@+id/icon"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/ic_launcher_background" />
 
     <TextView
         android:id="@+id/textView"
@@ -28,5 +28,4 @@
         android:onClick="removeOnClickHandler"
         android:scaleType="fitCenter"
         android:padding="6dp" />
-
 </LinearLayout>
