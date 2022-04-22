@@ -102,10 +102,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.269" />
 
     <TextView
         android:id="@+id/textView10"
@@ -124,10 +123,9 @@
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.485" />
+        app:layout_constraintVertical_bias="0.422" />
 
     <TextView
         android:id="@+id/Household"
@@ -138,10 +136,10 @@
         android:textSize="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.174"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.628" />
+        app:layout_constraintVertical_bias="0.545" />
 
     <Button
         android:id="@+id/Add_Household_Members"
@@ -166,6 +164,7 @@
         android:layout_width="37dp"
         android:layout_height="46dp"
         android:background="@drawable/trashcan"
+        android:contentDescription="Delete"
         android:drawableLeft="@drawable/ic_baseline_delete_24"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -173,15 +172,14 @@
         app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484"
-        android:contentDescription="Delete"
-        />
+        app:layout_constraintVertical_bias="0.423" />
 
     <Button
         android:id="@+id/Edit_Button"
         android:layout_width="37dp"
         android:layout_height="46dp"
         android:background="@drawable/trashcan"
+        android:contentDescription="Edit"
         android:drawableLeft="@drawable/ic_baseline_edit_24"
         android:padding="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -189,8 +187,6 @@
         app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.629"
-        android:contentDescription="Edit"
-        />
+        app:layout_constraintVertical_bias="0.545" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
