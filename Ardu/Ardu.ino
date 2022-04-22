@@ -90,10 +90,6 @@ void setup(void) {
   stat = reader.drawBMP("/dedede.bmp", tft, 0, 0);
   reader.printStatus(stat);   // How'd we do?
 
-  // Query the dimensions of image 'miniwoof.bmp' WITHOUT loading to screen:
-  Serial.print(F("Querying miniwoof.bmp image size..."));
-  stat = reader.bmpDimensions("/miniwoof.bmp", &width, &height);
-
   delay(2000); // Pause 2 seconds before moving on to loop()
 }
 
