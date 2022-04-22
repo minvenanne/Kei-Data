@@ -125,7 +125,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Display" />
 
     <ListView
-        android:id="@+id/privateDevices"
+        android:id="@+id/simpleListViewPrivate"
         android:layout_width="317dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -133,7 +133,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7"
-        tools:viewBindingType="android.widget.ListView" />
+        tools:viewBindingType="android.widget.ListView"
+        android:dividerHeight="10dp"
+        android:divider="#b5d1b2"/>
 
     <TextView
         android:id="@+id/textView8"
@@ -145,16 +147,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/privateDevices" />
+        app:layout_constraintTop_toBottomOf="@+id/simpleListViewPrivate" />
 
     <ListView
-        android:id="@+id/sharedDevice"
+        android:id="@+id/simpleListViewShared"
         android:layout_width="317dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView8" />
+        tools:viewBindingType="android.widget.ListView"
+        app:layout_constraintTop_toBottomOf="@id/textView8"
+        android:dividerHeight="10dp"
+        android:divider="#b5d1b2"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

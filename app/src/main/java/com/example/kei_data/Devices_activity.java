@@ -3,7 +3,6 @@ package com.example.kei_data;
 
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -23,6 +22,10 @@ public class Devices_activity extends AppCompatActivity{
     public ImageButton categoriesButton;
     ListView privateDevices;
     ListView sharedDevices;
+    ListView simpleListPrivate;
+    ListView simpleListShared;
+    String countryList[] = {"India", "China", "australia", "Portugal"};
+    int flags[] = {R.drawable.ic_user, R.drawable.ic_baseline_work_24, R.drawable.ic_baseline_sentiment_very_satisfied_24, R.drawable.ic_settings};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +59,7 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
-        privateDevices = (ListView) findViewById(R.id.privateDevices);
+        privateDevices = (ListView) findViewById(R.id.simpleListViewPrivate);
         ArrayList<String> arrayListPrivate = new ArrayList<>();
 
         arrayListPrivate.add("Per's laptop");
@@ -68,8 +71,9 @@ public class Devices_activity extends AppCompatActivity{
 
         privateDevices.setAdapter(arrayAdapterPrivate);
 
-        sharedDevices = (ListView) findViewById(R.id.sharedDevice);
+        sharedDevices = (ListView) findViewById(R.id.simpleListViewShared);
         ArrayList<String> arrayListShared = new ArrayList<>();
+
 
         arrayListShared.add("Livingroom TV");
         arrayListShared.add("Wifi speaker bathroom");
@@ -80,5 +84,9 @@ public class Devices_activity extends AppCompatActivity{
         ArrayAdapter arrayAdapterShared = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayListShared);
 
         sharedDevices.setAdapter(arrayAdapterShared);
+
+        simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayListPrivate, flags);
+        simpleListPrivate.setAdapter(customAdapter);
     }
 }
