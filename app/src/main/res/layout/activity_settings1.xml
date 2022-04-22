@@ -9,7 +9,7 @@
     tools:context=".Settings_activity1">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Background"
         android:layout_width="411dp"
         android:layout_height="675dp"
         android:layout_marginTop="65dp"
@@ -100,7 +100,7 @@
         android:background="@drawable/allround_pressed"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
         android:background="@drawable/allround"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
         android:background="@drawable/allround"
         android:padding="7dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@id/imageView3"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"

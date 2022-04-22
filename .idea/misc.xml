@@ -12,12 +12,15 @@
         <entry key="app/src/main/res/drawable/globe.xml" value="0.256" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2115" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.118" />
+        <entry key="app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.1575" />
+        <entry key="app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_sentiment_very_satisfied_24.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_sports_esports_24 copy.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_sports_esports_24.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_work_24 copy.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/navigationbar.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/outline_round_corners.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/radiobutton_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/radiobutton_selected.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/radiobutton_selector.xml" value="0.1645" />
@@ -28,11 +31,11 @@
         <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/trashcan.xml" value="0.118" />
         <entry key="app/src/main/res/layout/activity_categories.xml" value="0.22993367513020838" />
-        <entry key="app/src/main/res/layout/activity_devices.xml" value="0.15520833333333334" />
+        <entry key="app/src/main/res/layout/activity_devices.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_display.xml" value="0.2222860717773438" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_user.xml" value="0.2844702467343977" />
+        <entry key="app/src/main/res/layout/activity_user.xml" value="0.25" />
       </map>
     </option>
   </component>

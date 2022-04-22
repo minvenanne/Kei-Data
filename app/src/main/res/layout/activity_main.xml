@@ -181,8 +181,8 @@
         android:text="Household"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintStart_toStartOf="@+id/Background"
+        app:layout_constraintTop_toBottomOf="@+id/Background" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -197,7 +197,7 @@
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Background"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="28dp"
