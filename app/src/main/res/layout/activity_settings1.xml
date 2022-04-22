@@ -6,141 +6,147 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foregroundTint="#8BC34A"
-    tools:context=".Settings_activity1" >
+    tools:context=".Settings_activity1">
+
+    <ImageView
+        android:id="@+id/Background"
+        android:layout_width="411dp"
+        android:layout_height="675dp"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/navigationbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <TextView
         android:id="@+id/Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:background="@drawable/title_kei_data"
         android:ems="30"
         android:gravity="center"
         android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:text="Kei-Data"
         android:textSize="50dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/title_kei_data"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/User"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="120dp"
         android:background="@drawable/round_corners"
+        android:drawableLeft="@drawable/ic_user"
         android:fontFamily="monospace"
+        android:padding="10dp"
         android:text="User"
         android:textAllCaps="false"
         android:textColor="#000"
         android:textSize="24sp"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_user"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Devices" />
 
     <Button
         android:id="@+id/Devices"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/round_corners"
+        android:drawableLeft="@drawable/ic_device"
         android:fontFamily="monospace"
+        android:padding="10dp"
         android:text="Devices"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#000"
         android:textSize="24sp"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_device"
         app:layout_constraintBottom_toTopOf="@+id/User"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Display" />
 
     <Button
         android:id="@+id/Display"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="60dp"
         android:background="@drawable/round_corners"
+        android:drawableLeft="@drawable/ic_display"
         android:fontFamily="monospace"
+        android:padding="10dp"
         android:text="Display"
         android:textAllCaps="false"
         android:textColor="#000"
         android:textSize="24sp"
-        android:padding="10dp"
-        android:drawableLeft="@drawable/ic_display"
         app:layout_constraintBottom_toTopOf="@+id/Devices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="583dp"
-        android:background="@drawable/navigationbar"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="153dp" />
-
-    <ImageButton
-        android:id="@+id/Total"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="120dp"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:background="@drawable/allround"
-        android:padding="5dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_home"
-        />
-
-    <ImageButton
-        android:id="@+id/Categories"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="120dp"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:background="@drawable/allround"
-        android:padding="7dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toEndOf="@+id/Total"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_category" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
         android:id="@+id/Settings"
         android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_marginTop="120dp"
-        android:layout_marginEnd="35dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="600dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround_pressed"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/Total"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
         app:srcCompat="@drawable/settings_pressed" />
+
+    <ImageButton
+        android:id="@+id/Total"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageButton
+        android:id="@+id/Categories"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/ic_category" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginTop="150dp"
         android:text="Settings"
         android:textColor="#000"
         android:textSize="48sp"
@@ -148,7 +154,8 @@
         app:layout_constraintBottom_toTopOf="@+id/Display"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Title" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

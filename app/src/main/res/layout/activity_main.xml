@@ -145,7 +145,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/day"
-        app:srcCompat="@drawable/_78159608_1620670461628253_7978792602475452392_n" />
+        app:srcCompat="@drawable/testgraph" />
 
     <Switch
         android:id="@+id/household"
@@ -181,8 +181,8 @@
         android:text="Household"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintStart_toStartOf="@+id/Background"
+        app:layout_constraintTop_toBottomOf="@+id/Background" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -197,7 +197,7 @@
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Background"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="28dp"
@@ -208,7 +208,7 @@
 
     <TextView
         android:id="@+id/menu"
-        android:layout_width="409dp"
+        android:layout_width="411dp"
         android:layout_height="50dp"
         android:background="@drawable/navigationbar"
         android:ems="30"
@@ -216,7 +216,8 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
         android:id="@+id/Settings"

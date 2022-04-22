@@ -18,6 +18,18 @@
             android:exported="false" />
 
         <activity
+            android:name=".Display_activity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".Devices_activity"
+            android:exported="false"/>
+
+        <activity
+            android:name=".User_activity"
+            android:exported="false"/>
+
+        <activity
             android:name=".MainActivity"
             android:exported="true">
 

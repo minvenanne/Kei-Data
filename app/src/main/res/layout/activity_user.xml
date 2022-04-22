@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="#8BC34A"
+    tools:context=".User_activity">
+
+    <ImageView
+        android:id="@+id/Background"
+        android:layout_width="411dp"
+        android:layout_height="675dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/navigationbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_kei_data"
+        android:ems="30"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Kei-Data"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/Settings"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Settings"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+    <ImageButton
+        android:id="@+id/Total"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Home"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageButton
+        android:id="@+id/Categories"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Add Household Member"
+        app:srcCompat="@drawable/ic_baseline_category_24" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:text="User"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.269" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="359dp"
+        android:layout_height="66dp"
+        android:background="@drawable/round_corners"
+        android:fontFamily="monospace"
+        android:padding="10dp"
+        android:paddingStart="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:text="Name:"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.422" />
+
+    <TextView
+        android:id="@+id/Household"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Household:"
+        android:textSize="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.195"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <Button
+        android:id="@+id/Add_Household_Members"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:width="300dp"
+        android:background="@drawable/outline_round_corners"
+        android:drawableLeft="@drawable/ic_baseline_group_add_24"
+        android:fontFamily="monospace"
+        android:padding="10dp"
+        android:text="Add Household Member"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.529"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Delete_Button"
+        android:layout_width="37dp"
+        android:layout_height="46dp"
+        android:background="@drawable/trashcan"
+        android:contentDescription="Delete"
+        android:drawableLeft="@drawable/ic_baseline_delete_24"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.423" />
+
+    <Button
+        android:id="@+id/Edit_Button"
+        android:layout_width="37dp"
+        android:layout_height="46dp"
+        android:background="@drawable/trashcan"
+        android:contentDescription="Edit"
+        android:drawableLeft="@drawable/ic_baseline_edit_24"
+        android:padding="6dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

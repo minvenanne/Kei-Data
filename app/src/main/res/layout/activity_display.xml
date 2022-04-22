@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="#8BC34A"
+    tools:context=".Display_activity">
+
+    <ImageView
+        android:id="@+id/Background"
+        android:layout_width="411dp"
+        android:layout_height="675dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/navigationbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_kei_data"
+        android:ems="30"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Kei-Data"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/Settings"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+    <ImageButton
+        android:id="@+id/Total"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageButton
+        android:id="@+id/Categories"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:srcCompat="@drawable/ic_baseline_category_24" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Display"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Total" />
+
+    <TextView
+        android:id="@+id/pick"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Pick your display"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/subtitle" />
+
+    <ImageView
+        android:id="@+id/speedometer"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/boks"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/smiley"
+        app:layout_constraintStart_toEndOf="@+id/barchart"
+        app:layout_constraintTop_toBottomOf="@+id/pick"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/speedometer" />
+
+    <ImageView
+        android:id="@+id/barchart"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/boks"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/speedometer"
+        app:layout_constraintHorizontal_bias="0.046"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pick"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/barchart" />
+
+    <ImageView
+        android:id="@+id/smiley"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:adjustViewBounds="true"
+        android:background="@drawable/boks"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/speedometer"
+        app:layout_constraintTop_toBottomOf="@+id/pick"
+        app:layout_constraintVertical_bias="0.15"
+        app:srcCompat="@drawable/smiley" />
+
+    <TextView
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Show progress based on:"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speedometer" />
+
+    <Switch
+        android:id="@+id/household"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/switch_normal"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:thumbTint="#B5D1B2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/household"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        app:srcCompat="@drawable/ic_baseline_accessibility_new_24" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/household"
+        app:layout_constraintTop_toBottomOf="@+id/progress"
+        app:srcCompat="@drawable/globe" />
+
+    <TextView
+        android:id="@+id/personal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Personal"
+        android:textAlignment="textEnd"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/imageView7"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+
+    <TextView
+        android:id="@+id/global"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Global"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
