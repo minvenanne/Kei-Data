@@ -1,7 +1,5 @@
 package com.example.kei_data;
 
-
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -9,12 +7,12 @@ import android.os.Bundle;
 import android.content.Intent;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-
 
 public class Devices_activity extends AppCompatActivity{
     public ImageButton settingsButton;
@@ -58,7 +56,6 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
-        privateDevices = (ListView) findViewById(R.id.simpleListViewPrivate);
         ArrayList<String> arrayListPrivate = new ArrayList<>();
 
         arrayListPrivate.add("Per's laptop");
@@ -66,13 +63,7 @@ public class Devices_activity extends AppCompatActivity{
         arrayListPrivate.add("Per's bedroom TV");
         arrayListPrivate.add("Per's Ipad");
 
-        ArrayAdapter arrayAdapterPrivate = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayListPrivate);
-
-        privateDevices.setAdapter(arrayAdapterPrivate);
-
-        sharedDevices = (ListView) findViewById(R.id.simpleListViewShared);
         ArrayList<String> arrayListShared = new ArrayList<>();
-
 
         arrayListShared.add("Livingroom TV");
         arrayListShared.add("Wifi speaker bathroom");
@@ -80,12 +71,39 @@ public class Devices_activity extends AppCompatActivity{
         arrayListShared.add("Wifi speaker office");
 
 
-        ArrayAdapter arrayAdapterShared = new ArrayAdapter(this,android.R.layout.simple_list_item_1,arrayListShared);
-
-        sharedDevices.setAdapter(arrayAdapterShared);
-
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), arrayListPrivate, flags);
-        simpleListPrivate.setAdapter(customAdapter);
+        CustomAdapter customAdapterPrivat = new CustomAdapter(getApplicationContext(), arrayListPrivate, flags);
+        simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListPrivate,customAdapterPrivat));
+        simpleListPrivate.setAdapter(customAdapterPrivat);
+
+        simpleListShared = (ListView) findViewById(R.id.simpleListViewShared);
+        CustomAdapter customAdapterShared = new CustomAdapter(getApplicationContext(), arrayListShared, flags);
+        simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListShared,customAdapterShared));
+        simpleListShared.setAdapter(customAdapterShared);
+
+
     }
+
+    public int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapter customAdapter) {
+
+        CustomAdapter adapter = customAdapter;
+
+        if (adapter == null) {
+            return 0;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
+        return totalHeight;
+    }
+
 }

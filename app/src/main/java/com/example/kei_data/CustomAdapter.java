@@ -15,20 +15,20 @@ import java.util.zip.Inflater;
 
 public class CustomAdapter extends BaseAdapter {
     Context context;
-    ArrayList<String> arraylistPrivate;
+    ArrayList<String> arraylist;
     int flags[];
     LayoutInflater inflter;
 
-    public CustomAdapter(Context applicationContext, ArrayList arraylistPrivate, int[] flags) {
+    public CustomAdapter(Context applicationContext, ArrayList arraylist, int[] flags) {
         this.context = context;
-        this.arraylistPrivate = arraylistPrivate;
+        this.arraylist = arraylist;
         this.flags = flags;
         inflter = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return arraylistPrivate.size();
+        return arraylist.size();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CustomAdapter extends BaseAdapter {
         view = inflter.inflate(R.layout.activity_listview, null);
         TextView country = (TextView) view.findViewById(R.id.textView);
         ImageView icon = (ImageView) view.findViewById(R.id.icon);
-        country.setText(arraylistPrivate.get(i));
+        country.setText(arraylist.get(i));
         icon.setImageResource(flags[i]);
         return view;
     }
