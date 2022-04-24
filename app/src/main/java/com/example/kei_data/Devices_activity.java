@@ -6,23 +6,24 @@ import android.os.Bundle;
 
 import android.content.Intent;
 
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Devices_activity extends AppCompatActivity{
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
-    ListView privateDevices;
-    ListView sharedDevices;
     ListView simpleListPrivate;
     ListView simpleListShared;
-    int flags[] = {R.drawable.ic_user, R.drawable.ic_baseline_work_24, R.drawable.ic_baseline_sentiment_very_satisfied_24, R.drawable.ic_settings};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,27 +58,45 @@ public class Devices_activity extends AppCompatActivity{
         });
 
         ArrayList<String> arrayListPrivate = new ArrayList<>();
+        ArrayList<String> typePrivate = new ArrayList<>();
 
         arrayListPrivate.add("Per's laptop");
+        typePrivate.add("Computer");
         arrayListPrivate.add("Per's Iphone 11");
+        typePrivate.add("Phone");
         arrayListPrivate.add("Per's bedroom TV");
+        typePrivate.add("TV");
         arrayListPrivate.add("Per's Ipad");
+        typePrivate.add("Other");
+        arrayListPrivate.add("Wifi speaker bedroom");
+        typePrivate.add("Speaker");
+
+        int iconsPrivate[] = turnTypeIntoIcon(typePrivate);
 
         ArrayList<String> arrayListShared = new ArrayList<>();
+        ArrayList<String> typeShared = new ArrayList<>();
 
         arrayListShared.add("Livingroom TV");
+        typeShared.add("TV");
         arrayListShared.add("Wifi speaker bathroom");
+        typeShared.add("Speaker");
         arrayListShared.add("Kitchen TV");
+        typeShared.add("TV");
         arrayListShared.add("Wifi speaker office");
+        typeShared.add("Speaker");
+        arrayListShared.add("Shared Phone");
+        typeShared.add("Phone");
 
+        int iconsShared[] = turnTypeIntoIcon(typeShared);
+        ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
 
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
-        CustomAdapter customAdapterPrivat = new CustomAdapter(getApplicationContext(), arrayListPrivate, flags);
+        CustomAdapter customAdapterPrivat = new CustomAdapter(getApplicationContext(), arrayListPrivate, iconsPrivate, delete);
         simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListPrivate,customAdapterPrivat));
         simpleListPrivate.setAdapter(customAdapterPrivat);
 
         simpleListShared = (ListView) findViewById(R.id.simpleListViewShared);
-        CustomAdapter customAdapterShared = new CustomAdapter(getApplicationContext(), arrayListShared, flags);
+        CustomAdapter customAdapterShared = new CustomAdapter(getApplicationContext(), arrayListShared, iconsShared, delete);
         simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListShared,customAdapterShared));
         simpleListShared.setAdapter(customAdapterShared);
 
@@ -106,6 +125,30 @@ public class Devices_activity extends AppCompatActivity{
         listView.setLayoutParams(par);
         listView.requestLayout();
         return totalHeight;
+    }
+
+    public int[] turnTypeIntoIcon(ArrayList type){
+        ArrayList<String> arraylist = type;
+        int icons[] = new int[arraylist.size()];
+
+        for (int i = 0; i < arraylist.size(); i++){
+            if (arraylist.get(i) == "TV"){
+                icons[i] = R.drawable.ic_baseline_tv_24;
+            }
+            else if (arraylist.get(i) == "Speaker"){
+                icons[i] = R.drawable.ic_baseline_speaker_24;
+            }
+            else if (arraylist.get(i) == "Phone"){
+                icons[i] = R.drawable.ic_baseline_smartphone_24;
+            }
+            else if (arraylist.get(i) == "Computer"){
+                icons[i] = R.drawable.ic_baseline_computer_24;
+            }
+            else if (arraylist.get(i) == "Other"){
+                icons[i] = R.drawable.ic_baseline_devices_other_24;
+            }
+        }
+        return icons;
     }
 
 }
