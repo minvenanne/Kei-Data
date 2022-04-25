@@ -10,35 +10,31 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KeiData">
         <activity
+            android:name=".Household_activity"
+            android:exported="false" />
+        <activity
             android:name=".Settings_activity1"
             android:exported="false" />
-
         <activity
             android:name=".Categories_activity"
             android:exported="false" />
-
         <activity
             android:name=".Display_activity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".Devices_activity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".User_activity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 

@@ -33,8 +33,9 @@
         <entry key="app/src/main/res/layout/activity_categories.xml" value="0.22993367513020838" />
         <entry key="app/src/main/res/layout/activity_devices.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_display.xml" value="0.2222860717773438" />
+        <entry key="app/src/main/res/layout/activity_household.xml" value="0.1790893554687501" />
         <entry key="app/src/main/res/layout/activity_listview.xml" value="0.2431060791015625" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23489583333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20767364501953128" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.16405029296875" />
       </map>

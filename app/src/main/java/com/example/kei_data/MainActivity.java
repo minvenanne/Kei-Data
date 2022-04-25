@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (householdSwitch.isChecked()) {
                     Log.d("Success", "Household");
+                    Intent intent = new Intent(MainActivity.this, Household_activity.class);
+                    startActivity(intent);
 
                 } else {
                     Log.d("Success", "you");
