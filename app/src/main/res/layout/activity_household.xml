@@ -102,10 +102,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="180dp"
-        android:layout_marginBottom="32dp"
         android:text="Total:"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/householdNumber"
+        app:layout_constraintBottom_toTopOf="@+id/householdNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +116,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="180dp"
-        android:layout_marginBottom="3dp"
         android:text="20 g CO2"
         android:textSize="24dp"
         app:layout_constraintBottom_toTopOf="@+id/householdDay"
@@ -159,7 +157,8 @@
         android:scaleX="2"
         android:scaleY="2"
         android:thumbTint="#B5D1B2"
-        app:layout_constraintBottom_toTopOf="@+id/householdTotal"
+        android:checked="true"
+        app:layout_constraintBottom_toTopOf="@+id/householdTotalButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
@@ -240,7 +239,7 @@
         app:srcCompat="@drawable/ic_settings" />
 
     <ImageButton
-        android:id="@+id/householdTotal"
+        android:id="@+id/householdTotalButton"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -270,7 +269,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="@+id/householdMenu"
         app:srcCompat="@drawable/ic_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
