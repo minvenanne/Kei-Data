@@ -21,6 +21,7 @@ public class Devices_activity extends AppCompatActivity{
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
+    public Button addDevice;
     ListView simpleListPrivate;
     ListView simpleListShared;
 
@@ -57,6 +58,15 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
+        addDevice = (Button) findViewById(R.id.add_device);
+        addDevice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Devices_activity.this, AddDevice_activity.class);
+                startActivity(intent);
+            }
+        });
+
         ArrayList<String> arrayListPrivate = new ArrayList<>();
         ArrayList<String> typePrivate = new ArrayList<>();
 
@@ -71,7 +81,7 @@ public class Devices_activity extends AppCompatActivity{
         arrayListPrivate.add("Wifi speaker bedroom");
         typePrivate.add("Speaker");
 
-        int iconsPrivate[] = turnTypeIntoIcon(typePrivate);
+        ArrayList<Integer> iconsPrivate = turnTypeIntoIcon(typePrivate);
 
         ArrayList<String> arrayListShared = new ArrayList<>();
         ArrayList<String> typeShared = new ArrayList<>();
@@ -87,7 +97,7 @@ public class Devices_activity extends AppCompatActivity{
         arrayListShared.add("Shared Phone");
         typeShared.add("Phone");
 
-        int iconsShared[] = turnTypeIntoIcon(typeShared);
+        ArrayList<Integer> iconsShared = turnTypeIntoIcon(typeShared);
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
 
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
@@ -99,8 +109,6 @@ public class Devices_activity extends AppCompatActivity{
         CustomAdapter customAdapterShared = new CustomAdapter(getApplicationContext(), arrayListShared, iconsShared, delete);
         simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListShared,customAdapterShared));
         simpleListShared.setAdapter(customAdapterShared);
-
-
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
@@ -127,25 +135,25 @@ public class Devices_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    public int[] turnTypeIntoIcon(ArrayList type){
+    public ArrayList<Integer> turnTypeIntoIcon(ArrayList type){
         ArrayList<String> arraylist = type;
-        int icons[] = new int[arraylist.size()];
+        ArrayList<Integer> icons = new ArrayList<>();
 
         for (int i = 0; i < arraylist.size(); i++){
             if (arraylist.get(i) == "TV"){
-                icons[i] = R.drawable.ic_baseline_tv_24;
+                icons.add(i, R.drawable.ic_baseline_tv_24);
             }
-            else if (arraylist.get(i) == "Speaker"){
-                icons[i] = R.drawable.ic_baseline_speaker_24;
+            else if (arraylist.get(i) == "Speaker") {
+                icons.add(i, R.drawable.ic_baseline_speaker_24);
             }
             else if (arraylist.get(i) == "Phone"){
-                icons[i] = R.drawable.ic_baseline_smartphone_24;
+                icons.add(i, R.drawable.ic_baseline_smartphone_24);
             }
             else if (arraylist.get(i) == "Computer"){
-                icons[i] = R.drawable.ic_baseline_computer_24;
+                icons.add(i, R.drawable.ic_baseline_computer_24);
             }
             else if (arraylist.get(i) == "Other"){
-                icons[i] = R.drawable.ic_baseline_devices_other_24;
+                icons.add(i, R.drawable.ic_baseline_devices_other_24);
             }
         }
         return icons;

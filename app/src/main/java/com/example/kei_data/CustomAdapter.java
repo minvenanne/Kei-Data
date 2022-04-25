@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -17,10 +18,10 @@ import java.util.zip.Inflater;
 public class CustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> arraylist;
-    int icon[];
+    ArrayList<Integer> icon;
     ImageButton delete;
 
-    public CustomAdapter(Context context, ArrayList arraylist, int icon[], ImageButton delete) {
+    public CustomAdapter(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete) {
         this.context = context;
         this.arraylist = arraylist;
         this.icon = icon;
@@ -52,9 +53,19 @@ public class CustomAdapter extends BaseAdapter {
         TextView device = (TextView) view.findViewById(R.id.textView);
         ImageView icon_device = (ImageView) view.findViewById(R.id.icon);
         device.setText(arraylist.get(i));
-        icon_device.setImageResource(icon[i]);
-        ImageButton delete2 = (ImageButton) view.findViewById(R.id.list_view_trashcan);
-        delete2.setImageResource(R.drawable.trashcan);
+        icon_device.setImageResource(icon.get(i));
+        ImageButton delete = (ImageButton) view.findViewById(R.id.list_view_trashcan);
+        delete.setImageResource(R.drawable.trashcan);
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View parentRow = (View) v.getParent();
+                ListView listView = (ListView) parentRow.getParent();
+                int position = listView.getPositionForView(parentRow);
+                System.out.println("I am in position " + position);
+            }
+        });
         return view;
 
     }

@@ -28,6 +28,9 @@
             android:name=".User_activity"
             android:exported="false" />
         <activity
+            android:name=".AddDevice_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
