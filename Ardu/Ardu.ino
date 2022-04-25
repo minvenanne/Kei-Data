@@ -82,8 +82,8 @@ Serial.begin(9600);
 
 void loop() {
   Updatecounter();
-  printing();
   showdata();
+  printing();
   checking();
 }
 
@@ -96,37 +96,41 @@ if (Serial.available() > 0) {
 void printing(){
 ImageReturnCode stat; // Status from image-reading functions
   
-  if (counter == 1){
+  while (counter == 1){
      // Serial.println(F("Loading image1.bmp to screen..."));
   stat = reader.drawBMP("/image1.bmp", tft, 0, 0);
+  break;
   }
   
 
-else if (counter == 2) {
+while (counter == 2) {
    //Serial.println(F("Loading image2.bmp to screen..."));
   stat = reader.drawBMP("/image2.bmp", tft, 0, 0);  
+  break;
 }
 
-else if (counter == 3) {
+while (counter == 3) {
   //  Serial.println(F("Loading image3.bmp to screen..."));
   stat = reader.drawBMP("/image3.bmp", tft, 0, 0);  
+  break;
 }
 
-else if (counter == 4) {
+while (counter == 4) {
  // Serial.println(F("Loading image4.bmp to screen..."));
   stat = reader.drawBMP("/image4.bmp", tft, 0, 0);  
+  break;
 }
+
 }
 void showdata(){
   if (newData == true){
     counter = counter + 1;
     newData = false;
-  }
-  
+  }  
 }
 
 void checking(){
   if (counter > 4) {
     counter = 1;
-  }
+  }  
 }
