@@ -40,10 +40,11 @@ Adafruit_Image       img;        // An image loaded into RAM
 int32_t              width  = 0, // BMP image dimensions
                      height = 0;
 
+int counter = 1;
+boolean newData = false;
 void setup(void) {
 
-  ImageReturnCode stat; // Status from image-reading functions
-  Serial.begin(9600);
+Serial.begin(9600);
 #if !defined(ESP32)
   while(!Serial);       // Wait for Serial Monitor before continuing
 #endif
@@ -76,23 +77,56 @@ void setup(void) {
   // Fill screen blue. Not a required step, this just shows that we're
   // successfully communicating with the screen.
   tft.fillScreen(ST77XX_BLUE);
-
-  // Load full-screen BMP file 'purple.bmp' at position (0,0) (top left).
-  // Notice the 'reader' object performs this, with 'tft' as an argument.
-  Serial.print(F("Loading adabot240.bmp to screen..."));
-  stat = reader.drawBMP("/adabot240.bmp", tft, 0, 40);
-  reader.printStatus(stat);   // How'd we do?
-
-  
-  // Load full-screen BMP file 'purple.bmp' at position (0,0) (top left).
-  // Notice the 'reader' object performs this, with 'tft' as an argument.
-  Serial.print(F("Loading dedede.bmp to screen..."));
-  stat = reader.drawBMP("/dedede.bmp", tft, 0, 0);
-  reader.printStatus(stat);   // How'd we do?
-
   delay(2000); // Pause 2 seconds before moving on to loop()
 }
 
 void loop() {
-    delay(2000); // Pause 2 sec.
+  Updatecounter();
+  printing();
+  showdata();
+  checking();
+}
+
+void Updatecounter(){
+if (Serial.available() > 0) {
+    char newInput =  Serial.read();
+    newData = true;
   }
+}
+void printing(){
+ImageReturnCode stat; // Status from image-reading functions
+  
+  if (counter == 1){
+     // Serial.println(F("Loading image1.bmp to screen..."));
+  stat = reader.drawBMP("/image1.bmp", tft, 0, 0);
+  }
+  
+
+else if (counter == 2) {
+   //Serial.println(F("Loading image2.bmp to screen..."));
+  stat = reader.drawBMP("/image2.bmp", tft, 0, 0);  
+}
+
+else if (counter == 3) {
+  //  Serial.println(F("Loading image3.bmp to screen..."));
+  stat = reader.drawBMP("/image3.bmp", tft, 0, 0);  
+}
+
+else if (counter == 4) {
+ // Serial.println(F("Loading image4.bmp to screen..."));
+  stat = reader.drawBMP("/image4.bmp", tft, 0, 0);  
+}
+}
+void showdata(){
+  if (newData == true){
+    counter = counter + 1;
+    newData = false;
+  }
+  
+}
+
+void checking(){
+  if (counter > 4) {
+    counter = 1;
+  }
+}
