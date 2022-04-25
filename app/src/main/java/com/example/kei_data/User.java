@@ -1,20 +1,22 @@
 package com.example.kei_data;
 
+import java.util.Date;
+
 public class User {
 
     public String userName;
 
     public String userID;
 
-    public String nfcID;
+    //public String nfcID;
 
     public Integer deviceDisplayID;
 
-    public Boolean dataAdded;
+    public Date dateAdded;
 
-    public Boolean userAdded;
+    //public Boolean userAdded;
 
-    public Boolean userRemoved;
+    //public Boolean userRemoved;
 
     ArrayList<Device> deviceList;
 
@@ -23,11 +25,11 @@ public class User {
     public User (String n) {
         userName = n;
         setUserID("u0");
-        setNfcID("n0");
+        //setNfcID("n0");
         setDeviceDisplayID(0);
-        setUserAdded(true);
-        setDataAdded(true);
-        setUserRemoved(false);
+        //setUserAdded(true);
+        setDateAdded(); // få styr på denne
+        //setUserRemoved(false);
 
         this.deviceList = new ArrayList<Device>();
         this.dataUseList = new ArrayList<DataUse>();
@@ -38,14 +40,14 @@ public class User {
         //laves til tilfældig værdi som ikke allerede eksisterer
     }
 
-    public void setNfcID(String newNfcID) {
-        nfcID = newNfcID;
+    //public void setNfcID(String newNfcID) {
+        //nfcID = newNfcID;
         //laves til tilfældig værdi som ikke allerede eksisterer
-    }
+    //}
 
     public void setDeviceDisplayID(Integer newDeviceDisplayID) {
         deviceDisplayID = newDeviceDisplayID;
-        //laves til tilfældig værdi som ikke allerede eksisterer
+        //potentielt set tager den her knap indputtet(eventlistener og sætter lig et device (if x eventlistener then x)
     }
 
     public void setUserAdded(Boolean newUserAddedStatus) {
@@ -53,8 +55,8 @@ public class User {
         //laves til tilfældig værdi som ikke allerede eksisterer
     }
 
-    public void setDataAdded(Boolean newDataAddedStatus) {
-        dataAdded = newDataAddedStatus;
+    public void setDateAdded(Date newDateAdded) {
+        dateAdded = newDateAdded;
         //laves til tilfældig værdi som ikke allerede eksisterer
     }
 
