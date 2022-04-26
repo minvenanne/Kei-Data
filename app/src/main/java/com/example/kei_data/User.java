@@ -15,7 +15,7 @@ public class User {
 
     ArrayList<Device> deviceList;
 
-    ArrayList<DataUse> dataUseList;
+    //ArrayList<DataUse> dataUseList;
 
     public User () {
         setUserName("n");
@@ -23,7 +23,7 @@ public class User {
         setDateAdded(); // få styr på denne
 
         this.deviceList = new ArrayList<Device>();
-        this.dataUseList = new ArrayList<DataUse>();
+        //this.dataUseList = new ArrayList<DataUse>();
     }
 
     public void setUserName(String newUserName) {
@@ -40,6 +40,15 @@ public class User {
         dateAdded = new Date();
         //dato aflæses og sættes som værdi her
     }
+
+    public ArrayList<Device> getDeviceList() {
+        return deviceList;
+    }
+
+    //public ArrayList getDataUse() {
+        //return dataUseList;
+    //}
+
 
     //attributes:
     //public Boolean userAdded;
