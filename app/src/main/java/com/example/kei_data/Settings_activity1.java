@@ -38,7 +38,7 @@ public class Settings_activity1 extends AppCompatActivity {
             }
         });
 
-        displayButton = findViewById(R.id.add_device);
+        displayButton = findViewById(R.id.add_display);
         displayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

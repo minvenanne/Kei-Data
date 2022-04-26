@@ -113,7 +113,7 @@ public class Devices_activity extends AppCompatActivity{
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
 
-    public int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapter customAdapter) {
+    private int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapter customAdapter) {
 
         CustomAdapter adapter = customAdapter;
 
