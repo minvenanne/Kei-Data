@@ -20,15 +20,14 @@ import android.widget.CompoundButton;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 public class MainActivity extends AppCompatActivity {
-   // public Button button;
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
-
-    private RadioGroup radioGroupPhoto;
-    private ImageView imageViewPhoto;
-    private int []photos = {R.drawable.d, R.drawable.graph2, R.drawable.m, R.drawable.six_m,R.drawable.y};
 
 
     @Override
@@ -36,16 +35,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.imageViewPhoto = (ImageView) findViewById(R.id.imageView);
-        this.radioGroupPhoto = (RadioGroup) findViewById(R.id.radioGroup);
-        this.radioGroupPhoto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                RadioButton radioButton = (RadioButton) radioGroup.findViewById(i);
-                int index = radioGroup.indexOfChild(radioButton);
-                imageViewPhoto.setImageResource(photos[index]);
-            }
+        GraphView graph = (GraphView) findViewById(R.id.graph);
+        LineGraphSeries<DataPoint> barseries = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
         });
+        graph.addSeries(barseries);
+
 
         Switch householdSwitch = findViewById(R.id.household);
 //            Lets the user switch between two modes.
@@ -84,6 +83,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+
+//    GraphView bargraph = (GraphView) findViewById(R.id.graph);
+//    BarGraphSeries<DataPoint> barseries = new BarGraphSeries<>(new DataPoint[] {
+//            new DataPoint(0, -1),
+//            new DataPoint(1, 5),
+//            new DataPoint(2, 3),
+//            new DataPoint(3, 2),
+//            new DataPoint(4, 6)
+//    });
+
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButton:
+                if (checked)
+                    //graph.addSeries(series);
+                    Log.d("Succes", "D");
+                break;
+            case R.id.radioButton2:
+                if (checked)
+                    //graph.addSeries(barseries);
+                    Log.d("Succes", "W");
+                break;
+        }
     }
 
 }

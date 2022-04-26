@@ -47,6 +47,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="D"
+            android:onClick="onRadioButtonClicked"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -58,6 +59,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="W"
+            android:onClick="onRadioButtonClicked"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -69,6 +71,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="M"
+            android:onClick="onRadioButtonClicked"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -80,6 +83,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="6M"
+            android:onClick="onRadioButtonClicked"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -91,6 +95,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Y"
+            android:onClick="onRadioButtonClicked"
             android:textColor="@drawable/radiobutton_textcolor" />
 
     </RadioGroup>
@@ -137,15 +142,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day"
-        app:srcCompat="@drawable/testgraph" />
+        app:layout_constraintTop_toBottomOf="@+id/day" />
 
     <Switch
         android:id="@+id/household"
@@ -159,7 +164,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/graph" />
 
     <TextView
         android:id="@+id/textView14"
@@ -196,7 +201,7 @@
         app:layout_constraintEnd_toStartOf="@+id/household"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <ImageView
@@ -206,7 +211,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/household"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
         app:srcCompat="@drawable/ic_baseline_group_24" />
 
     <TextView
@@ -274,5 +279,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
         app:srcCompat="@drawable/ic_category" />
+
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.907"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
