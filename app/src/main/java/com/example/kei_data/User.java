@@ -18,7 +18,7 @@ public class User {
     //ArrayList<DataUse> dataUseList;
 
     public User () {
-        setUserName("n");
+        setUserName();
         setUserID();
         setDateAdded(); // få styr på denne
 
@@ -26,18 +26,21 @@ public class User {
         //this.dataUseList = new ArrayList<DataUse>();
     }
 
-    public void setUserName(String newUserName) {
-        userName = newUserName;
+    public void setUserName() {
+        userName = "xxxxxxxx";
+        // tag indput fra java
     }
 
     public void setUserID() {
 
         //length of arraylist users + 1
         userID = userList.size() + 1;
+
     }
 
     public void setDateAdded() {
         dateAdded = new Date();
+        System.out.print(dateAdded);
         //dato aflæses og sættes som værdi her
     }
 
