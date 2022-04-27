@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:foregroundTint="#8BC34A"
+    tools:context=".User_activity">
+
+    <ImageView
+        android:id="@+id/Background"
+        android:layout_width="411dp"
+        android:layout_height="675dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/navigationbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/title_kei_data"
+        android:ems="30"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="Kei-Data"
+        android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/Settings"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Settings"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
+
+    <ImageButton
+        android:id="@+id/Total"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="5dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Home"
+        app:srcCompat="@drawable/ic_baseline_home_24" />
+
+    <ImageButton
+        android:id="@+id/Categories"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginBottom="600dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:background="@drawable/allround"
+        android:padding="7dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@id/Background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Add Household Member"
+        app:srcCompat="@drawable/ic_baseline_category_24" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:gravity="center"
+        android:text="Pick an available device"
+        android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scrollViewParent"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="270dp"
+        android:layout_marginBottom="100dp"
+        android:orientation="vertical"
+        android:scrollbarSize="5dp"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:paddingTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scroll"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:foregroundTint="#8BC34A">
+
+            <RadioGroup
+                android:id="@+id/radioGroup2"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ListView
+                    android:id="@+id/device_address"
+                    android:layout_width="317dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:clickable="true"
+                    android:divider="#b5d1b2"
+                    android:dividerHeight="10dp"
+                    android:scrollbars="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:viewBindingType="android.widget.ListView" />
+
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/Next2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:enabled="false"
+        android:text="Next"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toEndOf="@+id/Back2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewParent"
+        app:layout_constraintVertical_bias="1.15" />
+
+    <Button
+        android:id="@+id/Back2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_corners"
+        android:text="Back"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.278"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewParent"
+        app:layout_constraintVertical_bias="1.15" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

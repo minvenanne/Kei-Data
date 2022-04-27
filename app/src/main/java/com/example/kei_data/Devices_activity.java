@@ -6,15 +6,12 @@ import android.os.Bundle;
 
 import android.content.Intent;
 
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Devices_activity extends AppCompatActivity{
@@ -62,12 +59,14 @@ public class Devices_activity extends AppCompatActivity{
         addDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Devices_activity.this, AddDevice_activity.class);
+                Intent intent = new Intent(Devices_activity.this, AddDeviceType_activity.class);
                 startActivity(intent);
             }
         });
 
         ArrayList<String> arrayListPrivate = new ArrayList<>();
+
+
         ArrayList<String> typePrivate = new ArrayList<>();
 
         arrayListPrivate.add("Per's laptop");

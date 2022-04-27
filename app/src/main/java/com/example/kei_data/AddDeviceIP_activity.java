@@ -4,29 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
-public class AddDevice2_activity extends AppCompatActivity {
+public class AddDeviceIP_activity extends AppCompatActivity {
 
     public ListView devices_available;
     public Button Add_device;
     public Button back;
+    public String ip;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_adddevice2);
+        setContentView(R.layout.activity_adddeviceip);
 
         ArrayList<String> IP_address = new ArrayList<>();
 
@@ -36,34 +33,33 @@ public class AddDevice2_activity extends AppCompatActivity {
         IP_address.add("273.293.23");
         IP_address.add("293.234.21");
 
-        ArrayList<Integer> Image = new ArrayList<>();
-        Image.add(R.drawable.ic_baseline_smartphone_24);
-        Image.add(R.drawable.ic_baseline_smartphone_24);
-        Image.add(R.drawable.ic_baseline_smartphone_24);
-        Image.add(R.drawable.ic_baseline_smartphone_24);
-        Image.add(R.drawable.ic_baseline_smartphone_24);
-
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
         devices_available = (ListView) findViewById(R.id.device_address);
-        CustomAdapter2 customAdapterDevices = new CustomAdapter2(getApplicationContext(), IP_address);
-        devices_available.setMinimumHeight(justifyListViewHeightBasedOnChildren(devices_available, customAdapterDevices));
-        devices_available.setAdapter(customAdapterDevices);
+        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview2, R.id.adresse, IP_address);
+        devices_available.setMinimumHeight(justifyListViewHeightBasedOnChildren(devices_available, AdapterDevices));
+        devices_available.setAdapter(AdapterDevices);
 
 
-        Add_device = (Button) findViewById(R.id.addDevice);
 
-        RadioGroup type2 = (RadioGroup) findViewById(R.id.radioGroup2);
-        type2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        //set ip equal to the selected one.
+        devices_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 Add_device.setEnabled(true);
+                int selectedItem = position;
+                ip = IP_address.get(selectedItem);
+                System.out.println(selectedItem);
             }
         });
+
+
+        Add_device = (Button) findViewById(R.id.Next2);
+
 
         Add_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddDevice2_activity.this, Devices_activity.class);
+                Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceName_activity.class);
                 startActivity(intent);
             }
         });
@@ -72,7 +68,7 @@ public class AddDevice2_activity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AddDevice2_activity.this, AddDevice_activity.class);
+                Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceType_activity.class);
                 startActivity(intent);
             }
         });
@@ -81,9 +77,7 @@ public class AddDevice2_activity extends AppCompatActivity {
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
 
-    private int justifyListViewHeightBasedOnChildren(ListView listView, CustomAdapter2 customAdapter) {
-
-        CustomAdapter2 adapter = customAdapter;
+    private int justifyListViewHeightBasedOnChildren(ListView listView, ArrayAdapter adapter) {
 
         if (adapter == null) {
             return 0;

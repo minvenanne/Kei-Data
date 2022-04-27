@@ -28,10 +28,13 @@
             android:name=".User_activity"
             android:exported="false" />
         <activity
-            android:name=".AddDevice_activity"
+            android:name=".AddDeviceType_activity"
             android:exported="false" />
         <activity
-            android:name=".AddDevice2_activity"
+            android:name=".AddDeviceIP_activity"
+            android:exported="false" />
+        <activity
+            android:name=".AddDeviceName_activity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
