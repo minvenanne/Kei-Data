@@ -9,44 +9,78 @@ public class User {
 
     public String userName;
 
-    public String userID;
+    public Integer userID;
 
     public Date dateAdded;
 
-    ArrayList<Device> deviceList;
+    public Integer currentDataUseStandpoint;
+    public Integer currentCo2;
 
-    //ArrayList<DataUse> dataUseList;
+    //ArrayList<Device> deviceList;
 
     public User () {
-        setUserName();
+        userName = "n";
         setUserID();
-        setDateAdded(); // få styr på denne
+        setDateAdded();
+        currentDataUseStandpoint = 0;
+        currentCo2 = 0;
 
-        this.deviceList = new ArrayList<Device>();
-        //this.dataUseList = new ArrayList<DataUse>();
-    }
-
-    public void setUserName() {
-        userName = "xxxxxxxx";
-        // tag indput fra java
+        // creates list of class device
+        //this.deviceList = new ArrayList<Device>();
     }
 
     public void setUserID() {
-
         //length of arraylist users + 1
-        userID = userList.size() + 1;
+        //        userID = userList.size() + 1;
+    }
 
+    public Integer getUserID() {
+        return userID;
     }
 
     public void setDateAdded() {
         dateAdded = new Date();
-        System.out.print(dateAdded);
-        //dato aflæses og sættes som værdi her
     }
 
-    public ArrayList<Device> getDeviceList() {
-        return deviceList;
+ //fikses - er det den rigtige måde?
+    public void updateCurrentDataUseStandpointAndCo2() {
+        int newStandPoint;
+        newStandPoint = 2;
+        currentDataUseStandpoint = newStandPoint;
+        System.out.println("current data is now:" + currentDataUseStandpoint);
+
+        calculateCurrentCo2(currentDataUseStandpoint);
+        System.out.println("current co2 is now:" + currentCo2);
     }
+
+    public void calculateCurrentCo2(int currentDataUseStandpoint) {
+
+        int newCo2;
+        newCo2 = 3;
+
+        currentCo2 = newCo2;
+    }
+
+    //public void addDevice(Device device){
+        //deviceList.add(device);
+    //}
+
+    /* public Device removeDevice(String currentDevice) {
+        for(int i = 0; i < deviceList.size(); i++){
+            Device device = deviceList.get(i); // the current element
+            /* check if the currentDevice has the name that
+               we are looking for
+            if(device.deviceName.equals(currentDevice)){
+                deviceList.remove(i); // remove the element
+                return device; // return the soda that we found
+            }
+        }
+        // if we arrive here, no item was found
+        return null;
+    } */
+
+
+// alt herunder er gammel kode, vi ikke bruger fordi vi ser bort fra det
 
     //public ArrayList getDataUse() {
         //return dataUseList;
@@ -61,6 +95,10 @@ public class User {
     //public String nfcID;
 
     //public Integer deviceDisplayID;
+
+    //ArrayList<DataUse> dataUseList;
+
+    //this.dataUseList = new ArrayList<DataUse>();
 
     //add to "object":
     //setNfcID("n0");
