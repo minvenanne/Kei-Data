@@ -13,25 +13,29 @@ public class User {
 
     public Date dateAdded;
 
+    public Date currentDate;
+
     public Float currentDataUseStandpoint;
+
     public Float currentCo2;
 
-    //      ArrayList<Device> deviceList;
+    ArrayList<Device> deviceList;
 
     public User () {
         userName = "n";
         setUserID();
         setDateAdded();
+        setCurrentDate();
         currentDataUseStandpoint = (float) 0;
         currentCo2 = (float) 0;
 
         // creates list of class device
-        //        this.deviceList = new ArrayList<Device>();
+        this.deviceList = new ArrayList<Device>();
     }
 
     public void setUserID() {
         //length of arraylist users + 1
-        //        userID = userList.size() + 1;
+        userID = userList.size() + 1;
     }
 
     public Integer getUserID() {
@@ -42,12 +46,25 @@ public class User {
         dateAdded = new Date();
     }
 
- //fikses - er det den rigtige måde?
+    public void setCurrentDate() {
+        currentDate = new Date();
+    }
+
     public void updateCurrentDataUseStandpointAndCo2() {
+        // creating a variable to hold the value of the new standpoint
         float newStandPoint;
-        newStandPoint = 3;
-        //Lav currentdate variable
-        // CHECK OM CURRENTDATE != NEW DATE hvis ja sÆT currentduse til 0 før andet gøres
+        newStandPoint = 0;
+        // creating a variable to hold the date at this exact moment
+        Date newDate = new Date();
+        // checking if the day has shifted
+        // if yes it will update the current date and set the current standpoint to 0 before continuing
+        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
+        if (currentDate.compareTo(newDate) != 0) {
+            currentDate = newDate;
+            currentDataUseStandpoint = (float) 0;
+        }
+        // X - Lav currentdate variable
+        // X - CHECK OM CURRENTDATE != NEW DATE hvis ja sÆT currentduse til 0 før andet gøres
         //her indsættes kode der udregner
         //hiver data ud af device
         //lægger sammen for de forskellige devices
@@ -72,7 +89,7 @@ public class User {
         currentCo2 = newCo2;
     }
 
-    /*
+
     public void addDevice(Device device){
         deviceList.add(device);
     }
@@ -81,7 +98,7 @@ public class User {
         for(int i = 0; i < deviceList.size(); i++){
             Device device = deviceList.get(i); // the current element
             /* check if the currentDevice has the name that
-               we are looking for
+               we are looking for */
             if(device.deviceName.equals(currentDevice)){
                 deviceList.remove(i); // remove the element
                 return device; // return the soda that we found
@@ -90,7 +107,6 @@ public class User {
         // if we arrive here, no item was found
         return null;
     }
-     */
 
 
 // alt herunder er gammel kode, vi ikke bruger fordi vi ser bort fra det
