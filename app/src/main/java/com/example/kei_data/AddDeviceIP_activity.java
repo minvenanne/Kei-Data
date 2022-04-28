@@ -1,8 +1,6 @@
 package com.example.kei_data;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,7 +66,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
 
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
         devices_available = (ListView) findViewById(R.id.device_address);
-        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview2, R.id.adresse, IP_address);
+        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview_ip, R.id.adresse, IP_address);
         devices_available.setMinimumHeight(justifyListViewHeightBasedOnChildren(devices_available, AdapterDevices));
         devices_available.setAdapter(AdapterDevices);
 

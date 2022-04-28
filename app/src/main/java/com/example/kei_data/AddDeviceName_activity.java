@@ -104,12 +104,12 @@ public class AddDeviceName_activity extends AppCompatActivity {
 
     public Device add_device(){
         Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), deviceName);
-        System.out.println(device.deviceType);
+        /*System.out.println(device.deviceType);
         System.out.println(device.deviceIp);
         System.out.println(device.dateAdded);
         System.out.println(device.deviceName);
         System.out.println(device.deviceAdded);
-        System.out.println(device.deviceRemoved);
+        System.out.println(device.deviceRemoved);*/
         return device;
     }
 }

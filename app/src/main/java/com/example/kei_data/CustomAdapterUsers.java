@@ -1,27 +1,24 @@
 package com.example.kei_data;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapterUsers extends BaseAdapter {
     Context context;
     ArrayList<String> arraylist;
-    ArrayList<Integer> icon;
+    ImageView icon;
     ImageButton delete;
 
-    public CustomAdapter(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete) {
+    public CustomAdapterUsers(Context context, ArrayList arraylist, ImageView icon, ImageButton delete) {
         this.context = context;
         this.arraylist = arraylist;
         this.icon = icon;
@@ -48,13 +45,13 @@ public class CustomAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.activity_listview, null);
+            view = inflater.inflate(R.layout.activity_listview_household, null);
         }
         TextView device = (TextView) view.findViewById(R.id.textView);
-        ImageView icon_device = (ImageView) view.findViewById(R.id.icon);
+        ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
         device.setText(arraylist.get(i));
-        icon_device.setImageResource(icon.get(i));
-        ImageButton delete = (ImageButton) view.findViewById(R.id.list_view_trashcan);
+        icon_user.setImageResource(R.drawable.ic_baseline_person_24_large);
+        ImageButton delete = (ImageButton) view.findViewById(R.id.list_view_trashcan2);
         delete.setImageResource(R.drawable.trashcan);
 
         delete.setOnClickListener(new View.OnClickListener() {

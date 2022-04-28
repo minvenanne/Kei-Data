@@ -9,13 +9,23 @@ import android.os.Bundle;
 import android.content.Intent;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class User_activity extends AppCompatActivity{
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
+    public ArrayList<String> Users;
+    public ListView simpleListviewUsers;
+    public TextView Name;
+    public String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +58,48 @@ public class User_activity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
+        ArrayList<String> Users = new ArrayList<>();
 
+        Users.add("Mother Julie");
+        Users.add("Father Dennis");
+        Users.add("Little sister Laura");
+        Users.add("Big brother Jacob");
+        Users.add("Baby sister Ida");
 
+        ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan2);
+        ImageView icon = (ImageView) findViewById(R.id.icon2);
+
+        simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
+        CustomAdapterUsers customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Users, icon, delete);
+        simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
+        simpleListviewUsers.setAdapter(customAdapterUsers);
+
+        userName = "Mads Bo";
+        Name = findViewById(R.id.userName);
+        Name.setText(userName);
+    }
+
+    //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
+
+    private int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
+
+        CustomAdapterUsers adapter = customAdapterUsers;
+
+        if (adapter == null) {
+            return 0;
+        }
+        ViewGroup vg = listView;
+        int totalHeight = 0;
+        for (int i = 0; i < adapter.getCount(); i++) {
+            View listItem = adapter.getView(i, null, vg);
+            listItem.measure(0, 0);
+            totalHeight += listItem.getMeasuredHeight();
+        }
+
+        ViewGroup.LayoutParams par = listView.getLayoutParams();
+        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        listView.setLayoutParams(par);
+        listView.requestLayout();
+        return totalHeight;
     }
 }
