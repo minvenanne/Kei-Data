@@ -58,7 +58,7 @@ public class User_activity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-        ArrayList<String> Users = new ArrayList<>();
+        Users = new ArrayList<>();
 
         Users.add("Mother Julie");
         Users.add("Father Dennis");
@@ -83,21 +83,19 @@ public class User_activity extends AppCompatActivity{
 
     private int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
 
-        CustomAdapterUsers adapter = customAdapterUsers;
-
-        if (adapter == null) {
+        if (customAdapterUsers == null) {
             return 0;
         }
-        ViewGroup vg = listView;
+
         int totalHeight = 0;
-        for (int i = 0; i < adapter.getCount(); i++) {
-            View listItem = adapter.getView(i, null, vg);
+        for (int i = 0; i < customAdapterUsers.getCount(); i++) {
+            View listItem = customAdapterUsers.getView(i, null, listView);
             listItem.measure(0, 0);
             totalHeight += listItem.getMeasuredHeight();
         }
 
         ViewGroup.LayoutParams par = listView.getLayoutParams();
-        par.height = totalHeight + (listView.getDividerHeight() * (adapter.getCount() - 1));
+        par.height = totalHeight + (listView.getDividerHeight() * (customAdapterUsers.getCount() - 1));
         listView.setLayoutParams(par);
         listView.requestLayout();
         return totalHeight;
