@@ -21,8 +21,9 @@ public class User {
 
     ArrayList<Device> deviceList;
 
+    //constructor creating a n0 user
     public User () {
-        userName = "n";
+        setUserName("n");
         setUserID();
         setDateAdded();
         setCurrentDate();
@@ -31,6 +32,10 @@ public class User {
 
         // creates list of class device
         this.deviceList = new ArrayList<Device>();
+    }
+
+    public void setUserName(String name) {
+        userName = name;
     }
 
     public void setUserID() {
@@ -42,14 +47,17 @@ public class User {
         return userID;
     }
 
+    // set the date added to date of creation
     public void setDateAdded() {
         dateAdded = new Date();
     }
 
+    // set the current date to the date of creation
     public void setCurrentDate() {
         currentDate = new Date();
     }
 
+    //add a device to the list of devices
     public void addDevice(Device device){
         deviceList.add(device);
     }
@@ -81,20 +89,31 @@ public class User {
             currentDataUseStandpoint = (float) 0;
         }
 
+        //going through each individual device
         for(int i = 0; i < deviceList.size(); i++) {
 
+            // specifying the device
             Device device = deviceList.get(i); // the current element
 
+            //cykling through each datause on data use list
             for(int f = 0; f < device.dataUseList.size(); f++) {
 
+                //specifying the datause
                 DataUse dataUse = dataUseList.get(i);
+
+                //tallying up all the datause from each device
                 newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+
+                //setting the data use amount to 0 to start over
+                dataUse.dataUsageAmount = (float) 0;
             }
         }
 
+        //adding the new data use to the current data use
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
         System.out.println("current data is now:" + currentDataUseStandpoint);
 
+        //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
     }
@@ -104,9 +123,9 @@ public class User {
         //co2 pr MB
         float co2MB = (float) 0.054;
         float newCo2;
-        //ganger co2 or MB på mængden af MB
+        //multiply co2 pr MB with current MB
         newCo2 = currentDataUseStandpoint*co2MB;
-        //sætter current co2 til at være lig med data use i co2 format
+        // current co2 set equal to current data use in co2 format
         currentCo2 = newCo2;
     }
 }

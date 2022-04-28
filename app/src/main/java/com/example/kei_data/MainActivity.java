@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         user.currentDataUseStandpoint = (float) 0;
         user.currentCo2 = (float) 0;
         user.updateCurrentDataUseStandpointAndCo2();
-        */ // her tester vi kode
+        System.out.println(user.userName);
+        //*/ // her tester vi kode
 
         setContentView(R.layout.activity_main);
 
