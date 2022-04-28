@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         // her tester vi kode
         User user = new User();
-        user.currentDataUseStandpoint = 0;
-        user.currentCo2 = 0;
+        user.currentDataUseStandpoint = (float) 0;
+        user.currentCo2 = (float) 0;
         user.updateCurrentDataUseStandpointAndCo2();
-        //her tester vi kode
+        //*/ // her tester vi kode
 
         setContentView(R.layout.activity_main);
 

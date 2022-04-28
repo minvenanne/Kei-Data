@@ -13,20 +13,20 @@ public class User {
 
     public Date dateAdded;
 
-    public Integer currentDataUseStandpoint;
-    public Integer currentCo2;
+    public Float currentDataUseStandpoint;
+    public Float currentCo2;
 
-    //ArrayList<Device> deviceList;
+    //      ArrayList<Device> deviceList;
 
     public User () {
         userName = "n";
         setUserID();
         setDateAdded();
-        currentDataUseStandpoint = 0;
-        currentCo2 = 0;
+        currentDataUseStandpoint = (float) 0;
+        currentCo2 = (float) 0;
 
         // creates list of class device
-        //this.deviceList = new ArrayList<Device>();
+        //        this.deviceList = new ArrayList<Device>();
     }
 
     public void setUserID() {
@@ -44,28 +44,40 @@ public class User {
 
  //fikses - er det den rigtige måde?
     public void updateCurrentDataUseStandpointAndCo2() {
-        int newStandPoint;
-        newStandPoint = 2;
-        currentDataUseStandpoint = newStandPoint;
+        float newStandPoint;
+        newStandPoint = 3;
+        //Lav currentdate variable
+        // CHECK OM CURRENTDATE != NEW DATE hvis ja sÆT currentduse til 0 før andet gøres
+        //her indsættes kode der udregner
+        //hiver data ud af device
+        //lægger sammen for de forskellige devices
+        //læg oven i existerende data
+
+
+        currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
         System.out.println("current data is now:" + currentDataUseStandpoint);
 
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
     }
 
-    public void calculateCurrentCo2(int currentDataUseStandpoint) {
+    public void calculateCurrentCo2(float currentDataUseStandpoint) {
 
-        int newCo2;
-        newCo2 = 3;
-
+        //co2 pr MB
+        float co2MB = (float) 0.054;
+        float newCo2;
+        //ganger co2 or MB på mængden af MB
+        newCo2 = currentDataUseStandpoint*co2MB;
+        //sætter current co2 til at være lig med data use i co2 format
         currentCo2 = newCo2;
     }
 
-    //public void addDevice(Device device){
-        //deviceList.add(device);
-    //}
+    /*
+    public void addDevice(Device device){
+        deviceList.add(device);
+    }
 
-    /* public Device removeDevice(String currentDevice) {
+    public Device removeDevice(String currentDevice) {
         for(int i = 0; i < deviceList.size(); i++){
             Device device = deviceList.get(i); // the current element
             /* check if the currentDevice has the name that
@@ -77,7 +89,8 @@ public class User {
         }
         // if we arrive here, no item was found
         return null;
-    } */
+    }
+     */
 
 
 // alt herunder er gammel kode, vi ikke bruger fordi vi ser bort fra det
