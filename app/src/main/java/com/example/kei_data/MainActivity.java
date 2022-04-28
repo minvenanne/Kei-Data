@@ -34,6 +34,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /* // her tester vi kode
+        User user = new User();
+        user.currentDataUseStandpoint = (float) 0;
+        user.currentCo2 = (float) 0;
+        user.updateCurrentDataUseStandpointAndCo2();
+        System.out.println(user.userName);
+        //*/ // her tester vi kode
+
         setContentView(R.layout.activity_main);
 
         this.imageViewPhoto = (ImageView) findViewById(R.id.imageView);
