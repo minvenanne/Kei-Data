@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* her tester vi kode
+        /* // her tester vi kode
         User user = new User();
         user.currentDataUseStandpoint = (float) 0;
         user.currentCo2 = (float) 0;

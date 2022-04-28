@@ -50,6 +50,23 @@ public class User {
         currentDate = new Date();
     }
 
+    public void addDevice(Device device){
+        deviceList.add(device);
+    }
+
+    public Device removeDevice(String currentDevice) {
+        for(int i = 0; i < deviceList.size(); i++){
+            Device device = deviceList.get(i); // the current element
+            // check if the currentDevice has the name that we are looking for
+            if(device.deviceName.equals(currentDevice)){
+                deviceList.remove(i); // remove the element
+                return device; // return the soda that we found
+            }
+        }
+        // if we arrive here, no item was found
+        return null;
+    }
+
     public void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
@@ -63,13 +80,17 @@ public class User {
             currentDate = newDate;
             currentDataUseStandpoint = (float) 0;
         }
-        // X - Lav currentdate variable
-        // X - CHECK OM CURRENTDATE != NEW DATE hvis ja sÆT currentduse til 0 før andet gøres
-        //her indsættes kode der udregner
-        //hiver data ud af device
-        //lægger sammen for de forskellige devices
-        //læg oven i existerende data
 
+        for(int i = 0; i < deviceList.size(); i++) {
+
+            Device device = deviceList.get(i); // the current element
+
+            for(int f = 0; f < device.dataUseList.size(); f++) {
+
+                DataUse dataUse = dataUseList.get(i);
+                newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+            }
+        }
 
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
         System.out.println("current data is now:" + currentDataUseStandpoint);
@@ -88,72 +109,4 @@ public class User {
         //sætter current co2 til at være lig med data use i co2 format
         currentCo2 = newCo2;
     }
-
-
-    public void addDevice(Device device){
-        deviceList.add(device);
-    }
-
-    public Device removeDevice(String currentDevice) {
-        for(int i = 0; i < deviceList.size(); i++){
-            Device device = deviceList.get(i); // the current element
-            /* check if the currentDevice has the name that
-               we are looking for */
-            if(device.deviceName.equals(currentDevice)){
-                deviceList.remove(i); // remove the element
-                return device; // return the soda that we found
-            }
-        }
-        // if we arrive here, no item was found
-        return null;
-    }
-
-
-// alt herunder er gammel kode, vi ikke bruger fordi vi ser bort fra det
-
-    //public ArrayList getDataUse() {
-        //return dataUseList;
-    //}
-
-
-    //attributes:
-    //public Boolean userAdded;
-
-    //public Boolean userRemoved;
-
-    //public String nfcID;
-
-    //public Integer deviceDisplayID;
-
-    //ArrayList<DataUse> dataUseList;
-
-    //this.dataUseList = new ArrayList<DataUse>();
-
-    //add to "object":
-    //setNfcID("n0");
-    //setDeviceDisplayID(0);
-    //setUserAdded(true);
-    //setUserRemoved(false);
-
-    //Methods:
-    //public void setNfcID(String newNfcID) {
-        //nfcID = newNfcID;
-        //laves til tilfældig værdi som ikke allerede eksisterer
-    //}
-
-    //public void setDeviceDisplayID(Integer newDeviceDisplayID) {
-        //deviceDisplayID = newDeviceDisplayID;
-        //potentielt set tager den her knap indputtet(eventlistener og sætter lig et device (if x eventlistener then x)
-    //}
-
-    //public void setUserAdded(Boolean newUserAddedStatus) {
-        //userAdded = newUserAddedStatus;
-        //laves til tilfældig værdi som ikke allerede eksisterer
-    //}
-
-    //public void setUserRemoved(Boolean newUserRemovedStatus) {
-        //userRemoved = newUserRemovedStatus;
-        //laves til tilfældig værdi som ikke allerede eksisterer
-    //}
-
 }
