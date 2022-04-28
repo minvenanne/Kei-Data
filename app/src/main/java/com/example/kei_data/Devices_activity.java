@@ -28,6 +28,8 @@ public class Devices_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
 
+        AddDeviceType_activity.setCheckedButton();
+
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override

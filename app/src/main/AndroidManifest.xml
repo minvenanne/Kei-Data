@@ -37,6 +37,9 @@
             android:name=".AddDeviceName_activity"
             android:exported="false" />
         <activity
+            android:name=".DeviceSuccess_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

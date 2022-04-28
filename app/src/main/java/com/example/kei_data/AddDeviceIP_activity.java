@@ -1,6 +1,8 @@
 package com.example.kei_data;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,11 +22,42 @@ public class AddDeviceIP_activity extends AppCompatActivity {
     public ListView devices_available;
     public Button Add_device;
     public Button back;
-    public String ip;
+    public static String ip;
+    public static int clickedButton;
+    public ImageButton settingsButton;
+    public ImageButton homeButton;
+    public ImageButton categoriesButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddeviceip);
+
+        settingsButton = (ImageButton) findViewById(R.id.Settings);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddDeviceIP_activity.this, Settings_activity1.class);
+                startActivity(intent);
+            }
+        });
+
+        homeButton = (ImageButton) findViewById(R.id.Total);
+        homeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddDeviceIP_activity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        categoriesButton = (ImageButton) findViewById(R.id.Categories);
+        categoriesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddDeviceIP_activity.this, Categories_activity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayList<String> IP_address = new ArrayList<>();
 
@@ -40,22 +74,18 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         devices_available.setAdapter(AdapterDevices);
 
 
-
         //set ip equal to the selected one.
         devices_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                clickedButton = position;
                 Add_device.setEnabled(true);
-                int selectedItem = position;
-                ip = IP_address.get(selectedItem);
-                System.out.println(selectedItem);
+                ip = IP_address.get(clickedButton);
+                setBackground(position, view);
             }
         });
 
-
         Add_device = (Button) findViewById(R.id.Next2);
-
-
         Add_device.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,5 +125,19 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         listView.setLayoutParams(par);
         listView.requestLayout();
         return totalHeight;
+    }
+    public static String getDeviceIp(){
+        return ip;
+    }
+
+    public static void setBackground(int position, View view){
+        if(position!=clickedButton)
+        {
+            view.setBackgroundResource(R.drawable.round_corners);
+        }
+        else
+        {
+            view.setBackgroundResource(R.drawable.radiobutton1_selected);
+        }
     }
 }

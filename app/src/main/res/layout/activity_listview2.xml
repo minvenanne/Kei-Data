@@ -13,8 +13,8 @@
         android:layout_weight="1"
         android:text="TextView"
         android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="25sp"
-        android:background="@drawable/radiobutton1_selector"
 
         />
 
