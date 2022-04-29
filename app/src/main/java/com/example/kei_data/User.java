@@ -20,7 +20,7 @@ public class User {
 
     public static Integer numberOfDevices;
 
-    static ArrayList<Device> deviceList;
+    static ArrayList<Device> deviceList; // made static to be able to use it across classes
 
     //constructor creating a n0 user
     public User () {
