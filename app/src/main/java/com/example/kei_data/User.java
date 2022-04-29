@@ -3,7 +3,6 @@ package com.example.kei_data;
 
 import java.util.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 public class User {
 
@@ -19,7 +18,9 @@ public class User {
 
     public Float currentCo2;
 
-    ArrayList<Device> deviceList;
+    public static Integer numberOfDevices;
+
+    static ArrayList<Device> deviceList; // made static to be able to use it across classes
 
     //constructor creating a n0 user
     public User () {
@@ -27,11 +28,12 @@ public class User {
         setUserID();
         setDateAdded();
         setCurrentDate();
+        setNumberOfDevices();
         currentDataUseStandpoint = (float) 0;
         currentCo2 = (float) 0;
 
         // creates list of class device
-        this.deviceList = new ArrayList<Device>();
+        deviceList = new ArrayList<>();
     }
 
     public void setUserName(String name) {
@@ -39,8 +41,14 @@ public class User {
     }
 
     public void setUserID() {
-        //length of arraylist users + 1
-        userID = userList.size() + 1;
+        //size of arraylist User
+        Household.setNumberOfUsers();
+        //user ID is set to number of devices in the list
+        userID = Houshold.numberOfUsers;
+    }
+
+    public static void setNumberOfDevices() {
+        numberOfDevices = deviceList.size();
     }
 
     public Integer getUserID() {
