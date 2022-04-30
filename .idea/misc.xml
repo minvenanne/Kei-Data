@@ -45,6 +45,7 @@
         <entry key="app/src/main/res/drawable/settings_pressed.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/trashcan.xml" value="0.118" />
+        <entry key="app/src/main/res/layout/activity_add_user.xml" value="0.25925925925925924" />
         <entry key="app/src/main/res/layout/activity_adddevice.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_adddevice2.xml" value="0.1962962962962963" />
         <entry key="app/src/main/res/layout/activity_adddeviceip.xml" value="0.28703703703703703" />
@@ -62,7 +63,7 @@
         <entry key="app/src/main/res/layout/activity_listview_ip.xml" value="0.23645833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.23489583333333333" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_user.xml" value="0.21062201630297325" />
+        <entry key="app/src/main/res/layout/activity_user.xml" value="0.3340782122905028" />
       </map>
     </option>
   </component>

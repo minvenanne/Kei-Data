@@ -84,7 +84,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
                 startActivity(intent);
                 deviceName = editTextName.getText().toString();
                 System.out.println(deviceName);
-                add_device();
+                Devices_activity.add_devicePrivate();
             }
         });
 
@@ -102,14 +102,5 @@ public class AddDeviceName_activity extends AppCompatActivity {
         return deviceName;
     }
 
-    public Device add_device(){
-        Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), deviceName);
-        /*System.out.println(device.deviceType);
-        System.out.println(device.deviceIp);
-        System.out.println(device.dateAdded);
-        System.out.println(device.deviceName);
-        System.out.println(device.deviceAdded);
-        System.out.println(device.deviceRemoved);*/
-        return device;
-    }
+
 }

@@ -26,6 +26,10 @@
             android:exported="false" />
         <activity
             android:name=".User_activity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false" />
+        <activity
+            android:name=".AddUser_activity"
             android:exported="false" />
         <activity
             android:name=".AddDeviceType_activity"

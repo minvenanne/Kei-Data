@@ -4,12 +4,22 @@ package com.example.kei_data;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.inputmethodservice.Keyboard;
+import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
 
 import android.content.Intent;
 
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -22,15 +32,24 @@ public class User_activity extends AppCompatActivity{
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
-    public ArrayList<String> Users;
-    public ListView simpleListviewUsers;
+    public ImageButton edit;
+    public Button AddHouseholdMember;
+    public static ArrayList<String> Users = new ArrayList<>();
+    public static ListView simpleListviewUsers;
     public TextView Name;
-    public String userName;
+    public static String userNameCurrent;
+    public static CustomAdapterUsers customAdapterUsers;
+    public EditText editText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
+
+        if (Users.size()==0){
+            addElementsToArray();
+        }
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -58,30 +77,52 @@ public class User_activity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-        Users = new ArrayList<>();
 
-        Users.add("Mother Julie");
-        Users.add("Father Dennis");
-        Users.add("Little sister Laura");
-        Users.add("Big brother Jacob");
-        Users.add("Baby sister Ida");
+        edit = (ImageButton) findViewById(R.id.Edit_Button);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editText = (EditText) findViewById(R.id.editName);
+                editText.setVisibility(View.VISIBLE);
+                editText.setOnKeyListener(new View.OnKeyListener() {
+                    @Override
+                    public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                        if (i == KeyEvent.KEYCODE_ENTER){
+                            userNameCurrent = editText.getText().toString().trim();
+                            editText.setVisibility(View.INVISIBLE);
+                            Name.setText(userNameCurrent);
+                            closeKeyboard();
+                            return true;
+                        }
+                        return false;
+                    }
+                });
+            }
+        });
+
+        AddHouseholdMember = (Button) findViewById(R.id.Add_Household_Members);
+        AddHouseholdMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(User_activity.this, AddUser_activity.class);
+                startActivity(intent);
+            }
+        });
 
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan2);
         ImageView icon = (ImageView) findViewById(R.id.icon2);
 
         simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
-        CustomAdapterUsers customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Users, icon, delete);
+        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Users, icon, delete);
         simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
         simpleListviewUsers.setAdapter(customAdapterUsers);
 
-        userName = "Mads Bo";
         Name = findViewById(R.id.userName);
-        Name.setText(userName);
+        Name.setText(userNameCurrent);
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-
-    private int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
+    public static int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
 
         if (customAdapterUsers == null) {
             return 0;
@@ -99,5 +140,49 @@ public class User_activity extends AppCompatActivity{
         listView.setLayoutParams(par);
         listView.requestLayout();
         return totalHeight;
+    }
+
+    public static void removeUser(int position){
+        Users.remove(position);
+        customAdapterUsers.notifyDataSetChanged();
+        justifyListViewHeightBasedOnChildren(simpleListviewUsers, customAdapterUsers);
+    }
+
+    public static void addUser(String name){
+        String Name = name;
+        Users.add(Name);
+        customAdapterUsers.notifyDataSetChanged();
+    }
+
+    private void closeKeyboard()
+    {
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = this.getCurrentFocus();
+
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager
+                    = (InputMethodManager)
+                    getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+            manager
+                    .hideSoftInputFromWindow(
+                            view.getWindowToken(), 0);
+        }
+    }
+
+    private void addElementsToArray(){
+        Users.add("Mother Julie");
+        Users.add("Father Dennis");
+        Users.add("Little sister Laura");
+        Users.add("Big brother Jacob");
+        Users.add("Baby sister Ida");
     }
 }

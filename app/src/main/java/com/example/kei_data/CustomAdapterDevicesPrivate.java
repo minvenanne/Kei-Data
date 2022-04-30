@@ -12,13 +12,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomAdapterDevices extends BaseAdapter {
+public class CustomAdapterDevicesPrivate extends BaseAdapter {
     Context context;
     ArrayList<String> arraylist;
     ArrayList<Integer> icon;
     ImageButton delete;
 
-    public CustomAdapterDevices(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete) {
+    public CustomAdapterDevicesPrivate(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete) {
         this.context = context;
         this.arraylist = arraylist;
         this.icon = icon;
@@ -60,6 +60,7 @@ public class CustomAdapterDevices extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
+                Devices_activity.removeDevicePrivate(position);
                 System.out.println("I am in position " + position);
             }
         });

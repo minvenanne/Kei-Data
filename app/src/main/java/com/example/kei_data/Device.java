@@ -21,4 +21,6 @@ public class Device {
         this.deviceRemoved = false;
     }
 
+
+
 }

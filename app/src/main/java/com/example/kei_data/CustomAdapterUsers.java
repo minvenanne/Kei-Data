@@ -17,6 +17,7 @@ public class CustomAdapterUsers extends BaseAdapter {
     ArrayList<String> arraylist;
     ImageView icon;
     ImageButton delete;
+    ImageButton edit;
 
     public CustomAdapterUsers(Context context, ArrayList arraylist, ImageView icon, ImageButton delete) {
         this.context = context;
@@ -51,7 +52,21 @@ public class CustomAdapterUsers extends BaseAdapter {
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
         device.setText(arraylist.get(i));
         icon_user.setImageResource(R.drawable.ic_baseline_person_24_large);
-        ImageButton delete = (ImageButton) view.findViewById(R.id.list_view_trashcan2);
+
+        edit = (ImageButton) view.findViewById(R.id.Edit_Button2);
+        edit.setImageResource(R.drawable.ic_baseline_edit_24);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View parentRow = (View) v.getParent();
+                ListView listView = (ListView) parentRow.getParent();
+                int position = listView.getPositionForView(parentRow);
+                System.out.println("I am in position " + position);
+            }
+        });
+
+        delete = (ImageButton) view.findViewById(R.id.list_view_trashcan2);
         delete.setImageResource(R.drawable.trashcan);
 
         delete.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +75,7 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
+                User_activity.removeUser(position);
                 System.out.println("I am in position " + position);
             }
         });
