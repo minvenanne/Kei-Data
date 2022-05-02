@@ -60,7 +60,7 @@ public class CustomAdapterDevicesShared extends BaseAdapter {
                     View parentRow = (View) v.getParent();
                     ListView listView = (ListView) parentRow.getParent();
                     int position = listView.getPositionForView(parentRow);
-                    Device.removeDeviceShared(position);
+                    User.removeDeviceShared(position);
                     System.out.println("I am in position " + position);
                 }
             });

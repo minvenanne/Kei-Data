@@ -61,7 +61,7 @@ public class CustomAdapterDevicesPrivate extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                Device.removeDevicePrivate(position);
+                User.removeDevicePrivate(position);
                 System.out.println("I am in position " + position);
             }
         });

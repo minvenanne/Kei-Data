@@ -79,9 +79,21 @@ public class User {
         System.out.println(device.deviceRemoved);
 
         setNumberOfDevices();
-        Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat);
     }
 
+    public static void removeDevicePrivate(int position){
+        User.deviceList.remove(position);
+        Devices_activity.iconsPrivate.remove(position);
+        Devices_activity.customAdapterPrivat.notifyDataSetChanged();
+        Devices_activity.simpleListPrivate.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat));
+    }
+
+    public static void removeDeviceShared(int position){
+        Devices_activity.arrayListShared.remove(position);
+        Devices_activity.iconsShared.remove(position);
+        Devices_activity.customAdapterShared.notifyDataSetChanged();
+        Devices_activity.simpleListShared.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenShared(Devices_activity.simpleListShared, Devices_activity.customAdapterShared));
+    }
 
 
     public Device removeDevice(String currentDevice) {

@@ -23,7 +23,8 @@ public class Devices_activity extends AppCompatActivity{
     public static ListView simpleListShared;
     public static ArrayList<String> arrayListShared = new ArrayList<>();
     public static ArrayList<String> typeShared = new ArrayList<>();
-    ArrayList<Integer> iconsShared = new ArrayList<>();
+    public static ArrayList<Integer> iconsPrivate = new ArrayList<>();
+    public static ArrayList<Integer> iconsShared = new ArrayList<>();
     public static CustomAdapterDevicesPrivate customAdapterPrivat;
     public static CustomAdapterDevicesShared customAdapterShared;
 
@@ -79,7 +80,7 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
-        ArrayList<Integer> iconsPrivate = turnTypeIntoIcon(User.deviceList);
+        iconsPrivate = turnTypeIntoIcon(User.deviceList);
 
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
 
@@ -140,7 +141,7 @@ public class Devices_activity extends AppCompatActivity{
     }
 
     //Creates arraylist of icons
-    public ArrayList<Integer> turnTypeIntoIcon(ArrayList<Device> device){
+    private ArrayList<Integer> turnTypeIntoIcon(ArrayList<Device> device){
         ArrayList<Integer> icons = new ArrayList<>();
 
         for (int i = 0; i < device.size(); i++){
