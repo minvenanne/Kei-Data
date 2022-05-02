@@ -1,7 +1,12 @@
 package com.example.kei_data;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -20,14 +25,21 @@ import android.widget.CompoundButton;
 
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+
 public class MainActivity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
+    SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
+
+
+
 
 
     @Override
@@ -35,18 +47,96 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //TEST//
+        Household testHousehold = new Household();
+        testHousehold.addUser("Camilla");
+        testHousehold.addRouter(1234);
+        testHousehold.removeUser("Klaus");
+
+
+        //END TEST//
+
+
+
+
+
+
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        LineGraphSeries<DataPoint> barseries = new LineGraphSeries<>(new DataPoint[] {
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-                new DataPoint(3, 2),
-                new DataPoint(4, 6)
+        initGraph(graph);
+
+        //Creates a timestamp from the Date object
+        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
+            @Override
+            public String formatLabel (double value, boolean isValueX) {
+                if(isValueX) {
+                    return sdf.format(new Date((long) value));
+                } else {
+                    return super.formatLabel(value, isValueX);
+                }
+            }
+
         });
-        graph.addSeries(barseries);
+        // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
+        // setHumanRounding enables the rounding of the numbers on the x-axis
+        // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
+        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
+        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getGridLabelRenderer().setNumVerticalLabels(10);
 
 
-        Switch householdSwitch = findViewById(R.id.household);
+
+
+        graph.addSeries(dSeries);
+
+        //Connects the radiobutton group with the onCheckedChange method.
+        //When a radiobutton is checked, it removes the past series, and adds a new.
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+                    if ( checkedId == R.id.radioButton) {
+                        Log.d("Success", "D was pressed");
+                        graph.removeAllSeries();
+                        graph.addSeries(dSeries);
+                        dSeries.setAnimated(true);
+
+
+                    } else if (checkedId == R.id.radioButton2) {
+                        Log.d("Success", "W was pressed");
+                        graph.removeAllSeries();
+                        graph.addSeries(weekSeries);
+                        weekSeries.setAnimated(true);
+
+                    } else if (checkedId == R.id.radioButton3) {
+                        Log.d("Success", "M was pressed");
+                        graph.removeAllSeries();
+                        graph.addSeries(mSeries);
+                        mSeries.setAnimated(true);
+
+
+                    } else if (checkedId == R.id.radioButton4) {
+                        Log.d("Success", "6M was pressed");
+                        graph.removeAllSeries();
+                        graph.addSeries(sixMSeries);
+                        sixMSeries.setAnimated(true);
+
+
+                    } else if (checkedId == R.id.radioButton5) {
+                        Log.d("Success", "Y was pressed");
+                        graph.removeAllSeries();
+                        graph.addSeries(ySeries);
+                        ySeries.setAnimated(true);
+
+
+                    }
+
+
+                }
+            });
+
+
+        Switch householdSwitch = (Switch) findViewById(R.id.household);
 //            Lets the user switch between two modes.
         householdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -86,33 +176,71 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    GraphView bargraph = (GraphView) findViewById(R.id.graph);
-//    BarGraphSeries<DataPoint> barseries = new BarGraphSeries<>(new DataPoint[] {
-//            new DataPoint(0, -1),
-//            new DataPoint(1, 5),
-//            new DataPoint(2, 3),
-//            new DataPoint(3, 2),
-//            new DataPoint(4, 6)
-//    });
+    //Creates the different datasets for the graph.
+
+    LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
+            new DataPoint (new Date().getTime(), 42.9),
+            new DataPoint (new Date().getTime(), 68.5),
+            new DataPoint (new Date().getTime(), 147),
+            new DataPoint (new Date().getTime(), 50),
+    });
+
+    BarGraphSeries<DataPoint> weekSeries = new BarGraphSeries<>(new DataPoint[] {
+            new DataPoint(0, -2),
+            new DataPoint(1, 5),
+            new DataPoint(2, 3),
+            new DataPoint(3, 2),
+            new DataPoint(4, 6)
+    });
+
+    BarGraphSeries<DataPoint> mSeries = new BarGraphSeries<>(new DataPoint[] {
+            new DataPoint(0, 0),
+            new DataPoint(1, 5),
+            new DataPoint(2, 3),
+            new DataPoint(3, 2),
+            new DataPoint(4, 6)
+    });
+    BarGraphSeries<DataPoint> sixMSeries = new BarGraphSeries<>(new DataPoint[] {
+            new DataPoint(0, -10),
+            new DataPoint(1, 5),
+            new DataPoint(2, 3),
+            new DataPoint(3, 2),
+            new DataPoint(4, 6)
+    });
+
+    BarGraphSeries<DataPoint> ySeries = new BarGraphSeries<>(new DataPoint[] {
+            new DataPoint(0, 12),
+            new DataPoint(1, 5),
+            new DataPoint(2, 3),
+            new DataPoint(3, 2),
+            new DataPoint(4, 6)
+    });
 
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
 
-        // Check which radio button was clicked
-        switch(view.getId()) {
-            case R.id.radioButton:
-                if (checked)
-                    //graph.addSeries(series);
-                    Log.d("Succes", "D");
-                break;
-            case R.id.radioButton2:
-                if (checked)
-                    //graph.addSeries(barseries);
-                    Log.d("Succes", "W");
-                break;
-        }
+
+    //Styling of the graph
+    public void initGraph(GraphView graph){
+        //Colors of the the graph
+        dSeries.setColor(Color.rgb(120,150,111));
+        weekSeries.setColor(Color.rgb(120,150,111));
+        mSeries.setColor(Color.rgb(120,150,111));
+        sixMSeries.setColor(Color.rgb(120,150,111));
+        ySeries.setColor(Color.rgb(120,150,111));
+
+        //Thickness of graph
+        dSeries.setThickness(10);
+        weekSeries.setSpacing(25);
+        mSeries.setSpacing(25);
+        sixMSeries.setSpacing(25);
+        ySeries.setSpacing(25);
+
     }
+
+
+
+
+
+
 
 }

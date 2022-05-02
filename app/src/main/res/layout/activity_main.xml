@@ -47,7 +47,8 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="D"
-            android:onClick="onRadioButtonClicked"
+            android:checked="true"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -59,7 +60,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="W"
-            android:onClick="onRadioButtonClicked"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -71,7 +72,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="M"
-            android:onClick="onRadioButtonClicked"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -83,7 +84,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="6M"
-            android:onClick="onRadioButtonClicked"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -95,7 +96,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Y"
-            android:onClick="onRadioButtonClicked"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
     </RadioGroup>
@@ -161,6 +162,7 @@
         android:scaleX="2"
         android:scaleY="2"
         android:thumbTint="#B5D1B2"
+        android:checked="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
@@ -279,17 +281,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
         app:srcCompat="@drawable/ic_category" />
-
-    <Button
-        android:id="@+id/btnTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

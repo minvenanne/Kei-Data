@@ -47,6 +47,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="D"
+            android:checked="true"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -102,10 +103,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="12dp"
         android:layout_marginEnd="180dp"
-        android:layout_marginBottom="32dp"
         android:text="Total:"
         android:textSize="14dp"
-        app:layout_constraintBottom_toBottomOf="@+id/householdNumber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,7 +122,8 @@
         app:layout_constraintBottom_toTopOf="@+id/householdDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/householdTotal" />
 
     <TextView
         android:id="@+id/householdDay"
@@ -138,32 +138,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/householdNumber" />
 
-    <ImageView
-        android:id="@+id/householdImageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/householdGraph"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/householdDay"
-        app:srcCompat="@drawable/testgraph" />
+        app:layout_constraintTop_toBottomOf="@+id/householdDay" />
 
     <Switch
         android:id="@+id/householdHousehold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="50dp"
         android:background="@drawable/switch_normal"
         android:scaleX="2"
         android:scaleY="2"
         android:thumbTint="#B5D1B2"
-        app:layout_constraintBottom_toTopOf="@+id/householdTotal"
+        app:layout_constraintBottom_toTopOf="@+id/householdMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/householdImageView" />
+        android:checked="true"
+        app:layout_constraintTop_toBottomOf="@+id/householdGraph" />
 
     <TextView
         android:id="@+id/householdTextView14"
@@ -194,7 +191,7 @@
         app:layout_constraintBottom_toTopOf="@+id/householdSettings"
         app:layout_constraintEnd_toStartOf="@+id/householdHousehold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/householdImageView"
+        app:layout_constraintTop_toBottomOf="@+id/householdGraph"
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
     <ImageView
@@ -205,7 +202,7 @@
         app:layout_constraintBottom_toTopOf="@+id/householdCategories"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/householdHousehold"
-        app:layout_constraintTop_toBottomOf="@+id/householdImageView"
+        app:layout_constraintTop_toBottomOf="@+id/householdGraph"
         app:srcCompat="@drawable/ic_baseline_group_24" />
 
     <TextView
@@ -240,7 +237,7 @@
         app:srcCompat="@drawable/ic_settings" />
 
     <ImageButton
-        android:id="@+id/householdTotal"
+        android:id="@+id/householdTotalButton"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -252,7 +249,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/householdMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="@+id/householdMenu"
         app:srcCompat="@drawable/home_pressed" />
 
     <ImageButton
@@ -270,7 +267,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="@+id/householdMenu"
         app:srcCompat="@drawable/ic_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
