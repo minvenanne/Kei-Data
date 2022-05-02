@@ -11,14 +11,14 @@ public class Household {
 
 
     public String familyName;
-    public int numOfMembers;
+    public static int numberOfUsers;
     public String householdID;
     public String user;
 
     //public Users[] user;
     private String routerID;
 
-    public ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<User> userList;
     public ArrayList<Integer> routerList = new ArrayList<>();
 
 
@@ -26,25 +26,19 @@ public class Household {
     //String familyName, int numOfMembers, String householdID, String routerID
     public Household() {
         this.familyName = familyName;
-        this.numOfMembers = numOfMembers;
+        setNumberOfUsers();
         this.householdID = householdID;
         this.user = user;
         this.routerID = routerID;
-
-        userList.add("Casper");
-        userList.add("Klaus");
-
+        userList = new ArrayList<>();
         routerList.add(2563);
     }
-
 
     public void addRouter(int router) {
         //DONE
         System.out.println("addRouter BEFORE" + routerList);
         routerList.add(router);
         System.out.println("addRouter AFTER" + routerList);
-
-
     }
 
     public String getRouterId() {
@@ -52,13 +46,11 @@ public class Household {
         return routerID;
     }
 
-    public void addUser(String user) {
+    public void addUser(User user) {
         //DONE
         System.out.println("addUser BEFORE: " + userList);
         userList.add(user);
         System.out.println("addUser AFTER: " + userList);
-
-
     }
 
     public void removeUser(String user) {
@@ -67,6 +59,10 @@ public class Household {
         userList.remove(user);
         System.out.println("removeUser AFTER: " + userList);
 
+    }
+
+    public static void setNumberOfUsers() {
+        numberOfUsers = userList.size();
     }
 
     //    public String calculateFamilyWinner(DataUse[] dataUse) {

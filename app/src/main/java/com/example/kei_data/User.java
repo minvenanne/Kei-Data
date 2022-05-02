@@ -23,9 +23,9 @@ public class User {
     static ArrayList<Device> deviceList; // made static to be able to use it across classes
 
     //constructor creating a n0 user
-    public User () {
-        setUserName("n");
-        //setUserID();
+    public User (String name) {
+        setUserName(name);
+        setUserID();
         setDateAdded();
         setCurrentDate();
         setNumberOfDevices();
@@ -40,15 +40,15 @@ public class User {
         userName = name;
     }
 
-    /*public void setUserID() {
+    public void setUserID() {
         //size of arraylist User
         Household.setNumberOfUsers();
         //user ID is set to number of devices in the list
         userID = Household.numberOfUsers;
-    }*/
+    }
 
     public static void setNumberOfDevices() {
-        numberOfDevices = deviceList.size();
+        numberOfDevices = deviceList.size(); //wrong, fejl i antal hvis man sletter device
     }
 
     public Integer getUserID() {
@@ -75,11 +75,13 @@ public class User {
         System.out.println(device.deviceName);
         System.out.println(device.deviceAdded);
         System.out.println(device.deviceRemoved);
+        setNumberOfDevices();
     }
 
     public static void addDeviceCode(String type, String IP, String name){
         Device device = new Device(type, IP, name);
         deviceList.add(device);
+        setNumberOfDevices();
     }
 
     public Device removeDevice(String currentDevice) {
