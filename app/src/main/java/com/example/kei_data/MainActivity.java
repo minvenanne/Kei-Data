@@ -57,8 +57,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TEST//
-        /*Household testHousehold = new Household();
-        testHousehold.addUser("Camilla");
+        Household testHousehold = new Household();
+        testHousehold.setUserName("Roy Hudson");
+        testHousehold.familyName = "Hudson";
+        /*testHousehold.addUser("Camilla");
         testHousehold.addRouter(1234);
         testHousehold.removeUser("Klaus");*/
 

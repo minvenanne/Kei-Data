@@ -48,10 +48,10 @@ public class CustomAdapterUsers extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.activity_listview_household, null);
         }
-        TextView device = (TextView) view.findViewById(R.id.textView);
+        TextView user = (TextView) view.findViewById(R.id.textView);
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
-        device.setText(arraylist.get(i));
-        icon_user.setImageResource(R.drawable.ic_baseline_person_24_large);
+        user.setText(Household.userList.get(i).userName);
+        icon_user.setImageResource(R.drawable.ic_baseline_person_40_large);
 
         edit = (ImageButton) view.findViewById(R.id.Edit_Button2);
         edit.setImageResource(R.drawable.ic_baseline_edit_24);

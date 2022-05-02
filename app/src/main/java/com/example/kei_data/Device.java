@@ -83,10 +83,4 @@ public class Device {
         deviceIP = ip;
     }
 
-
-
-
-
-
-
 }

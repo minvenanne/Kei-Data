@@ -18,7 +18,7 @@ public class Household {
     //public Users[] user;
     private String routerID;
 
-    public static ArrayList<User> userList;
+    public static ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Integer> routerList = new ArrayList<>();
 
 
@@ -46,11 +46,14 @@ public class Household {
         return routerID;
     }*/
 
-    public static void addUser(String name) {
+    public static void setUserName(String name){
+        user = name;
+    }
+
+    public static void addUser(String name){
         //DONE
         System.out.println("addUser BEFORE: " + userList);
         userList.add(new User(name));
-        User_activity.customAdapterUsers.notifyDataSetChanged();
         System.out.println("addUser AFTER: " + userList);
     }
 

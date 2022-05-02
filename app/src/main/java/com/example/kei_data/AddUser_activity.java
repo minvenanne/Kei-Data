@@ -19,12 +19,9 @@ public class AddUser_activity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton categoriesButton;
     EditText UserName;
-    EditText UserId;
     static String NameofHouseholdMember;
     int IdofHouseholdMember = -1;
     Button AddUser;
-
-
 
 
     @Override
@@ -66,21 +63,7 @@ public class AddUser_activity extends AppCompatActivity {
                 if (i == KeyEvent.KEYCODE_ENTER){
                     NameofHouseholdMember = UserName.getText().toString().trim();
                     closeKeyboard();
-                    enableButton();
-                    return true;
-                }
-                return false;
-            }
-        });
-
-        UserId = (EditText) findViewById(R.id.UserId);
-        UserId.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if (i == KeyEvent.KEYCODE_ENTER){
-                    IdofHouseholdMember = Integer.parseInt(UserId.getText().toString().trim());
-                    closeKeyboard();
-                    enableButton();
+                    AddUser.setEnabled(true);
                     return true;
                 }
                 return false;
@@ -114,22 +97,8 @@ public class AddUser_activity extends AppCompatActivity {
 
             // now assign the system
             // service to InputMethodManager
-            InputMethodManager manager
-                    = (InputMethodManager)
-                    getSystemService(
-                            Context.INPUT_METHOD_SERVICE);
-            manager
-                    .hideSoftInputFromWindow(
-                            view.getWindowToken(), 0);
-        }
-    }
-
-    private void enableButton(){
-        if (IdofHouseholdMember != -1 && NameofHouseholdMember != null){
-            AddUser.setEnabled(true);
-        }
-        else{
-            AddUser.setEnabled(false);
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
 }

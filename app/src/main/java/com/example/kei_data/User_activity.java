@@ -84,7 +84,7 @@ public class User_activity extends AppCompatActivity{
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
-                            Household.user = editText.getText().toString().trim();
+                            Household.setUserName(editText.getText().toString().trim());
                             editText.setVisibility(View.INVISIBLE);
                             Name.setText(Household.user);
                             closeKeyboard();
