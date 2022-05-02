@@ -2,7 +2,7 @@ package com.example.kei_data;
 
 import java.util.Date;
 
-public class Device {
+public class DeviceY {
 
     public String deviceType;
     //private int deviceId;
@@ -12,7 +12,7 @@ public class Device {
     public boolean deviceAdded;
     public boolean deviceRemoved;
 
-    public Device(String type, String ip, String name){
+    public DeviceY(String type, String ip, String name){
         deviceType = type;
         deviceIp = ip;
         dateAdded = new Date();

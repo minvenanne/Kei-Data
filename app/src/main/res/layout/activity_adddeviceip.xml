@@ -98,7 +98,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
         android:gravity="center"
-        android:text="Pick an available device"
+        android:text="Pick an available deviceY"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"

@@ -192,8 +192,8 @@ public class Devices_activity extends AppCompatActivity{
         typeShared.add("Phone");
     }
 
-    public static Device add_devicePrivate(){
-        Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), AddDeviceName_activity.getDeviceName());
+    public static DeviceY add_devicePrivate(){
+        DeviceY deviceY = new DeviceY(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), AddDeviceName_activity.getDeviceName());
         String name = AddDeviceName_activity.getDeviceName();
         arrayListPrivate.add(name);
         typePrivate.add(AddDeviceType_activity.getDeviceType());
@@ -203,7 +203,7 @@ public class Devices_activity extends AppCompatActivity{
         System.out.println(device.deviceName);
         System.out.println(device.deviceAdded);
         System.out.println(device.deviceRemoved);*/
-        return device;
+        return deviceY;
     }
 
     public static void removeDevicePrivate(int position){

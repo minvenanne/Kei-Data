@@ -97,7 +97,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="Your device has been added successfully"
+        android:text="Your deviceY has been added successfully"
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
