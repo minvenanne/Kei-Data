@@ -58,9 +58,11 @@ public class MainActivity extends AppCompatActivity {
 
         //TEST//
         Household testHousehold = new Household();
-        testHousehold.addUser("Camilla");
+        testHousehold.setCurrentUserName("Roy Hudson");
+        testHousehold.familyName = "Hudson";
+        /*testHousehold.addUser("Camilla");
         testHousehold.addRouter(1234);
-        testHousehold.removeUser("Klaus");
+        testHousehold.removeUser("Klaus");*/
 
 
         //END TEST//

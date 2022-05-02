@@ -1,7 +1,5 @@
 package com.example.kei_data;
 
-
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -34,10 +32,8 @@ public class User_activity extends AppCompatActivity{
     public ImageButton categoriesButton;
     public ImageButton edit;
     public Button AddHouseholdMember;
-    public static ArrayList<String> Users = new ArrayList<>();
     public static ListView simpleListviewUsers;
     public TextView Name;
-    public static String userNameCurrent;
     public static CustomAdapterUsers customAdapterUsers;
     public EditText editText;
 
@@ -47,7 +43,7 @@ public class User_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        if (Users.size()==0){
+        if (Household.userList.size()==0){
             addElementsToArray();
         }
 
@@ -88,9 +84,9 @@ public class User_activity extends AppCompatActivity{
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
-                            userNameCurrent = editText.getText().toString().trim();
+                            Household.setCurrentUserName(editText.getText().toString().trim());
                             editText.setVisibility(View.INVISIBLE);
-                            Name.setText(userNameCurrent);
+                            Name.setText(Household.user);
                             closeKeyboard();
                             return true;
                         }
@@ -113,12 +109,12 @@ public class User_activity extends AppCompatActivity{
         ImageView icon = (ImageView) findViewById(R.id.icon2);
 
         simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
-        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Users, icon, delete);
+        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Household.userList, icon, delete);
         simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
         simpleListviewUsers.setAdapter(customAdapterUsers);
 
         Name = findViewById(R.id.userName);
-        Name.setText(userNameCurrent);
+        Name.setText(Household.user);
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
@@ -142,18 +138,6 @@ public class User_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    public static void removeUser(int position){
-        Users.remove(position);
-        customAdapterUsers.notifyDataSetChanged();
-        justifyListViewHeightBasedOnChildren(simpleListviewUsers, customAdapterUsers);
-    }
-
-    public static void addUser(String name){
-        String Name = name;
-        Users.add(Name);
-        customAdapterUsers.notifyDataSetChanged();
-    }
-
     private void closeKeyboard()
     {
         // this will give us the view
@@ -174,10 +158,10 @@ public class User_activity extends AppCompatActivity{
     }
 
     private void addElementsToArray(){
-        Users.add("Mother Julie");
-        Users.add("Father Dennis");
-        Users.add("Little sister Laura");
-        Users.add("Big brother Jacob");
-        Users.add("Baby sister Ida");
+        Household.addUser("Mother Julie");
+        Household.addUser("Father Dennis");
+        Household.addUser("Little sister Laura");
+        Household.addUser("Big brother Jacob");
+        Household.addUser("Baby sister Ida");
     }
 }
