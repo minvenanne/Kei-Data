@@ -47,6 +47,8 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="D"
+            android:checked="true"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -58,6 +60,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="W"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -69,6 +72,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="M"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -80,6 +84,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="6M"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
@@ -91,6 +96,7 @@
             android:button="@android:color/transparent"
             android:gravity="center"
             android:text="Y"
+
             android:textColor="@drawable/radiobutton_textcolor" />
 
     </RadioGroup>
@@ -137,15 +143,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/number" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graph"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/day"
-        app:srcCompat="@drawable/testgraph" />
+        app:layout_constraintTop_toBottomOf="@+id/day" />
 
     <Switch
         android:id="@+id/household"
@@ -156,10 +162,11 @@
         android:scaleX="2"
         android:scaleY="2"
         android:thumbTint="#B5D1B2"
+        android:checked="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/graph" />
 
     <TextView
         android:id="@+id/textView14"
@@ -196,8 +203,10 @@
         app:layout_constraintEnd_toStartOf="@+id/household"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:srcCompat="@drawable/ic_baseline_person_24_small" />
+
+        app:layout_constraintTop_toBottomOf="@+id/graph"
+        app:srcCompat="@drawable/ic_baseline_person_24" />
+
 
     <ImageView
         android:id="@+id/Background"
@@ -206,7 +215,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toEndOf="@+id/household"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/graph"
         app:srcCompat="@drawable/ic_baseline_group_24" />
 
     <TextView
