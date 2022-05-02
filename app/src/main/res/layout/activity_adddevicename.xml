@@ -115,6 +115,7 @@
         android:layout_height="wrap_content"
         android:gravity="left"
         android:hint="e.g. Iphone 12"
+        android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/add_device"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
