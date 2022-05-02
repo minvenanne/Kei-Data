@@ -194,6 +194,7 @@
         app:layout_constraintTop_toBottomOf="@+id/householdGraph"
         app:srcCompat="@drawable/ic_baseline_person_24" />
 
+
     <ImageView
         android:id="@+id/householdBackground"
         android:layout_width="50dp"

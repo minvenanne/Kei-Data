@@ -203,8 +203,10 @@
         app:layout_constraintEnd_toStartOf="@+id/household"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/graph"
         app:srcCompat="@drawable/ic_baseline_person_24" />
+
 
     <ImageView
         android:id="@+id/Background"

@@ -6,13 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:foregroundTint="#8BC34A"
-    tools:context=".Settings_activity1">
+    tools:context=".User_activity">
 
     <ImageView
         android:id="@+id/Background"
         android:layout_width="411dp"
         android:layout_height="675dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/navigationbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,62 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/User"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/ic_baseline_group_24"
-        android:fontFamily="monospace"
-        android:padding="10dp"
-        android:text="User"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="80dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Devices" />
-
-    <Button
-        android:id="@+id/Devices"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/device_settings"
-        android:fontFamily="monospace"
-        android:padding="10dp"
-        android:text="Devices"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/User"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_display" />
-
-    <Button
-        android:id="@+id/add_display"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/display"
-        android:layout_marginTop="0dp"
-        android:fontFamily="monospace"
-        android:padding="10dp"
-        android:text="Display"
-        android:textAllCaps="false"
-        android:textColor="#000"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/Devices"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
     <ImageButton
         android:id="@+id/Settings"
         android:layout_width="65dp"
@@ -100,7 +44,7 @@
         android:layout_marginBottom="600dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
-        android:background="@drawable/allround_pressed"
+        android:background="@drawable/allround"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/Background"
@@ -108,7 +52,8 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:srcCompat="@drawable/settings_pressed" />
+        android:contentDescription="Settings"
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     <ImageButton
         android:id="@+id/Total"
@@ -125,6 +70,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
+        android:contentDescription="Home"
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <ImageButton
@@ -143,22 +89,81 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:srcCompat="@drawable/ic_category" />
+        android:contentDescription="Add Household Member"
+        app:srcCompat="@drawable/ic_baseline_category_24" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:text="Settings"
-        android:textColor="#000"
-        android:textSize="48sp"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/add_display"
+        android:layout_marginTop="20dp"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:text="The name of the deviceY"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Title" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.308" />
+
+    <EditText
+        android:id="@+id/Name"
+        android:layout_width="217dp"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:hint="e.g. Iphone 12"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@+id/add_device"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Name:"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toTopOf="@+id/Back3"
+        app:layout_constraintStart_toStartOf="@+id/Background"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <Button
+        android:id="@+id/Back3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/round_corners"
+        android:text="Back"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/add_device"
+        app:layout_constraintHorizontal_bias="0.633"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/add_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        android:background="@drawable/round_corners"
+        android:padding="10dp"
+        android:text="Add deviceY"
+        android:enabled="false"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.752"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

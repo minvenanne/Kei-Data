@@ -10,12 +10,11 @@
 
     <ImageView
         android:id="@+id/Background"
-        android:layout_width="411dp"
-        android:layout_height="675dp"
+        android:layout_width="413dp"
+        android:layout_height="695dp"
         android:layout_marginTop="52dp"
         android:background="@drawable/navigationbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
@@ -45,14 +44,15 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
+        android:contentDescription="Settings"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/Background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        android:contentDescription="Settings"
+        app:layout_constraintVertical_bias="0.409"
         app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     <ImageButton
@@ -63,14 +63,14 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
+        android:contentDescription="Home"
         android:padding="5dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/Background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        android:contentDescription="Home"
+        app:layout_constraintVertical_bias="0.409"
         app:srcCompat="@drawable/ic_baseline_home_24" />
 
     <ImageButton
@@ -82,23 +82,24 @@
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
+        android:contentDescription="Add Household Member"
         android:padding="7dp"
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@id/Background"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        android:contentDescription="Add Household Member"
+        app:layout_constraintVertical_bias="0.409"
         app:srcCompat="@drawable/ic_baseline_category_24" />
 
     <TextView
+        android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="monospace"
         android:text="User"
-        android:textSize="48sp"
+        android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -107,86 +108,148 @@
         app:layout_constraintVertical_bias="0.269" />
 
     <TextView
-        android:id="@+id/textView10"
-        android:layout_width="359dp"
-        android:layout_height="66dp"
+        android:id="@+id/userName"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/round_corners"
-        android:fontFamily="monospace"
-        android:padding="10dp"
-        android:paddingStart="15dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:paddingEnd="15dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:text="Name:"
-        android:textSize="35dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        android:minHeight="50dp"
+        android:paddingLeft="127dp"
+        android:text="Put text here"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/Household"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <ImageButton
+        android:id="@+id/Edit_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_baseline_edit_24"
+        android:contentDescription="Edit"
+        app:layout_constraintBottom_toBottomOf="@+id/userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/userName"
+        android:layout_marginLeft="290dp"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginRight="300dp"
+        app:layout_constraintTop_toTopOf="@+id/userName"
+        app:srcCompat="@drawable/ic_baseline_person_24_large" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:gravity="center"
+        android:text="Name:"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/userName"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/userName" />
 
     <TextView
         android:id="@+id/Household"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
-        android:text="Household:"
+        android:gravity="center"
+        android:text="Household"
         android:textSize="35dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.472" />
+
+    <ScrollView
+        android:id="@+id/scrollViewParent2"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="380dp"
+        android:orientation="vertical"
+        android:scrollbarSize="5dp"
+        android:scrollbarStyle="insideInset"
+        app:layout_constraintBottom_toTopOf="@+id/Add_Household_Members"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Household"
+        app:layout_constraintVertical_bias="0.829"
+        android:layout_marginBottom="80dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/scroll2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:foregroundTint="#8BC34A"
+            android:minHeight="200dp"
+            android:paddingBottom="40dp">
+
+            <ListView
+                android:id="@+id/simpleListViewUsers"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:divider="#b5d1b2"
+                android:dividerHeight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.084"
+                tools:viewBindingType="android.widget.ListView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <Button
         android:id="@+id/Add_Household_Members"
-        android:layout_width="360dp"
+        android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_marginBottom="40dp"
-        android:width="300dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/outline_round_corners"
         android:drawableLeft="@drawable/ic_baseline_group_add_24"
         android:fontFamily="monospace"
         android:padding="10dp"
         android:text="Add Household Member"
         android:textAllCaps="false"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.529"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/Delete_Button"
-        android:layout_width="37dp"
-        android:layout_height="46dp"
-        android:background="@drawable/trashcan"
-        android:contentDescription="Delete"
-        android:drawableLeft="@drawable/ic_baseline_delete_24"
-        android:padding="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.423" />
+        app:layout_constraintTop_toBottomOf="@+id/Household"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/Edit_Button"
-        android:layout_width="37dp"
-        android:layout_height="46dp"
-        android:background="@drawable/trashcan"
-        android:contentDescription="Edit"
-        android:drawableLeft="@drawable/ic_baseline_edit_24"
-        android:padding="6dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <EditText
+        android:id="@+id/editName"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corners"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/Household"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.858"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        android:hint="Enter name here"
+        android:gravity="center"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
