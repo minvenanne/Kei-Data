@@ -25,7 +25,7 @@ public class User {
     //constructor creating a n0 user
     public User () {
         setUserName("n");
-        setUserID();
+        //setUserID();
         setDateAdded();
         setCurrentDate();
         setNumberOfDevices();
@@ -40,12 +40,12 @@ public class User {
         userName = name;
     }
 
-    public void setUserID() {
+    /*public void setUserID() {
         //size of arraylist User
         Household.setNumberOfUsers();
         //user ID is set to number of devices in the list
-        userID = Houshold.numberOfUsers;
-    }
+        userID = Household.numberOfUsers;
+    }*/
 
     public static void setNumberOfDevices() {
         numberOfDevices = deviceList.size();
@@ -66,7 +66,19 @@ public class User {
     }
 
     //add a device to the list of devices
-    public void addDevice(Device device){
+    public static void addDeviceApp(){
+        Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), AddDeviceName_activity.getDeviceName());
+        deviceList.add(device);
+        System.out.println(device.deviceType);
+        System.out.println(device.deviceIP);
+        System.out.println(device.dateAdded);
+        System.out.println(device.deviceName);
+        System.out.println(device.deviceAdded);
+        System.out.println(device.deviceRemoved);
+    }
+
+    public static void addDeviceCode(String type, String IP, String name){
+        Device device = new Device(type, IP, name);
         deviceList.add(device);
     }
 
@@ -83,7 +95,7 @@ public class User {
         return null;
     }
 
-    public void updateCurrentDataUseStandpointAndCo2() {
+    /*public void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
         newStandPoint = 0;
@@ -124,7 +136,7 @@ public class User {
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
-    }
+    }*/
 
     public void calculateCurrentCo2(float currentDataUseStandpoint) {
 

@@ -18,7 +18,7 @@ public class Household {
     //public Users[] user;
     private String routerID;
 
-    public ArrayList<String> userList = new ArrayList<>();
+    public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Integer> routerList = new ArrayList<>();
 
 
@@ -35,8 +35,6 @@ public class Household {
         userList.add("Klaus");
 
         routerList.add(2563);
-
-
     }
 
 

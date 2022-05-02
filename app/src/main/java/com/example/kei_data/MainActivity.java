@@ -66,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
         //END TEST//
 
 
-
-
-
-
         GraphView graph = (GraphView) findViewById(R.id.graph);
         initGraph(graph);
 

@@ -22,20 +22,23 @@ public class Device {
 
     public Boolean deviceRemoved;
 
-    ArrayList<DataUse> dataUseList;
+    // public Boolean statusPrivate;
+
+    //ArrayList<DataUse> dataUseList;
 
     //constructor creating a n0 user
-    public Device () {
-        setDeviceName("n"); //skal kobles op med activity så den tager indput derfra
+    public Device (String type, String ip, String name) {
+        setDeviceName(name); //skal kobles op med activity så den tager indput derfra
         setDeviceID();
         setDateAdded();
-        setDeviceIP(); // mangler alt - kan måske først sættes op når der er lavet en falsk database af IP ala den til datause som anne har lavet.
+        setDeviceIP(ip); // mangler alt - kan måske først sættes op når der er lavet en falsk database af IP ala den til datause som anne har lavet.
         setDeviceAdded(true);
         setDeviceRemoved(false);
-        setDeviceType("type");
+        setDeviceType(type);
+        //setStatusPrivate(true);
 
         // creates list of class datause
-        this.dataUseList = new ArrayList<DataUse>();
+        //this.dataUseList = new ArrayList<DataUse>();
     }
 
     //set device name to content of parenthesis
@@ -49,9 +52,9 @@ public class Device {
     }
 
     //add a device to the list of devices
-    public void addDataUse(DataUse dataUse){
+    /*public void addDataUse(DataUse dataUse){
         dataUseList.add(dataUse);
-    }
+    }*/
     public void setDeviceID() {
         //length of arraylist device
         setNumberOfDevices();
@@ -76,8 +79,8 @@ public class Device {
     }
 
     // should help users locate IP
-    public void setDeviceIP() {
-    //indhold her
+    public void setDeviceIP(String ip) {
+        deviceIP = ip;
     }
 
 }
