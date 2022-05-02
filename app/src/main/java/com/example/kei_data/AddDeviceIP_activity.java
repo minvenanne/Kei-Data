@@ -56,17 +56,9 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             }
         });
 
-        ArrayList<String> IP_address = new ArrayList<>();
-
-        IP_address.add("726.371.91");
-        IP_address.add("637.392.34");
-        IP_address.add("273.384.21");
-        IP_address.add("273.293.23");
-        IP_address.add("293.234.21");
-
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
         devices_available = (ListView) findViewById(R.id.device_address);
-        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview_ip, R.id.adresse, IP_address);
+        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview_ip, R.id.adresse, findIPArrayList());
         devices_available.setMinimumHeight(justifyListViewHeightBasedOnChildren(devices_available, AdapterDevices));
         devices_available.setAdapter(AdapterDevices);
 
@@ -77,7 +69,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 clickedButton = position;
                 Add_device.setEnabled(true);
-                ip = IP_address.get(clickedButton);
+                ip = findIPArrayList().get(clickedButton);
                 setBackground(position, view);
             }
         });
@@ -135,6 +127,57 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         else
         {
             view.setBackgroundResource(R.drawable.radiobutton1_selected);
+        }
+    }
+
+    public ArrayList<String> findIPArrayList(){
+        String type = AddDeviceType_activity.getDeviceType();
+        ArrayList<String> arrayList = new ArrayList<>();
+        if (type.equals("Computer")){
+            arrayList.add("726.371.91.24");
+            arrayList.add("637.392.34.22");
+            arrayList.add("273.384.21.78");
+            arrayList.add("273.293.23.38");
+            arrayList.add("293.234.21.95");
+            return arrayList;
+        }
+        else if(type.equals("Phone")){
+            arrayList.add("637.823.92.09");
+            arrayList.add("283.384.13.94");
+            arrayList.add("918.294.14.98");
+            arrayList.add("283.942.24.63");
+            arrayList.add("283.298.32.74");
+            return arrayList;
+        }
+
+        else if(type.equals("Speaker")){
+            arrayList.add("723.182.12.61");
+            arrayList.add("928.342.24.23");
+            arrayList.add("823.273.24.21");
+            arrayList.add("923.73.14.91");
+            arrayList.add("283.942.24.42");
+            arrayList.add("283.298.32.96");
+            return arrayList;
+        }
+
+        else if(type.equals("TV")){
+            arrayList.add("323.912.22.61");
+            arrayList.add("728.341.94.43");
+            arrayList.add("103.523.54.51");
+            arrayList.add("243.142.24.42");
+            arrayList.add("133.218.22.96");
+            return arrayList;
+        }
+
+        else if(type.equals("Other")){
+            arrayList.add("323.112.22.71");
+            arrayList.add("303.533.54.51");
+            arrayList.add("253.12.24.42");
+            arrayList.add("133.28.22.926");
+            return arrayList;
+        }
+        else{
+            return null;
         }
     }
 }

@@ -46,7 +46,7 @@ public class Household {
         return routerID;
     }*/
 
-    public static void setUserName(String name){
+    public static void setCurrentUserName(String name){
         user = name;
     }
 

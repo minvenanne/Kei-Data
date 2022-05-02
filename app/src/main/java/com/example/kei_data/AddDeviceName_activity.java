@@ -64,7 +64,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
                 if (i == KeyEvent.KEYCODE_ENTER){
-                    Household.user = editTextName.getText().toString().trim();
+                    deviceName = editTextName.getText().toString().trim();
                     add_device.setEnabled(true);
                     closeKeyboard();
                     return true;
@@ -78,7 +78,6 @@ public class AddDeviceName_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
                 startActivity(intent);
-                deviceName = editTextName.getText().toString();
                 User.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName());
             }
         });
