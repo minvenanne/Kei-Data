@@ -20,7 +20,7 @@ public class User {
 
     public static Integer numberOfDevices;
 
-    static ArrayList<Device> deviceList; // made static to be able to use it across classes
+    static ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
 
     //constructor creating a n0 user
     public User (String name) {
@@ -66,23 +66,23 @@ public class User {
     }
 
     //add a device to the list of devices
-    public static void addDeviceApp(){
-        Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), AddDeviceName_activity.getDeviceName());
+    public static void addDevice(String type, String IP, String name){
+        Device device = new Device(type, IP, name);
         deviceList.add(device);
+
+        // prints out the content of the added device
         System.out.println(device.deviceType);
         System.out.println(device.deviceIP);
         System.out.println(device.dateAdded);
         System.out.println(device.deviceName);
         System.out.println(device.deviceAdded);
         System.out.println(device.deviceRemoved);
+
         setNumberOfDevices();
+        Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat);
     }
 
-    public static void addDeviceCode(String type, String IP, String name){
-        Device device = new Device(type, IP, name);
-        deviceList.add(device);
-        setNumberOfDevices();
-    }
+
 
     public Device removeDevice(String currentDevice) {
         for(int i = 0; i < deviceList.size(); i++){
@@ -150,4 +150,5 @@ public class User {
         // current co2 set equal to current data use in co2 format
         currentCo2 = newCo2;
     }
+
 }

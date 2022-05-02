@@ -91,7 +91,7 @@ public class AddUser_activity extends AppCompatActivity {
         AddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User_activity.addUser(NameofHouseholdMember);
+                Household.addUser(NameofHouseholdMember);
                 Intent intent = new Intent(AddUser_activity.this, User_activity.class);
                 startActivity(intent);
             }

@@ -21,8 +21,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
-    private
-    Button back;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,8 +82,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
                 startActivity(intent);
                 deviceName = editTextName.getText().toString();
-                System.out.println(deviceName);
-                Devices_activity.add_devicePrivate();
+                User.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName());
             }
         });
 

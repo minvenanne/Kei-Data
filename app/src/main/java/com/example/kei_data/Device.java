@@ -83,4 +83,20 @@ public class Device {
         deviceIP = ip;
     }
 
+    public static void removeDevicePrivate(int position){
+        User.deviceList.remove(position);
+        Devices_activity.customAdapterPrivat.notifyDataSetChanged();
+        Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat);
+    }
+
+    public static void removeDeviceShared(int position){
+        Devices_activity.arrayListShared.remove(position);
+        Devices_activity.customAdapterShared.notifyDataSetChanged();
+        Devices_activity.justifyListViewHeightBasedOnChildrenShared(Devices_activity.simpleListPrivate, Devices_activity.customAdapterShared);
+    }
+
+
+
+
+
 }

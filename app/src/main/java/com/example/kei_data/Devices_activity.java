@@ -23,7 +23,7 @@ public class Devices_activity extends AppCompatActivity{
     public static ListView simpleListShared;
     public static ArrayList<String> arrayListShared = new ArrayList<>();
     public static ArrayList<String> typeShared = new ArrayList<>();
-    ArrayList<Integer> iconsShared;
+    ArrayList<Integer> iconsShared = new ArrayList<>();
     public static CustomAdapterDevicesPrivate customAdapterPrivat;
     public static CustomAdapterDevicesShared customAdapterShared;
 
@@ -95,8 +95,7 @@ public class Devices_activity extends AppCompatActivity{
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-
-    private static int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
+    public static int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
 
         CustomAdapterDevicesPrivate adapter = customAdapterDevices;
 
@@ -118,7 +117,7 @@ public class Devices_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    private static int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
+    public static int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
 
         CustomAdapterDevicesShared adapter = customAdapterDevices;
 
@@ -145,7 +144,7 @@ public class Devices_activity extends AppCompatActivity{
         ArrayList<Integer> icons = new ArrayList<>();
 
         for (int i = 0; i < device.size(); i++){
-            if (device.get(i).deviceType.equals("TV")){
+            if (device.get(i).deviceType == ("TV")){
                 icons.add(i, R.drawable.ic_baseline_tv_24);
             }
             else if (device.get(i).deviceType.equals("Speaker")) {
@@ -165,11 +164,11 @@ public class Devices_activity extends AppCompatActivity{
     }
 
     private void addElementsToArrayPrivate(){
-        User.addDeviceCode("Computer", "345.982.41", "Per's laptop");
-        User.addDeviceCode("Phone", "584.682.91", "Per's Iphone 11");
-        User.addDeviceCode("TV", "675.892.34", "Per's bedroom TV");
-        User.addDeviceCode("Other", "565.875.32", "Per's Ipad");
-        User.addDeviceCode("Speaker", "623.769.99", "Per's wifi speaker bedroom");
+        User.addDevice("Computer", "345.982.41", "Per's laptop");
+        User.addDevice("Phone", "584.682.91", "Per's Iphone 11");
+        User.addDevice("TV", "675.892.34", "Per's bedroom TV");
+        User.addDevice("Other", "565.875.32", "Per's Ipad");
+        User.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom");
     }
 
     // hardcoded liste af shared devices
@@ -189,22 +188,6 @@ public class Devices_activity extends AppCompatActivity{
         arrayListShared.add("Shared Phone");
         typeShared.add("Phone");
         iconsShared.add(R.drawable.ic_baseline_smartphone_24);
-    }
-
-    public static void add_devicePrivate(){
-        Device device = new Device(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), AddDeviceName_activity.getDeviceName());
-    }
-
-    public static void removeDevicePrivate(int position){
-        User.deviceList.remove(position);
-        customAdapterPrivat.notifyDataSetChanged();
-        justifyListViewHeightBasedOnChildrenPrivate(simpleListPrivate, customAdapterPrivat);
-    }
-
-    public static void removeDeviceShared(int position){
-        arrayListShared.remove(position);
-        customAdapterShared.notifyDataSetChanged();
-        justifyListViewHeightBasedOnChildrenShared(simpleListPrivate, customAdapterShared);
     }
 
 }

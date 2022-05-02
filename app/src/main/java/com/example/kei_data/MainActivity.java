@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //TEST//
-        Household testHousehold = new Household();
+        /*Household testHousehold = new Household();
         testHousehold.addUser("Camilla");
         testHousehold.addRouter(1234);
-        testHousehold.removeUser("Klaus");
+        testHousehold.removeUser("Klaus");*/
 
 
         //END TEST//
