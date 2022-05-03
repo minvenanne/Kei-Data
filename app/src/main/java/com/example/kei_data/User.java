@@ -1,22 +1,27 @@
 package com.example.kei_data;
 
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import java.util.Date;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+
 
 public class User {
-
     public String userName;
 
     public Integer userID;
 
     public Date dateAdded;
 
-    public Date currentDate;
+    public static Date currentDate;
 
-    public Float currentDataUseStandpoint;
+    public static Float currentDataUseStandpoint;
 
-    public Float currentCo2;
+    public static Float currentCo2;
 
     public static Integer numberOfDevices;
 
@@ -65,6 +70,31 @@ public class User {
         currentDate = new Date();
     }
 
+    //Danner tilfældig værdi som ligges oveni current datause, for alle andre brugere end main bruger
+    public static void updateCurrentDataUseStandpointAndCo2NotMainUser() {
+        // creating a variable to hold the value of the new standpoint
+
+
+        // creating a variable to hold the date at this exact moment
+        Date newDate = new Date();
+        // checking if the day has shifted
+        // if yes it will update the current date and set the current standpoint to 0 before continuing
+        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
+        if (currentDate.compareTo(newDate) != 0) {
+            currentDate = newDate;
+            currentDataUseStandpoint = (float) 0;
+        }
+
+        //beregn random værdig mellem 0 og 3000
+        float newStandPoint= (float)Math.floor(Math.random()*(3000-0+1)+0);
+
+        //Update standpoint med tilfældigt tal
+        currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
+
+        //Calculating the co2 as a result of the current data use
+        calculateCurrentCo2(currentDataUseStandpoint);
+        System.out.println("current co2 is now:" + currentCo2);
+    }
     //add a device to the list of devices
     public static void addDevice(String type, String IP, String name){
         Device device = new Device(type, IP, name);
@@ -110,7 +140,7 @@ public class User {
         return null;
     }
 
-    /*public void updateCurrentDataUseStandpointAndCo2() {
+    public static void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
         newStandPoint = 0;
@@ -136,11 +166,15 @@ public class User {
                 //specifying the datause
                 DataUse dataUse = dataUseList.get(i);
 
-                //tallying up all the datause from each device
-                newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+                // tjekker om tidspunktet i datause listen er det samme som det nu værende tidspunkt, og lægger tallet oven i standpoint, hvis det er.
+                if (newDate.compareTo(dataUse.dataUsageTimeSlot)) {
 
-                //setting the data use amount to 0 to start over
-                dataUse.dataUsageAmount = (float) 0;
+                    //tallying up all the datause from each device
+                    newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+
+                    //setting the data use amount to 0 to start over
+                    dataUse.dataUsageAmount = (float) 0;
+                }
             }
         }
 
@@ -151,9 +185,10 @@ public class User {
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
-    }*/
+    }
 
-    public void calculateCurrentCo2(float currentDataUseStandpoint) {
+
+    public static void calculateCurrentCo2(float currentDataUseStandpoint) {
 
         //co2 pr MB
         float co2MB = (float) 0.054;
@@ -165,3 +200,34 @@ public class User {
     }
 
 }
+
+/*
+Kode til main:
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+
+// får det gældende minut-tal
+int minutes = LocalDateTime.now().getMinute();
+
+//tjekker om minuttallet er 0 eller 30
+if (minutes == 0 || minutes == 30) {
+
+    //Ruller igennem alle Users
+    for(int i = 0; i < userList.size(); i++) {
+
+        // specifying the user
+        User user = userList.get(i)
+
+        // hvis user id er 1 (altså vores main user)
+        if (user.userID == 1) {
+            updateCurrentDataUseStandpointAndCo2()
+        }
+
+        //ellers er det en "household user" og så får de bare tildelt random data
+        else {
+            updateCurrentDataUseStandpointAndCo2NotMainUser()
+        }
+    }
+}
+
+*/
