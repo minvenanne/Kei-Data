@@ -49,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton categoriesButton;
     SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
