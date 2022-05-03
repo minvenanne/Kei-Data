@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void readMockData(Device device) {
-        InputStream is = App.getRes().openRawResource(R.raw.data_usage_new);
+        InputStream is = App.getRes().openRawResource(R.raw.data_usage_yes);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -203,7 +203,8 @@ public class MainActivity extends AppCompatActivity {
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(";");
 
-                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2]), Integer.parseInt(tokens[3]), tokens[4]);
+                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parseCase
+                        (tokens[2]), Float.parseFloat(tokens[3]), tokens[4]);
                 System.out.println(data.getDataUsageAmount());
                 /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);
