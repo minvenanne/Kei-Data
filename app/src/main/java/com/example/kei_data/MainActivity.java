@@ -203,7 +203,8 @@ public class MainActivity extends AppCompatActivity {
 
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(";");
-                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2]), Float.parseFloat(tokens[3]), tokens[4]);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2], formatter), Float.parseFloat(tokens[3]), tokens[4]);
                 System.out.println(data.getDataUsageAmount());
                 /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);
