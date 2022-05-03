@@ -8,6 +8,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -202,9 +203,7 @@ public class MainActivity extends AppCompatActivity {
 
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(";");
-
-                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parseCase
-                        (tokens[2]), Float.parseFloat(tokens[3]), tokens[4]);
+                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2]), Float.parseFloat(tokens[3]), tokens[4]);
                 System.out.println(data.getDataUsageAmount());
                 /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);

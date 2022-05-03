@@ -9,7 +9,7 @@ public class DataUse {
     public float dataUsageAmount;
     public String dataUsageType;
 
-    public DataUse(String ID, String DeviceType, LocalDateTime Time, int Amount, String Type){
+    public DataUse(String ID, String DeviceType, LocalDateTime Time, float Amount, String Type){
         setDataUsageID(ID);
         setDataUsageDeviceType(DeviceType);
         setDataUsageTimeSlot(Time);
@@ -45,7 +45,7 @@ public class DataUse {
         return dataUsageAmount;
     }
 
-    public void setDataUsageAmount(int dataUsageAmount) {
+    public void setDataUsageAmount(float dataUsageAmount) {
         this.dataUsageAmount = dataUsageAmount;
     }
 
