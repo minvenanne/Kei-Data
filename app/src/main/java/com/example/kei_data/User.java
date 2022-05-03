@@ -15,9 +15,9 @@ public class User {
 
     public Integer userID;
 
-    public Date dateAdded;
+    public LocalDateTime dateAdded;
 
-    public static Date currentDate;
+    public static LocalDateTime currentDate;
 
     public static Float currentDataUseStandpoint;
 
@@ -28,6 +28,7 @@ public class User {
     static ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
 
     //constructor creating a n0 user
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public User (String name) {
         setUserName(name);
         setUserID();
@@ -61,22 +62,25 @@ public class User {
     }
 
     // set the date added to date of creation
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDateAdded() {
-        dateAdded = new Date();
+        dateAdded = LocalDateTime.now();
     }
 
     // set the current date to the date of creation
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setCurrentDate() {
-        currentDate = new Date();
+        currentDate = LocalDateTime.now();
     }
 
     //Danner tilfældig værdi som ligges oveni current datause, for alle andre brugere end main bruger
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void updateCurrentDataUseStandpointAndCo2NotMainUser() {
         // creating a variable to hold the value of the new standpoint
 
 
         // creating a variable to hold the date at this exact moment
-        Date newDate = new Date();
+        LocalDateTime newDate = LocalDateTime.now();
         // checking if the day has shifted
         // if yes it will update the current date and set the current standpoint to 0 before continuing
         //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
@@ -102,7 +106,7 @@ public class User {
 
         // prints out the content of the added device
 
-        System.out.println(device.deviceType);
+        System.out.println(Device.deviceType);
         System.out.println(device.deviceIP);
         System.out.println(device.dateAdded);
         System.out.println(device.deviceName);
@@ -140,12 +144,13 @@ public class User {
         return null;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public static void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
         newStandPoint = 0;
         // creating a variable to hold the date at this exact moment
-        Date newDate = new Date();
+        LocalDateTime newDate = LocalDateTime.now();
         // checking if the day has shifted
         // if yes it will update the current date and set the current standpoint to 0 before continuing
         //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
@@ -161,13 +166,13 @@ public class User {
             Device device = deviceList.get(i); // the current element
 
             //cykling through each datause on data use list
-            for(int f = 0; f < device.dataUseList.size(); f++) {
+            for(int f = 0; f < Device.dataUseList.size(); f++) {
 
                 //specifying the datause
-                DataUse dataUse = dataUseList.get(i);
+                DataUse dataUse = Device.dataUseList.get(i);
 
                 // tjekker om tidspunktet i datause listen er det samme som det nu værende tidspunkt, og lægger tallet oven i standpoint, hvis det er.
-                if (newDate.compareTo(dataUse.dataUsageTimeSlot)) {
+                if (newDate.equals(dataUse.dataUsageTimeSlot)) {
 
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;

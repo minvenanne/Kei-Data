@@ -1,14 +1,13 @@
 package com.example.kei_data;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class DataUse {
-    private String dataUsageID;
-    private String dataUsageDeviceType;
-    private LocalDateTime dataUsageTimeSlot;
-    private int dataUsageAmount;
-    private String dataUsageType;
+    public String dataUsageID;
+    public String dataUsageDeviceType;
+    public LocalDateTime dataUsageTimeSlot;
+    public float dataUsageAmount;
+    public String dataUsageType;
 
     public DataUse(String ID, String DeviceType, LocalDateTime Time, int Amount, String Type){
         setDataUsageID(ID);
@@ -42,7 +41,7 @@ public class DataUse {
         this.dataUsageTimeSlot = dataUsageTimeSlot;
     }
 
-    public int getDataUsageAmount() {
+    public float getDataUsageAmount() {
         return dataUsageAmount;
     }
 
