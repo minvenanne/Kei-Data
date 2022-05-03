@@ -1,7 +1,15 @@
 package com.example.kei_data;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,9 +47,6 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,14 +73,15 @@ public class MainActivity extends AppCompatActivity {
         //END TEST//
 
 
+        readMockData();
         GraphView graph = (GraphView) findViewById(R.id.graph);
         initGraph(graph);
 
         //Creates a timestamp from the Date object
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
-            public String formatLabel (double value, boolean isValueX) {
-                if(isValueX) {
+            public String formatLabel(double value, boolean isValueX) {
+                if (isValueX) {
                     return sdf.format(new Date((long) value));
                 } else {
                     return super.formatLabel(value, isValueX);
@@ -91,56 +97,54 @@ public class MainActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setNumVerticalLabels(10);
 
 
-
-
         graph.addSeries(dSeries);
 
         //Connects the radiobutton group with the onCheckedChange method.
         //When a radiobutton is checked, it removes the past series, and adds a new.
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-            radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
-                    if ( checkedId == R.id.radioButton) {
-                        Log.d("Success", "D was pressed");
-                        graph.removeAllSeries();
-                        graph.addSeries(dSeries);
-                        dSeries.setAnimated(true);
-
-
-                    } else if (checkedId == R.id.radioButton2) {
-                        Log.d("Success", "W was pressed");
-                        graph.removeAllSeries();
-                        graph.addSeries(weekSeries);
-                        weekSeries.setAnimated(true);
-
-                    } else if (checkedId == R.id.radioButton3) {
-                        Log.d("Success", "M was pressed");
-                        graph.removeAllSeries();
-                        graph.addSeries(mSeries);
-                        mSeries.setAnimated(true);
+                if (checkedId == R.id.radioButton) {
+                    Log.d("Success", "D was pressed");
+                    graph.removeAllSeries();
+                    graph.addSeries(dSeries);
+                    dSeries.setAnimated(true);
 
 
-                    } else if (checkedId == R.id.radioButton4) {
-                        Log.d("Success", "6M was pressed");
-                        graph.removeAllSeries();
-                        graph.addSeries(sixMSeries);
-                        sixMSeries.setAnimated(true);
+                } else if (checkedId == R.id.radioButton2) {
+                    Log.d("Success", "W was pressed");
+                    graph.removeAllSeries();
+                    graph.addSeries(weekSeries);
+                    weekSeries.setAnimated(true);
+
+                } else if (checkedId == R.id.radioButton3) {
+                    Log.d("Success", "M was pressed");
+                    graph.removeAllSeries();
+                    graph.addSeries(mSeries);
+                    mSeries.setAnimated(true);
 
 
-                    } else if (checkedId == R.id.radioButton5) {
-                        Log.d("Success", "Y was pressed");
-                        graph.removeAllSeries();
-                        graph.addSeries(ySeries);
-                        ySeries.setAnimated(true);
+                } else if (checkedId == R.id.radioButton4) {
+                    Log.d("Success", "6M was pressed");
+                    graph.removeAllSeries();
+                    graph.addSeries(sixMSeries);
+                    sixMSeries.setAnimated(true);
 
 
-                    }
+                } else if (checkedId == R.id.radioButton5) {
+                    Log.d("Success", "Y was pressed");
+                    graph.removeAllSeries();
+                    graph.addSeries(ySeries);
+                    ySeries.setAnimated(true);
 
 
                 }
-            });
+
+
+            }
+        });
 
 
         Switch householdSwitch = (Switch) findViewById(R.id.household);
@@ -179,6 +183,37 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private List<DataUse> usecases = new ArrayList<>();
+    private void readMockData() {
+        InputStream is = getResources().openRawResource(R.raw.data_usage_new);
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(is, StandardCharsets.UTF_8)
+        );
+
+        String line = "";
+        try {
+
+            reader.readLine();
+
+              while ((line = reader.readLine()) != null) {
+                String[] tokens = line.split(",");
+
+                DataUse data = new DataUse();
+                data.setDataUsageID(tokens[0]);
+                data.setDataUsageDeviceType(tokens[1]);
+                data.setDataUsageTimeSlot(tokens[2]);
+                data.setDataUsageAmount(Integer.parseInt(tokens[3]));
+                data.setDataUsageType(tokens[4]);
+                usecases.add(data);
+
+                Log.d("MyActivity", "Just Created: " + usecases);
+            }
+
+        } catch (IOException e) {
+            Log.wtf("Main Activity", "Error Reading Data File on line" + line, e);
+            e.printStackTrace();
+        }
 
     }
 
