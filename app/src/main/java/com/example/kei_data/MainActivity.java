@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* // her tester vi kode
+         /*int minutes = LocalDateTime.now().getMinute();
+        System.out.println("minutes is now" + minutes);
+        // her tester vi kode
         User user = new User();
         user.currentDataUseStandpoint = (float) 0;
         user.currentCo2 = (float) 0;
@@ -208,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                 data.setDataUsageType(tokens[4]);*/
                 usecases.add(data);
 
-                System.out.println("Just Created: " + usecases);
+                //System.out.println("Just Created: " + usecases);
             }
 
         } catch (IOException e) {
