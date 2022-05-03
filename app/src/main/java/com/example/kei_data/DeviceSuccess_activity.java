@@ -57,6 +57,10 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         Name = findViewById(R.id.textViewName);
         Type = findViewById(R.id.textViewType);
         IP = findViewById(R.id.textViewIP);
+        System.out.println(AddDeviceName_activity.getDeviceName());
+        System.out.println(AddDeviceType_activity.getDeviceType());
+        System.out.println(AddDeviceIP_activity.getDeviceIp());
+
 
         Name.setText(AddDeviceName_activity.getDeviceName());
         Type.setText(AddDeviceType_activity.getDeviceType());
@@ -66,6 +70,7 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         openDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(DeviceSuccess_activity.this, Devices_activity.class);
                 startActivity(intent);
             }

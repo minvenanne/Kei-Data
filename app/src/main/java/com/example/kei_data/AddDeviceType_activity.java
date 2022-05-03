@@ -69,19 +69,19 @@ public class AddDeviceType_activity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 checkedButton = checkedId;
-                if (checkedId == 2131230730){
+                if (checkedId == 2131230732){
                     type_device = "Computer";
                 }
-                else if (checkedId == 2131230740){
+                else if (checkedId == 2131230745){
                     type_device = "Phone";
                 }
-                else if (checkedId == 2131230747){
+                else if (checkedId == 2131230752){
                     type_device = "Speaker";
                 }
-                else if (checkedId == 2131230750){
+                else if (checkedId == 2131230755){
                     type_device = "TV";
                 }
-                else if (checkedId == 2131230739){
+                else if (checkedId == 2131230744){
                     type_device = "Other";
                 }
                 enableNext();

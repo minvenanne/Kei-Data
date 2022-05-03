@@ -1,10 +1,13 @@
 package com.example.kei_data;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,8 +24,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
-    private
-    Button back;
+    private Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,22 +60,16 @@ public class AddDeviceName_activity extends AppCompatActivity {
 
         add_device = (Button) findViewById(R.id.add_device);
         editTextName = findViewById(R.id.Name);
-
-        editTextName.addTextChangedListener(new TextWatcher() {
+        editTextName.setOnKeyListener(new View.OnKeyListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String nameInput = editTextName.getText().toString().trim();
-                add_device.setEnabled(!nameInput.isEmpty());
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if (i == KeyEvent.KEYCODE_ENTER){
+                    deviceName = editTextName.getText().toString().trim();
+                    add_device.setEnabled(true);
+                    closeKeyboard();
+                    return true;
+                }
+                return false;
             }
         });
 
@@ -82,9 +78,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
                 startActivity(intent);
-                deviceName = editTextName.getText().toString();
-                System.out.println(deviceName);
-                Devices_activity.add_devicePrivate();
+                User.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName());
             }
         });
 
@@ -99,8 +93,26 @@ public class AddDeviceName_activity extends AppCompatActivity {
     }
 
     public static String getDeviceName(){
+        System.out.println(deviceName);
         return deviceName;
     }
 
+    private void closeKeyboard()
+    {
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = this.getCurrentFocus();
 
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 }

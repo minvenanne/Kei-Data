@@ -20,11 +20,11 @@ public class User {
 
     public static Integer numberOfDevices;
 
-    static ArrayList<Device> deviceList; // made static to be able to use it across classes
+    static ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
 
     //constructor creating a n0 user
-    public User () {
-        setUserName("n");
+    public User (String name) {
+        setUserName(name);
         setUserID();
         setDateAdded();
         setCurrentDate();
@@ -44,11 +44,11 @@ public class User {
         //size of arraylist User
         Household.setNumberOfUsers();
         //user ID is set to number of devices in the list
-        userID = Houshold.numberOfUsers;
+        userID = Household.numberOfUsers;
     }
 
     public static void setNumberOfDevices() {
-        numberOfDevices = deviceList.size();
+        numberOfDevices = deviceList.size(); //wrong, fejl i antal hvis man sletter device
     }
 
     public Integer getUserID() {
@@ -66,9 +66,35 @@ public class User {
     }
 
     //add a device to the list of devices
-    public void addDevice(Device device){
+    public static void addDevice(String type, String IP, String name){
+        Device device = new Device(type, IP, name);
         deviceList.add(device);
+
+        // prints out the content of the added device
+        System.out.println(device.deviceType);
+        System.out.println(device.deviceIP);
+        System.out.println(device.dateAdded);
+        System.out.println(device.deviceName);
+        System.out.println(device.deviceAdded);
+        System.out.println(device.deviceRemoved);
+
+        setNumberOfDevices();
     }
+
+    public static void removeDevicePrivate(int position){
+        User.deviceList.remove(position);
+        Devices_activity.iconsPrivate.remove(position);
+        Devices_activity.customAdapterPrivat.notifyDataSetChanged();
+        Devices_activity.simpleListPrivate.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat));
+    }
+
+    public static void removeDeviceShared(int position){
+        Devices_activity.arrayListShared.remove(position);
+        Devices_activity.iconsShared.remove(position);
+        Devices_activity.customAdapterShared.notifyDataSetChanged();
+        Devices_activity.simpleListShared.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenShared(Devices_activity.simpleListShared, Devices_activity.customAdapterShared));
+    }
+
 
     public Device removeDevice(String currentDevice) {
         for(int i = 0; i < deviceList.size(); i++){
@@ -83,7 +109,7 @@ public class User {
         return null;
     }
 
-    public void updateCurrentDataUseStandpointAndCo2() {
+    /*public void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
         newStandPoint = 0;
@@ -124,7 +150,7 @@ public class User {
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
-    }
+    }*/
 
     public void calculateCurrentCo2(float currentDataUseStandpoint) {
 
@@ -136,4 +162,5 @@ public class User {
         // current co2 set equal to current data use in co2 format
         currentCo2 = newCo2;
     }
+
 }

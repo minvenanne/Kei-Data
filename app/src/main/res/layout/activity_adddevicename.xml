@@ -156,7 +156,7 @@
         android:gravity="center"
         android:background="@drawable/round_corners"
         android:padding="10dp"
-        android:text="Add deviceY"
+        android:text="Add device"
         android:enabled="false"
         android:textAllCaps="false"
         android:textSize="20sp"
