@@ -43,10 +43,6 @@ public class User_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        if (Household.userList.size()==0){
-            addElementsToArray();
-        }
-
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,13 +151,5 @@ public class User_activity extends AppCompatActivity{
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    private void addElementsToArray(){
-        Household.addUser("Mother Julie");
-        Household.addUser("Father Dennis");
-        Household.addUser("Little sister Laura");
-        Household.addUser("Big brother Jacob");
-        Household.addUser("Baby sister Ida");
     }
 }

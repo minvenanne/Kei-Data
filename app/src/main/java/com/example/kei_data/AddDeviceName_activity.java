@@ -78,7 +78,7 @@ public class AddDeviceName_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
                 startActivity(intent);
-                User.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName());
+                //.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName());
             }
         });
 

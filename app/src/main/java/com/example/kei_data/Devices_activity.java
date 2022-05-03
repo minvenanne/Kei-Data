@@ -34,14 +34,6 @@ public class Devices_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
 
-        if (User.deviceList.size()==0){
-            addElementsToArrayPrivate();
-        }
-
-        if (arrayListShared.size()==0){
-            addElementsToArrayShared();
-        }
-
         AddDeviceType_activity.setCheckedButton();
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
@@ -96,7 +88,7 @@ public class Devices_activity extends AppCompatActivity{
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-    public static int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
+    public int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
 
         CustomAdapterDevicesPrivate adapter = customAdapterDevices;
 
@@ -118,7 +110,7 @@ public class Devices_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    public static int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
+    public int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
 
         CustomAdapterDevicesShared adapter = customAdapterDevices;
 
@@ -164,16 +156,12 @@ public class Devices_activity extends AppCompatActivity{
         return icons;
     }
 
-    private void addElementsToArrayPrivate(){
-        User.addDevice("Computer", "345.982.41", "Per's laptop");
-        User.addDevice("Phone", "584.682.91", "Per's Iphone 11");
-        User.addDevice("TV", "675.892.34", "Per's bedroom TV");
-        User.addDevice("Other", "565.875.32", "Per's Ipad");
-        User.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom");
+    public void addElementsToArrayPrivate(){
+
     }
 
     // hardcoded liste af shared devices
-    private void addElementsToArrayShared(){
+    public static void addElementsToArrayShared(){
         arrayListShared.add("Livingroom TV");
         typeShared.add("TV");
         iconsShared.add(R.drawable.ic_baseline_tv_24);

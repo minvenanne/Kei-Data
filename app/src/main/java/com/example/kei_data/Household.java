@@ -10,15 +10,15 @@ import java.util.ArrayList;
 public class Household {
 
     public String familyName;
-    public static int numberOfUsers;
+    public int numberOfUsers;
     public String householdID;
-    public static String user;
+    public String user;
     public String RouterID;
 
     //public Users[] user;
     private String routerID;
 
-    public static ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<User> userList = new ArrayList<>();
     public ArrayList<Integer> routerList = new ArrayList<>();
 
 
@@ -46,18 +46,18 @@ public class Household {
         return routerID;
     }*/
 
-    public static void setCurrentUserName(String name){
+    public void setCurrentUserName(String name){
         user = name;
     }
 
-    public static void addUser(String name){
+    public void addUser(String name){
         //DONE
         System.out.println("addUser BEFORE: " + userList);
         userList.add(new User(name));
         System.out.println("addUser AFTER: " + userList);
     }
 
-    public static void removeUser(int user) {
+    public void removeUser(int user) {
         //DONE
         System.out.println("removeUser BEFORE: " + userList);
         userList.remove(user);
@@ -65,7 +65,7 @@ public class Household {
         System.out.println("removeUser AFTER: " + userList);
     }
 
-    public static void setNumberOfUsers() {
+    public void setNumberOfUsers() {
         numberOfUsers = userList.size(); //fejl når vi sletter en bruger - skal forbedres.
     }
 

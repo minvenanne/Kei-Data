@@ -15,9 +15,9 @@ import java.util.List;
 //setting up the variables
 public class Device {
 
-    public static String deviceType;
+    public String deviceType;
 
-    public Integer deviceID;
+    public int deviceID;
 
     public String deviceIP;
 
@@ -31,7 +31,7 @@ public class Device {
 
     // public Boolean statusPrivate;
 
-    public static ArrayList<DataUse> dataUseList = new ArrayList<>();
+    public ArrayList<DataUse> dataUseList = new ArrayList<>();
 
     //constructor creating a n0 user
     public Device (String type, String ip, String name) {

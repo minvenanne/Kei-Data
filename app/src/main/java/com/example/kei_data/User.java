@@ -17,13 +17,13 @@ public class User {
 
     public LocalDateTime dateAdded;
 
-    public static LocalDateTime currentDate;
+    public LocalDateTime currentDate;
 
-    public static Float currentDataUseStandpoint;
+    public Float currentDataUseStandpoint;
 
-    public static Float currentCo2;
+    public Float currentCo2;
 
-    public static Integer numberOfDevices;
+    public Integer numberOfDevices;
 
     static ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
 
@@ -53,7 +53,7 @@ public class User {
         userID = Household.numberOfUsers;
     }
 
-    public static void setNumberOfDevices() {
+    public void setNumberOfDevices() {
         numberOfDevices = deviceList.size(); //wrong, fejl i antal hvis man sletter device
     }
 
@@ -75,7 +75,7 @@ public class User {
 
     //Danner tilfældig værdi som ligges oveni current datause, for alle andre brugere end main bruger
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void updateCurrentDataUseStandpointAndCo2NotMainUser() {
+    public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
         // creating a variable to hold the value of the new standpoint
 
 
@@ -100,13 +100,13 @@ public class User {
         System.out.println("current co2 is now:" + currentCo2);
     }
     //add a device to the list of devices
-    public static void addDevice(String type, String IP, String name){
+    public void addDevice(String type, String IP, String name){
         Device device = new Device(type, IP, name);
         deviceList.add(device);
 
         // prints out the content of the added device
 
-        System.out.println(Device.deviceType);
+        System.out.println(device.deviceType);
         System.out.println(device.deviceIP);
         System.out.println(device.dateAdded);
         System.out.println(device.deviceName);
@@ -116,14 +116,14 @@ public class User {
         setNumberOfDevices();
     }
 
-    public static void removeDevicePrivate(int position){
+    public void removeDevicePrivate(int position){
         User.deviceList.remove(position);
         Devices_activity.iconsPrivate.remove(position);
         Devices_activity.customAdapterPrivat.notifyDataSetChanged();
         Devices_activity.simpleListPrivate.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat));
     }
 
-    public static void removeDeviceShared(int position){
+    public void removeDeviceShared(int position){
         Devices_activity.arrayListShared.remove(position);
         Devices_activity.iconsShared.remove(position);
         Devices_activity.customAdapterShared.notifyDataSetChanged();
@@ -145,7 +145,7 @@ public class User {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public static void updateCurrentDataUseStandpointAndCo2() {
+    public void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;
         newStandPoint = 0;
@@ -166,10 +166,10 @@ public class User {
             Device device = deviceList.get(i); // the current element
 
             //cykling through each datause on data use list
-            for(int f = 0; f < Device.dataUseList.size(); f++) {
+            for(int f = 0; f < device.dataUseList.size(); f++) {
 
                 //specifying the datause
-                DataUse dataUse = Device.dataUseList.get(i);
+                DataUse dataUse = device.dataUseList.get(i);
 
                 // tjekker om tidspunktet i datause listen er det samme som det nu værende tidspunkt, og lægger tallet oven i standpoint, hvis det er.
                 if (newDate.equals(dataUse.dataUsageTimeSlot)) {
@@ -193,7 +193,7 @@ public class User {
     }
 
 
-    public static void calculateCurrentCo2(float currentDataUseStandpoint) {
+    public void calculateCurrentCo2(float currentDataUseStandpoint) {
 
         //co2 pr MB
         float co2MB = (float) 0.054;
