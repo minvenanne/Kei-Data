@@ -6,8 +6,16 @@ public class DataUse {
     private String dataUsageID;
     private String dataUsageDeviceType;
     private String dataUsageTimeSlot;
-    private int dataUsageAmount;
+    private String dataUsageAmount;
     private String dataUsageType;
+
+    public DataUse(String ID, String DeviceType, String Time, String Amount, String Type){
+        setDataUsageID(ID);
+        setDataUsageDeviceType(DeviceType);
+        setDataUsageTimeSlot(Time);
+        setDataUsageAmount(Amount);
+        setDataUsageType(Type);
+    }
 
     public String getDataUsageID() {
         return dataUsageID;
@@ -33,11 +41,11 @@ public class DataUse {
         this.dataUsageTimeSlot = dataUsageTimeSlot;
     }
 
-    public int getDataUsageAmount() {
+    public String getDataUsageAmount() {
         return dataUsageAmount;
     }
 
-    public void setDataUsageAmount(int dataUsageAmount) {
+    public void setDataUsageAmount(String dataUsageAmount) {
         this.dataUsageAmount = dataUsageAmount;
     }
 

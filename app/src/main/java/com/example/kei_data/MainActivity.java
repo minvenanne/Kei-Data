@@ -197,17 +197,18 @@ public class MainActivity extends AppCompatActivity {
             reader.readLine();
 
               while ((line = reader.readLine()) != null) {
-                String[] tokens = line.split(",");
+                String[] tokens = line.split(";");
 
-                DataUse data = new DataUse();
-                data.setDataUsageID(tokens[0]);
+                DataUse data = new DataUse(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]);
+                System.out.println(data.getDataUsageAmount());
+                /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);
                 data.setDataUsageTimeSlot(tokens[2]);
                 data.setDataUsageAmount(Integer.parseInt(tokens[3]));
-                data.setDataUsageType(tokens[4]);
+                data.setDataUsageType(tokens[4]);*/
                 usecases.add(data);
 
-                Log.d("MyActivity", "Just Created: " + usecases);
+                System.out.println("Just Created: " + usecases);
             }
 
         } catch (IOException e) {
