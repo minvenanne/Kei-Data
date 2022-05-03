@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/categorybuttons.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/globe.xml" value="0.256" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2115" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bluetooth_24.xml" value="0.159" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.118" />
         <entry key="app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.1575" />
@@ -30,6 +31,7 @@
         <entry key="app/src/main/res/drawable/settings_pressed.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/trashcan.xml" value="0.118" />
+        <entry key="app/src/main/res/layout/activity_bluetooth.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_categories.xml" value="0.22993367513020838" />
         <entry key="app/src/main/res/layout/activity_devices.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_display.xml" value="0.2222860717773438" />
@@ -38,6 +40,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.20767364501953128" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_user.xml" value="0.16405029296875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.284" />
       </map>
     </option>
   </component>
