@@ -7,14 +7,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -47,11 +50,14 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /* // her tester vi kode
+         /*int minutes = LocalDateTime.now().getMinute();
+        System.out.println("minutes is now" + minutes);
+        // her tester vi kode
         User user = new User();
         user.currentDataUseStandpoint = (float) 0;
         user.currentCo2 = (float) 0;
@@ -208,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
                 data.setDataUsageType(tokens[4]);*/
                 usecases.add(data);
 
-                System.out.println("Just Created: " + usecases);
+                //System.out.println("Just Created: " + usecases);
             }
 
         } catch (IOException e) {
