@@ -10,12 +10,14 @@ import android.content.Intent;
 
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Button;
 
 
 public class User_activity extends AppCompatActivity{
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
+    private Button minidataButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,14 @@ public class User_activity extends AppCompatActivity{
                 startActivity(intent);
             }
         });
-
+            minidataButton = (Button) findViewById(R.id.connectkeidata);
+            minidataButton.setOnClickListener(new View.OnClickListener() {;
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(User_activity.this, Bluetooth_activity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
