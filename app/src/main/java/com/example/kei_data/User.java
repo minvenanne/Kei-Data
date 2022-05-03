@@ -71,6 +71,7 @@ public class User {
         deviceList.add(device);
 
         // prints out the content of the added device
+
         System.out.println(device.deviceType);
         System.out.println(device.deviceIP);
         System.out.println(device.dateAdded);

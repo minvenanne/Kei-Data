@@ -2,13 +2,20 @@ package com.example.kei_data;
 
 import static com.example.kei_data.User.setNumberOfDevices;
 
+import android.util.Log;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 //setting up the variables
 public class Device {
 
-    public String deviceType;
+    public static String deviceType;
 
     public Integer deviceID;
 
@@ -24,7 +31,7 @@ public class Device {
 
     // public Boolean statusPrivate;
 
-    //ArrayList<DataUse> dataUseList;
+    public static ArrayList<DataUse> dataUseList = new ArrayList<>();
 
     //constructor creating a n0 user
     public Device (String type, String ip, String name) {
@@ -35,6 +42,7 @@ public class Device {
         setDeviceAdded(true);
         setDeviceRemoved(false);
         setDeviceType(type);
+        setDataUseArray(Device.this);
         //setStatusPrivate(true);
 
         // creates list of class datause
@@ -78,9 +86,27 @@ public class Device {
         deviceType = type;
     }
 
+    public String getDeviceType(){
+        return this.deviceType;
+    }
+
+
     // should help users locate IP
     public void setDeviceIP(String ip) {
         deviceIP = ip;
     }
 
+    public static void addDataUse(DataUse data) {
+        dataUseList.add(data);
+        System.out.println("JEG ER TILFØJET");
+        System.out.println("ID: " + data.getDataUsageID());
+        System.out.println("Device Type: " + data.getDataUsageDeviceType());
+        System.out.println("Time: " + data.getDataUsageTimeSlot());
+        System.out.println("Amount: " + data.getDataUsageAmount());
+        System.out.println("Type: "+ data.getDataUsageType());
+    }
+
+    public void setDataUseArray(Device device){
+            MainActivity.readMockData(device);
+        }
 }

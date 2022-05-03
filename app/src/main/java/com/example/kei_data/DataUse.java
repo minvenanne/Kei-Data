@@ -1,15 +1,16 @@
 package com.example.kei_data;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class DataUse {
     private String dataUsageID;
     private String dataUsageDeviceType;
-    private String dataUsageTimeSlot;
-    private String dataUsageAmount;
+    private LocalDateTime dataUsageTimeSlot;
+    private int dataUsageAmount;
     private String dataUsageType;
 
-    public DataUse(String ID, String DeviceType, String Time, String Amount, String Type){
+    public DataUse(String ID, String DeviceType, LocalDateTime Time, int Amount, String Type){
         setDataUsageID(ID);
         setDataUsageDeviceType(DeviceType);
         setDataUsageTimeSlot(Time);
@@ -33,19 +34,19 @@ public class DataUse {
         this.dataUsageDeviceType = dataUsageDeviceType;
     }
 
-    public String getDataUsageTimeSlot() {
+    public LocalDateTime getDataUsageTimeSlot() {
         return dataUsageTimeSlot;
     }
 
-    public void setDataUsageTimeSlot(String dataUsageTimeSlot) {
+    public void setDataUsageTimeSlot(LocalDateTime dataUsageTimeSlot) {
         this.dataUsageTimeSlot = dataUsageTimeSlot;
     }
 
-    public String getDataUsageAmount() {
+    public int getDataUsageAmount() {
         return dataUsageAmount;
     }
 
-    public void setDataUsageAmount(String dataUsageAmount) {
+    public void setDataUsageAmount(int dataUsageAmount) {
         this.dataUsageAmount = dataUsageAmount;
     }
 

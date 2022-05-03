@@ -7,14 +7,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.widget.Button;
@@ -72,8 +75,6 @@ public class MainActivity extends AppCompatActivity {
 
         //END TEST//
 
-
-        readMockData();
         GraphView graph = (GraphView) findViewById(R.id.graph);
         initGraph(graph);
 
@@ -184,9 +185,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-    private List<DataUse> usecases = new ArrayList<>();
-    private void readMockData() {
-        InputStream is = getResources().openRawResource(R.raw.data_usage_new);
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public static void readMockData(Device device) {
+        InputStream is = App.getRes().openRawResource(R.raw.data_usage_new);
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(is, StandardCharsets.UTF_8)
         );
@@ -196,28 +198,31 @@ public class MainActivity extends AppCompatActivity {
 
             reader.readLine();
 
-              while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split(";");
 
-                DataUse data = new DataUse(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4]);
+                DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2]), Integer.parseInt(tokens[3]), tokens[4]);
                 System.out.println(data.getDataUsageAmount());
                 /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);
                 data.setDataUsageTimeSlot(tokens[2]);
                 data.setDataUsageAmount(Integer.parseInt(tokens[3]));
                 data.setDataUsageType(tokens[4]);*/
-                usecases.add(data);
-
-                System.out.println("Just Created: " + usecases);
+                if (device.getDeviceType().equals(data.getDataUsageDeviceType())){
+                    device.addDataUse(data);
+                }
+                else {
+                    System.out.println("IKKE TILFØJET");
+                    System.out.println("ID: " + data.getDataUsageID());
+                    System.out.println("Device Type:" + data.getDataUsageDeviceType());
+                }
             }
 
         } catch (IOException e) {
             Log.wtf("Main Activity", "Error Reading Data File on line" + line, e);
             e.printStackTrace();
         }
-
     }
-
 
     //Creates the different datasets for the graph.
 
@@ -279,6 +284,8 @@ public class MainActivity extends AppCompatActivity {
         ySeries.setSpacing(25);
 
     }
+
+
 
 
 
