@@ -54,7 +54,7 @@ int32_t              width  = 0, // BMP image dimensions
 void setup(void) {
 
 Serial.begin(9600); //Begynder kommunikation på serial port, med en baud-hastighed på 9600. Ikke nødvendigt, men kun til at hjælpe med at debugge bluetooth
-Blue.begin(9600); //Gør det samme for bluetooth
+Blue.begin(2); //Gør det samme for bluetooth
 
 #if !defined(ESP32)
   while(!Serial);       // Wait for Serial Monitor before continuing
@@ -87,34 +87,36 @@ Blue.begin(9600); //Gør det samme for bluetooth
 
   // Fill screen blue. Not a required step, this just shows that we're
   // successfully communicating with the screen.
-  tft.fillScreen(ST77XX_BLUE);
+  tft.fillScreen(ST77XX_RED);
   delay(2000); // Pause 2 seconds before moving on to loop()
 }
-
 void loop() {
 
   //while(Blue.available()==0) ; Gør intet, før bluetooth er connected.
 
  if(Blue.available()>0)  //Hvis bluetooth er tilgængelig, send da en værdi til Serial;
 {
+    int bite = Blue.read();
+    Serial.println(bite);
+    Serial.println("1234");
+    data = 30;
 
-Serial.println("1234");
-  
-data = Blue.parseInt(); // Modtag den transmiterede bluetooth værdi, og opbevar den i data
   } 
-Serial.println(data); // Udskriv den modtagne værdi til serial - ikke nødvendigt, men praktisk til debugging. 
 
-  Updatecounter();
+//Serial.println(data); // Udskriv den modtagne værdi til serial - ikke nødvendigt, men praktisk til debugging. 
+ Updatecounter();
   showdata();
   printing();
   checking();
-}
 
+
+}
 void Updatecounter(){
-if (data == password1) //Hvis den modtagne værdi er korrekt, sæt newdata til true
+if (data == 30) //Hvis den modtagne værdi er korrekt, sæt newdata til true
    {
 //    char newInput =  Serial.read();
     newData = true;
+    
   }
 }
 
