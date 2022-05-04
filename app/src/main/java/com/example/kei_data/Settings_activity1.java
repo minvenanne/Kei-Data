@@ -45,6 +45,8 @@ public class Settings_activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings_activity1.this, Display_activity.class);
+                intent.putExtra("household", (Household) getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", (User) getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -54,7 +56,7 @@ public class Settings_activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings_activity1.this, Devices_activity.class);
-                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("household", (Household) getIntent().getSerializableExtra("household"));
                 intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }

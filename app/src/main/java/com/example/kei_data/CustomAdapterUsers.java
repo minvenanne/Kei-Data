@@ -14,17 +14,17 @@ import java.util.ArrayList;
 
 public class CustomAdapterUsers extends BaseAdapter {
     Context context;
-    ArrayList<String> arraylist;
+    ArrayList<User> arraylist;
     ImageView icon;
     ImageButton delete;
     ImageButton edit;
     Household testHousehold;
 
-    public CustomAdapterUsers(Context context, ArrayList arraylist, ImageView icon, ImageButton delete, Household testHousehold) {
+    public CustomAdapterUsers(Context context, ImageView icon, ImageButton delete, ArrayList temp, Household testHousehold) {
         this.context = context;
-        this.arraylist = arraylist;
         this.icon = icon;
         this.delete = delete;
+        this.arraylist = temp;
         this.testHousehold = testHousehold;
     }
 
@@ -53,7 +53,7 @@ public class CustomAdapterUsers extends BaseAdapter {
 
         TextView user = (TextView) view.findViewById(R.id.textView);
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
-        user.setText(testHousehold.getUserList().get(i).userName);
+        user.setText(arraylist.get(i).userName);
         icon_user.setImageResource(R.drawable.ic_baseline_person_40_large);
 
         edit = (ImageButton) view.findViewById(R.id.Edit_Button2);

@@ -2,6 +2,7 @@ package com.example.kei_data;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Date;
@@ -31,12 +33,15 @@ public class AddDeviceName_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddevicename);
         User mainUser = (User) getIntent().getSerializableExtra("user");
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -46,6 +51,8 @@ public class AddDeviceName_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -55,6 +62,8 @@ public class AddDeviceName_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -75,11 +84,18 @@ public class AddDeviceName_activity extends AppCompatActivity {
         });
 
         add_device.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
+                intent.putExtra("user", mainUser);
+                intent.putExtra("household", testHousehold);
+                String name = getDeviceName();
+                String type = AddDeviceType_activity.getDeviceType();
+                String IP = AddDeviceIP_activity.getDeviceIp();
+                mainUser.addDevice(type, IP, name, mainUser);
                 startActivity(intent);
-                mainUser.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName(), mainUser);
+
             }
         });
 
@@ -88,6 +104,8 @@ public class AddDeviceName_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, AddDeviceIP_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });

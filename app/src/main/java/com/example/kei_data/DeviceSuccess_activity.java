@@ -25,13 +25,16 @@ public class DeviceSuccess_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devicesuccess);
-
+        User mainUser = (User) getIntent().getSerializableExtra("user");
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DeviceSuccess_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -41,6 +44,8 @@ public class DeviceSuccess_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DeviceSuccess_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -50,6 +55,8 @@ public class DeviceSuccess_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DeviceSuccess_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -61,16 +68,18 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         System.out.println(AddDeviceType_activity.getDeviceType());
         System.out.println(AddDeviceIP_activity.getDeviceIp());
 
-
-        Name.setText(AddDeviceName_activity.getDeviceName());
-        Type.setText(AddDeviceType_activity.getDeviceType());
-        IP.setText(AddDeviceIP_activity.getDeviceIp());
+        int size = mainUser.getDeviceList().size()-1;
+        Name.setText(mainUser.deviceList.get(size).deviceName);
+        Type.setText(mainUser.deviceList.get(size).deviceType);
+        IP.setText(mainUser.deviceList.get(size).deviceIP);
 
         openDevices = (Button) findViewById(R.id.GoToMyDevices);
         openDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(DeviceSuccess_activity.this, Devices_activity.class);
+                intent.putExtra("user", mainUser);
+                intent.putExtra("household", testHousehold);
                 startActivity(intent);
             }
         });

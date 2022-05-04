@@ -51,6 +51,8 @@ public class User_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(User_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -60,6 +62,8 @@ public class User_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(User_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -69,6 +73,8 @@ public class User_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(User_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -110,16 +116,25 @@ public class User_activity extends AppCompatActivity{
         ImageView icon = (ImageView) findViewById(R.id.icon2);
 
         simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
-        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), testHousehold.getUserList(), icon, delete, testHousehold);
-        simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
+        ArrayList<User> temp = testHousehold.getUserList();
+        if (temp.get(0).userName.equals(mainUser.userName)){
+            temp.remove(0);
+            System.out.println("Jeg fjerner Roy");
+        }
+        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), icon, delete, temp, testHousehold);
+        setHeight();
         simpleListviewUsers.setAdapter(customAdapterUsers);
 
         Name = findViewById(R.id.userName);
         Name.setText(mainUser.userName);
     }
 
+    public static void setHeight(){
+        simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
+    }
+
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-    public int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
+    public static int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
 
         if (customAdapterUsers == null) {
             return 0;
