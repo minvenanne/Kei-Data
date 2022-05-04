@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
    // public Button button;
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
-
     private RadioGroup radioGroupPhoto;
     private ImageView imageViewPhoto;
     private int []photos = {R.drawable.d, R.drawable.graph2, R.drawable.m, R.drawable.six_m,R.drawable.y};
@@ -35,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         this.imageViewPhoto = (ImageView) findViewById(R.id.imageView);
         this.radioGroupPhoto = (RadioGroup) findViewById(R.id.radioGroup);
         this.radioGroupPhoto.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
