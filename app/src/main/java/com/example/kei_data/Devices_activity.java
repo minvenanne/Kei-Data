@@ -33,14 +33,7 @@ public class Devices_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
-
-        if (User.deviceList.size()==0){
-            addElementsToArrayPrivate();
-        }
-
-        if (arrayListShared.size()==0){
-            addElementsToArrayShared();
-        }
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         AddDeviceType_activity.setCheckedButton();
 
@@ -80,17 +73,17 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
-        iconsPrivate = turnTypeIntoIcon(User.deviceList);
+        iconsPrivate = turnTypeIntoIcon(mainUser.getDeviceList());
 
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
 
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
-        customAdapterPrivat = new CustomAdapterDevicesPrivate(getApplicationContext(), User.deviceList, iconsPrivate, delete);
+        customAdapterPrivat = new CustomAdapterDevicesPrivate(getApplicationContext(), mainUser.getDeviceList(), iconsPrivate, delete, mainUser);
         simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildrenPrivate(simpleListPrivate,customAdapterPrivat));
         simpleListPrivate.setAdapter(customAdapterPrivat);
 
         simpleListShared = (ListView) findViewById(R.id.simpleListViewShared);
-        customAdapterShared = new CustomAdapterDevicesShared(getApplicationContext(), arrayListShared, iconsShared, delete);
+        customAdapterShared = new CustomAdapterDevicesShared(getApplicationContext(), arrayListShared, iconsShared, delete, mainUser);
         simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildrenShared(simpleListShared, customAdapterShared));
         simpleListShared.setAdapter(customAdapterShared);
     }
@@ -145,7 +138,7 @@ public class Devices_activity extends AppCompatActivity{
         ArrayList<Integer> icons = new ArrayList<>();
 
         for (int i = 0; i < device.size(); i++){
-            if (device.get(i).deviceType == ("TV")){
+            if (device.get(i).deviceType.equals("TV")){
                 icons.add(i, R.drawable.ic_baseline_tv_24);
             }
             else if (device.get(i).deviceType.equals("Speaker")) {
@@ -164,16 +157,12 @@ public class Devices_activity extends AppCompatActivity{
         return icons;
     }
 
-    private void addElementsToArrayPrivate(){
-        User.addDevice("Computer", "345.982.41", "Per's laptop");
-        User.addDevice("Phone", "584.682.91", "Per's Iphone 11");
-        User.addDevice("TV", "675.892.34", "Per's bedroom TV");
-        User.addDevice("Other", "565.875.32", "Per's Ipad");
-        User.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom");
+    public void addElementsToArrayPrivate(){
+
     }
 
     // hardcoded liste af shared devices
-    private void addElementsToArrayShared(){
+    public static void addElementsToArrayShared(){
         arrayListShared.add("Livingroom TV");
         typeShared.add("TV");
         iconsShared.add(R.drawable.ic_baseline_tv_24);

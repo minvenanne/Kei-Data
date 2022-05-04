@@ -34,6 +34,7 @@ public class User_activity extends AppCompatActivity{
     public Button AddHouseholdMember;
     public static ListView simpleListviewUsers;
     public TextView Name;
+    public Household testHousehold;
     public static CustomAdapterUsers customAdapterUsers;
     public EditText editText;
 
@@ -42,10 +43,8 @@ public class User_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
-
-        if (Household.userList.size()==0){
-            addElementsToArray();
-        }
+        testHousehold = (Household) getIntent().getSerializableExtra("household");
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -84,9 +83,9 @@ public class User_activity extends AppCompatActivity{
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
-                            Household.setCurrentUserName(editText.getText().toString().trim());
+                            testHousehold.setCurrentUserName(editText.getText().toString().trim());
                             editText.setVisibility(View.INVISIBLE);
-                            Name.setText(Household.user);
+                            Name.setText(testHousehold.user);
                             closeKeyboard();
                             return true;
                         }
@@ -101,6 +100,8 @@ public class User_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(User_activity.this, AddUser_activity.class);
+                intent.putExtra("user", mainUser);
+                intent.putExtra("household", testHousehold);
                 startActivity(intent);
             }
         });
@@ -109,16 +110,16 @@ public class User_activity extends AppCompatActivity{
         ImageView icon = (ImageView) findViewById(R.id.icon2);
 
         simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
-        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), Household.userList, icon, delete);
+        customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), testHousehold.getUserList(), icon, delete, testHousehold);
         simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
         simpleListviewUsers.setAdapter(customAdapterUsers);
 
         Name = findViewById(R.id.userName);
-        Name.setText(Household.user);
+        Name.setText(mainUser.userName);
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-    public static int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
+    public int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
 
         if (customAdapterUsers == null) {
             return 0;
@@ -155,13 +156,5 @@ public class User_activity extends AppCompatActivity{
             InputMethodManager manager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             manager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
-    }
-
-    private void addElementsToArray(){
-        Household.addUser("Mother Julie");
-        Household.addUser("Father Dennis");
-        Household.addUser("Little sister Laura");
-        Household.addUser("Big brother Jacob");
-        Household.addUser("Baby sister Ida");
     }
 }

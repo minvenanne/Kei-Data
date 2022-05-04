@@ -1,24 +1,28 @@
 package com.example.kei_data;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.jjoe64.graphview.GraphView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Household {
+public class Household implements Serializable {
 
     public String familyName;
-    public static int numberOfUsers;
+    public int numberOfUsers;
     public String householdID;
-    public static String user;
+    public String user;
     public String RouterID;
 
     //public Users[] user;
     private String routerID;
 
-    public static ArrayList<User> userList = new ArrayList<>();
+    public ArrayList<User> userList;
     public ArrayList<Integer> routerList = new ArrayList<>();
 
 
@@ -26,11 +30,11 @@ public class Household {
     //String familyName, int numOfMembers, String householdID, String routerID
     public Household() {
         familyName = "Last Name";
-        setNumberOfUsers();
         householdID = "1234";
         user = "No Name";
         routerID = "2563";
-        userList = new ArrayList<>();
+        setUserList();
+        setNumberOfUsers();
     }
 
 
@@ -46,18 +50,25 @@ public class Household {
         return routerID;
     }*/
 
-    public static void setCurrentUserName(String name){
+    public void setCurrentUserName(String name){
         user = name;
     }
 
-    public static void addUser(String name){
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void addUser(String name){
         //DONE
-        System.out.println("addUser BEFORE: " + userList);
-        userList.add(new User(name));
+        //System.out.println("addUser BEFORE: " + userList);
+        userList.add(new User(name, Household.this));
+        setNumberOfUsers();
         System.out.println("addUser AFTER: " + userList);
     }
 
-    public static void removeUser(int user) {
+    public void addUser(User user){
+        userList.add(user);
+        setNumberOfUsers();
+    }
+
+    public void removeUser(int user) {
         //DONE
         System.out.println("removeUser BEFORE: " + userList);
         userList.remove(user);
@@ -65,7 +76,15 @@ public class Household {
         System.out.println("removeUser AFTER: " + userList);
     }
 
-    public static void setNumberOfUsers() {
+    public ArrayList<User> getUserList(){
+        return userList;
+    }
+
+    public void setUserList(){
+        userList = new ArrayList<>();
+    }
+
+    public void setNumberOfUsers() {
         numberOfUsers = userList.size(); //fejl når vi sletter en bruger - skal forbedres.
     }
 

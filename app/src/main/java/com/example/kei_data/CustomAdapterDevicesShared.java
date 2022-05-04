@@ -17,12 +17,14 @@ public class CustomAdapterDevicesShared extends BaseAdapter {
         ArrayList<String> arraylist;
         ArrayList<Integer> icon;
         ImageButton delete;
+        User mainUser;
 
-        public CustomAdapterDevicesShared(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete) {
+        public CustomAdapterDevicesShared(Context context, ArrayList arraylist, ArrayList icon, ImageButton delete, User mainUser) {
             this.context = context;
             this.arraylist = arraylist;
             this.icon = icon;
             this.delete = delete;
+            this.mainUser = mainUser;
         }
 
         @Override
@@ -60,7 +62,7 @@ public class CustomAdapterDevicesShared extends BaseAdapter {
                     View parentRow = (View) v.getParent();
                     ListView listView = (ListView) parentRow.getParent();
                     int position = listView.getPositionForView(parentRow);
-                    User.removeDeviceShared(position);
+                    mainUser.removeDeviceShared(position);
                     System.out.println("I am in position " + position);
                 }
             });

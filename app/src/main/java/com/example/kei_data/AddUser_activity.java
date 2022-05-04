@@ -28,6 +28,8 @@ public class AddUser_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
+        Household testHousehold = (Household) getIntent().getSerializableExtra("house");
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +76,7 @@ public class AddUser_activity extends AppCompatActivity {
         AddUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Household.addUser(NameofHouseholdMember);
+                testHousehold.addUser(NameofHouseholdMember);
                 Intent intent = new Intent(AddUser_activity.this, User_activity.class);
                 startActivity(intent);
             }

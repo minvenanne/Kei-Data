@@ -18,12 +18,14 @@ public class CustomAdapterUsers extends BaseAdapter {
     ImageView icon;
     ImageButton delete;
     ImageButton edit;
+    Household testHousehold;
 
-    public CustomAdapterUsers(Context context, ArrayList arraylist, ImageView icon, ImageButton delete) {
+    public CustomAdapterUsers(Context context, ArrayList arraylist, ImageView icon, ImageButton delete, Household testHousehold) {
         this.context = context;
         this.arraylist = arraylist;
         this.icon = icon;
         this.delete = delete;
+        this.testHousehold = testHousehold;
     }
 
     @Override
@@ -48,9 +50,10 @@ public class CustomAdapterUsers extends BaseAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.activity_listview_household, null);
         }
+
         TextView user = (TextView) view.findViewById(R.id.textView);
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
-        user.setText(Household.userList.get(i).userName);
+        user.setText(testHousehold.getUserList().get(i).userName);
         icon_user.setImageResource(R.drawable.ic_baseline_person_40_large);
 
         edit = (ImageButton) view.findViewById(R.id.Edit_Button2);
@@ -75,7 +78,7 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                Household.removeUser(position);
+                testHousehold.removeUser(position);
                 System.out.println("I am in position " + position);
             }
         });

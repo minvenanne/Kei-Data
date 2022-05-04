@@ -1,8 +1,9 @@
 package com.example.kei_data;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class DataUse {
+public class DataUse implements Serializable {
     public String dataUsageID;
     public String dataUsageDeviceType;
     public LocalDateTime dataUsageTimeSlot;
