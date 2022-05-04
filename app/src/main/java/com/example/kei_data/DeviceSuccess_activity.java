@@ -70,7 +70,6 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         openDevices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(DeviceSuccess_activity.this, Devices_activity.class);
                 startActivity(intent);
             }

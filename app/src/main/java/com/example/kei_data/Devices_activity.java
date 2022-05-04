@@ -33,6 +33,7 @@ public class Devices_activity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         AddDeviceType_activity.setCheckedButton();
 
@@ -72,23 +73,23 @@ public class Devices_activity extends AppCompatActivity{
             }
         });
 
-        iconsPrivate = turnTypeIntoIcon(User.deviceList);
+        iconsPrivate = turnTypeIntoIcon(mainUser.getDeviceList());
 
         ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
 
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
-        customAdapterPrivat = new CustomAdapterDevicesPrivate(getApplicationContext(), User.deviceList, iconsPrivate, delete);
+        customAdapterPrivat = new CustomAdapterDevicesPrivate(getApplicationContext(), mainUser.getDeviceList(), iconsPrivate, delete, mainUser);
         simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildrenPrivate(simpleListPrivate,customAdapterPrivat));
         simpleListPrivate.setAdapter(customAdapterPrivat);
 
         simpleListShared = (ListView) findViewById(R.id.simpleListViewShared);
-        customAdapterShared = new CustomAdapterDevicesShared(getApplicationContext(), arrayListShared, iconsShared, delete);
+        customAdapterShared = new CustomAdapterDevicesShared(getApplicationContext(), arrayListShared, iconsShared, delete, mainUser);
         simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildrenShared(simpleListShared, customAdapterShared));
         simpleListShared.setAdapter(customAdapterShared);
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-    public int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
+    public static int justifyListViewHeightBasedOnChildrenPrivate (ListView listView, CustomAdapterDevicesPrivate customAdapterDevices) {
 
         CustomAdapterDevicesPrivate adapter = customAdapterDevices;
 
@@ -110,7 +111,7 @@ public class Devices_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    public int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
+    public static int justifyListViewHeightBasedOnChildrenShared (ListView listView, CustomAdapterDevicesShared customAdapterDevices) {
 
         CustomAdapterDevicesShared adapter = customAdapterDevices;
 
@@ -137,7 +138,7 @@ public class Devices_activity extends AppCompatActivity{
         ArrayList<Integer> icons = new ArrayList<>();
 
         for (int i = 0; i < device.size(); i++){
-            if (device.get(i).deviceType == ("TV")){
+            if (device.get(i).deviceType.equals("TV")){
                 icons.add(i, R.drawable.ic_baseline_tv_24);
             }
             else if (device.get(i).deviceType.equals("Speaker")) {

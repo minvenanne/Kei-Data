@@ -19,6 +19,8 @@ public class Settings_activity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings1);
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
+        User mainUser = (User) getIntent().getSerializableExtra("name");
 
         homeButton = (ImageButton) findViewById(R.id.Total);
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +54,8 @@ public class Settings_activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings_activity1.this, Devices_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -61,6 +65,8 @@ public class Settings_activity1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Settings_activity1.this, User_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });

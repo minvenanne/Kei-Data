@@ -5,12 +5,13 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 
-public class User {
+public class User implements Serializable {
     public String userName;
 
     public Integer userID;
@@ -25,13 +26,13 @@ public class User {
 
     public Integer numberOfDevices;
 
-    static ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
+    public ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
 
     //constructor creating a n0 user
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public User (String name) {
+    public User (String name, Household testHousehold) {
         setUserName(name);
-        setUserID();
+        setUserID(testHousehold);
         setDateAdded();
         setCurrentDate();
         setNumberOfDevices();
@@ -46,18 +47,22 @@ public class User {
         userName = name;
     }
 
-    public void setUserID() {
+    public void setUserID(Household testHousehold) {
         //size of arraylist User
-        Household.setNumberOfUsers();
+        testHousehold.setNumberOfUsers();
         //user ID is set to number of devices in the list
-        userID = Household.numberOfUsers;
+        userID = testHousehold.numberOfUsers;
+    }
+
+    public ArrayList<Device> getDeviceList(){
+        return this.deviceList;
     }
 
     public void setNumberOfDevices() {
         numberOfDevices = deviceList.size(); //wrong, fejl i antal hvis man sletter device
     }
 
-    public Integer getUserID() {
+    public int getUserID() {
         return userID;
     }
 
@@ -100,8 +105,8 @@ public class User {
         System.out.println("current co2 is now:" + currentCo2);
     }
     //add a device to the list of devices
-    public void addDevice(String type, String IP, String name){
-        Device device = new Device(type, IP, name);
+    public void addDevice(String type, String IP, String name, User user){
+        Device device = new Device(type, IP, name, user);
         deviceList.add(device);
 
         // prints out the content of the added device
@@ -116,8 +121,8 @@ public class User {
         setNumberOfDevices();
     }
 
-    public void removeDevicePrivate(int position){
-        User.deviceList.remove(position);
+    public void removeDevicePrivate(int position, User user){
+        user.deviceList.remove(position);
         Devices_activity.iconsPrivate.remove(position);
         Devices_activity.customAdapterPrivat.notifyDataSetChanged();
         Devices_activity.simpleListPrivate.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat));

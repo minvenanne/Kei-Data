@@ -1,19 +1,22 @@
 package com.example.kei_data;
 
-import static com.example.kei_data.User.setNumberOfDevices;
-
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 //setting up the variables
-public class Device {
+public class Device implements Serializable {
 
     public String deviceType;
 
@@ -34,9 +37,10 @@ public class Device {
     public ArrayList<DataUse> dataUseList = new ArrayList<>();
 
     //constructor creating a n0 user
-    public Device (String type, String ip, String name) {
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public Device (String type, String ip, String name, User user) {
         setDeviceName(name); //skal kobles op med activity så den tager indput derfra
-        setDeviceID();
+        setDeviceID(user);
         setDateAdded();
         setDeviceIP(ip); // mangler alt - kan måske først sættes op når der er lavet en falsk database af IP ala den til datause som anne har lavet.
         setDeviceAdded(true);
@@ -63,12 +67,12 @@ public class Device {
     /*public void addDataUse(DataUse dataUse){
         dataUseList.add(dataUse);
     }*/
-    public void setDeviceID() {
+    public void setDeviceID(User mainUser) {
         //length of arraylist device
-        setNumberOfDevices();
+        mainUser.setNumberOfDevices();
 
         //device ID is set to number of devices in the list
-        deviceID = User.numberOfDevices;
+        deviceID = mainUser.numberOfDevices;
     }
 
     //set status of added to true or false
@@ -96,16 +100,17 @@ public class Device {
         deviceIP = ip;
     }
 
-    public static void addDataUse(DataUse data) {
-        dataUseList.add(data);
+    public static void addDataUse(DataUse data, Device device) {
+        device.dataUseList.add(data);
         System.out.println("JEG ER TILFØJET");
-        System.out.println("ID: " + data.getDataUsageID());
-        System.out.println("Device Type: " + data.getDataUsageDeviceType());
-        System.out.println("Time: " + data.getDataUsageTimeSlot());
-        System.out.println("Amount: " + data.getDataUsageAmount());
-        System.out.println("Type: "+ data.getDataUsageType());
+        //System.out.println("ID: " + data.getDataUsageID());
+        //System.out.println("Device Type: " + data.getDataUsageDeviceType());
+        //System.out.println("Time: " + data.getDataUsageTimeSlot());
+        //System.out.println("Amount: " + data.getDataUsageAmount());
+        //System.out.println("Type: "+ data.getDataUsageType());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDataUseArray(Device device){
             MainActivity.readMockData(device);
         }

@@ -49,9 +49,8 @@ public class MainActivity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
     SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
-    public User mainUser;
     public Household testHousehold;
-
+    public User mainUser;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -72,23 +71,32 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         testHousehold = new Household();
-        mainUser = new User("Roy Hudson");
+        mainUser = new User("Roy Hudson", testHousehold);
+        testHousehold.addUser(mainUser);
         testHousehold.familyName = "Hudson";
+        System.out.println("Userlist = " + testHousehold.getUserList());
+        System.out.println("number of users = " + testHousehold.numberOfUsers);
+        System.out.println("Userlist size = " + testHousehold.userList.size());
 
         if (mainUser.deviceList.size()==0){
-            mainUser.addDevice("Computer", "345.982.41", "Per's laptop");
-            mainUser.addDevice("Phone", "584.682.91", "Per's Iphone 11");
-            mainUser.addDevice("TV", "675.892.34", "Per's bedroom TV");
-            mainUser.addDevice("Other", "565.875.32", "Per's Ipad");
-            mainUser.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom");
+            mainUser.addDevice("Computer", "345.982.41", "Per's laptop", mainUser);
+            mainUser.addDevice("Phone", "584.682.91", "Per's Iphone 11", mainUser);
+            mainUser.addDevice("TV", "675.892.34", "Per's bedroom TV", mainUser);
+            mainUser.addDevice("Other", "565.875.32", "Per's Ipad", mainUser);
+            mainUser.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom", mainUser);
         }
 
         if (Devices_activity.arrayListShared.size()==0){
             Devices_activity.addElementsToArrayShared();
         }
 
-        if (testHousehold.userList.size()==0){
-            addElementsToArray();
+        if (testHousehold.userList.size()<=1){
+            testHousehold.addUser("Mother Julie");
+            testHousehold.addUser("Father Dennis");
+            System.out.println("print if added");
+            testHousehold.addUser("Little sister Laura");
+            testHousehold.addUser("Big brother Jacob");
+            testHousehold.addUser("Baby sister Ida");
         }
 
         //TEST//
@@ -196,6 +204,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Settings_activity1.class);
+                intent.putExtra("household", testHousehold);
+                intent.putExtra("user", mainUser);
                 startActivity(intent);
             }
         });
@@ -227,20 +237,21 @@ public class MainActivity extends AppCompatActivity {
                 String[] tokens = line.split(";");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2], formatter), Float.parseFloat(tokens[3]), tokens[4]);
-                System.out.println(data.getDataUsageAmount());
+                //System.out.println(data.getDataUsageAmount());
                 /*data.setDataUsageID();
                 data.setDataUsageDeviceType(tokens[1]);
                 data.setDataUsageTimeSlot(tokens[2]);
                 data.setDataUsageAmount(Integer.parseInt(tokens[3]));
                 data.setDataUsageType(tokens[4]);*/
                 if (device.getDeviceType().equals(data.getDataUsageDeviceType())){
-                    Device.addDataUse(data);
+                    device.addDataUse(data, device);
                 }
                 else {
-                    System.out.println("IKKE TILFØJET");
-                    System.out.println("ID: " + data.getDataUsageID());
-                    System.out.println("Device Type:" + data.getDataUsageDeviceType());
+                    //System.out.println("IKKE TILFØJET");
+                    //System.out.println("ID: " + data.getDataUsageID());
+                    //System.out.println("Device Type:" + data.getDataUsageDeviceType());
                 }
+                //System.out.println(device.dataUseList);
             }
 
         } catch (IOException e) {
@@ -305,14 +316,6 @@ public class MainActivity extends AppCompatActivity {
         sixMSeries.setSpacing(25);
         ySeries.setSpacing(25);
 
-    }
-
-    private void addElementsToArray(){
-        testHousehold.addUser("Mother Julie");
-        testHousehold.addUser("Father Dennis");
-        testHousehold.addUser("Little sister Laura");
-        testHousehold.addUser("Big brother Jacob");
-        testHousehold.addUser("Baby sister Ida");
     }
 
     public User getMainUser(){
