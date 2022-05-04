@@ -27,6 +27,8 @@ public class Display_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Display_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -36,6 +38,8 @@ public class Display_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Display_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -45,6 +49,8 @@ public class Display_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Display_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });

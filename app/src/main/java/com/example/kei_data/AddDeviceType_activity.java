@@ -26,8 +26,7 @@ public class AddDeviceType_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddevicetype);
-
-        AddDeviceIP_activity.clickedButton = -1;
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +91,7 @@ public class AddDeviceType_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceType_activity.this, AddDeviceIP_activity.class);
+                intent.putExtra("user", mainUser);
                 startActivity(intent);
             }
         });

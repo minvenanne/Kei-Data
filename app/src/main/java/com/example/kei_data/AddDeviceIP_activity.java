@@ -20,14 +20,16 @@ public class AddDeviceIP_activity extends AppCompatActivity {
     public Button Add_device;
     public Button back;
     public static String ip;
-    public static int clickedButton;
+    public static int clickedButton = -1;
     public ImageButton settingsButton;
     public ImageButton homeButton;
     public ImageButton categoriesButton;
+    public ArrayList<String> arrayList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddeviceip);
+        User mainUser = (User) getIntent().getSerializableExtra("user");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -56,12 +58,13 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             }
         });
 
-        ImageButton delete = (ImageButton) findViewById(R.id.list_view_trashcan);
         devices_available = (ListView) findViewById(R.id.device_address);
-        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview_ip, R.id.adresse, findIPArrayList());
+        if (arrayList == null){
+            arrayList = findIPArrayList();
+        }
+        ArrayAdapter<ArrayList> AdapterDevices = new ArrayAdapter(getApplicationContext(), R.layout.activity_listview_ip, R.id.adresse, arrayList);
         devices_available.setMinimumHeight(justifyListViewHeightBasedOnChildren(devices_available, AdapterDevices));
         devices_available.setAdapter(AdapterDevices);
-
 
         //set ip equal to the selected one.
         devices_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -69,8 +72,10 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 clickedButton = position;
                 Add_device.setEnabled(true);
-                ip = findIPArrayList().get(clickedButton);
+                ip = arrayList.get(position);
                 setBackground(position, view);
+                System.out.println(position);
+                System.out.println(l);
             }
         });
 
@@ -79,6 +84,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceName_activity.class);
+                intent.putExtra("user", mainUser);
                 startActivity(intent);
             }
         });
@@ -119,65 +125,94 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         return ip;
     }
 
-    public static void setBackground(int position, View view){
-        if(position!=clickedButton)
-        {
-            view.setBackgroundResource(R.drawable.round_corners);
+    public void setBackground(int position, View view){
+        for (int i = 0; i < 5; i++){
+            if(position == clickedButton) {
+                view.setBackgroundResource(R.drawable.radiobutton1_selected);
+                System.out.println("It is clicked: " + i);
+            }
+            else if (position != clickedButton) {
+                view.setBackgroundResource(R.drawable.round_corners);
+                System.out.println("It is not clicked: " + i);
+            }
+            else{
+                System.out.println("LORT");
+            }
         }
-        else
-        {
-            view.setBackgroundResource(R.drawable.radiobutton1_selected);
+
+    }
+
+
+    public ArrayList<String> findIPArrayList() {
+        String type = AddDeviceType_activity.getDeviceType();
+        System.out.println(type);
+        if (type.equals("Computer")) {
+            return arrayListComputer();
+        }
+        else if (type.equals("Phone")) {
+            return arrayListPhone();
+        }
+        else if (type.equals("Speaker")) {
+            return arrayListSpeaker();
+        }
+        else if (type.equals("TV")) {
+            return arrayListTV();
+        }
+        else if (type.equals("Other")) {
+            return arrayListOther();
+        }
+        else {
+            return null;
         }
     }
 
-    public ArrayList<String> findIPArrayList(){
-        String type = AddDeviceType_activity.getDeviceType();
+    public ArrayList<String> arrayListComputer(){
         ArrayList<String> arrayList = new ArrayList<>();
-        if (type.equals("Computer")){
-            arrayList.add("726.371.91.24");
-            arrayList.add("637.392.34.22");
-            arrayList.add("273.384.21.78");
-            arrayList.add("273.293.23.38");
-            arrayList.add("293.234.21.95");
-            return arrayList;
-        }
-        else if(type.equals("Phone")){
-            arrayList.add("637.823.92.09");
-            arrayList.add("283.384.13.94");
-            arrayList.add("918.294.14.98");
-            arrayList.add("283.942.24.63");
-            arrayList.add("283.298.32.74");
-            return arrayList;
-        }
+        arrayList.add("726.371.91.24");
+        arrayList.add("637.392.34.22");
+        arrayList.add("273.384.21.78");
+        arrayList.add("273.293.23.38");
+        arrayList.add("293.234.21.95");
+        return arrayList;
+    }
 
-        else if(type.equals("Speaker")){
-            arrayList.add("723.182.12.61");
-            arrayList.add("928.342.24.23");
-            arrayList.add("823.273.24.21");
-            arrayList.add("923.73.14.91");
-            arrayList.add("283.942.24.42");
-            arrayList.add("283.298.32.96");
-            return arrayList;
-        }
+    public ArrayList<String> arrayListPhone(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("637.823.92.09");
+        arrayList.add("283.384.13.94");
+        arrayList.add("918.294.14.98");
+        arrayList.add("283.942.24.63");
+        arrayList.add("283.298.32.74");
+        return arrayList;
+    }
 
-        else if(type.equals("TV")){
-            arrayList.add("323.912.22.61");
-            arrayList.add("728.341.94.43");
-            arrayList.add("103.523.54.51");
-            arrayList.add("243.142.24.42");
-            arrayList.add("133.218.22.96");
-            return arrayList;
-        }
+    public ArrayList<String> arrayListSpeaker(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("723.182.12.61");
+        arrayList.add("928.342.24.23");
+        arrayList.add("823.273.24.21");
+        arrayList.add("923.73.14.91");
+        arrayList.add("283.942.24.42");
+        arrayList.add("283.298.32.96");
+        return arrayList;
+    }
 
-        else if(type.equals("Other")){
-            arrayList.add("323.112.22.71");
-            arrayList.add("303.533.54.51");
-            arrayList.add("253.12.24.42");
-            arrayList.add("133.28.22.926");
-            return arrayList;
-        }
-        else{
-            return null;
-        }
+    public ArrayList<String> arrayListTV(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("323.912.22.61");
+        arrayList.add("728.341.94.43");
+        arrayList.add("103.523.54.51");
+        arrayList.add("243.142.24.42");
+        arrayList.add("133.218.22.96");
+        return arrayList;
+    }
+
+    public ArrayList<String> arrayListOther(){
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("323.112.22.71");
+        arrayList.add("303.533.54.51");
+        arrayList.add("253.12.24.42");
+        arrayList.add("133.28.22.926");
+        return arrayList;
     }
 }

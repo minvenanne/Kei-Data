@@ -78,8 +78,12 @@ public class AddDeviceName_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceName_activity.this, DeviceSuccess_activity.class);
+                String name = getDeviceName();
+                String type = AddDeviceType_activity.getDeviceType();
+                String IP = AddDeviceIP_activity.getDeviceIp();
+                mainUser.addDevice(type, IP, name, mainUser);
                 startActivity(intent);
-                mainUser.addDevice(AddDeviceType_activity.getDeviceType(), AddDeviceIP_activity.getDeviceIp(), getDeviceName(), mainUser);
+
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.kei_data;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.jar.Attributes;
@@ -19,7 +21,7 @@ public class AddUser_activity extends AppCompatActivity {
     ImageButton homeButton;
     ImageButton categoriesButton;
     EditText UserName;
-    static String NameofHouseholdMember;
+    String NameofHouseholdMember;
     int IdofHouseholdMember = -1;
     Button AddUser;
 
@@ -36,6 +38,8 @@ public class AddUser_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddUser_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -45,6 +49,8 @@ public class AddUser_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddUser_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -54,6 +60,8 @@ public class AddUser_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddUser_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -74,15 +82,16 @@ public class AddUser_activity extends AppCompatActivity {
 
         AddUser = (Button) findViewById(R.id.AddUser);
         AddUser.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
                 testHousehold.addUser(NameofHouseholdMember);
                 Intent intent = new Intent(AddUser_activity.this, User_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
-
-
     }
 
     private void closeKeyboard()

@@ -122,7 +122,7 @@ public class User implements Serializable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addDevice(String type, String IP, String name, User user){
         Device device = new Device(type, IP, name, user);
-        deviceList.add(device);
+        user.deviceList.add(device);
 
         // prints out the content of the added device
 

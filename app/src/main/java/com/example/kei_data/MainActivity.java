@@ -215,6 +215,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });

@@ -23,17 +23,18 @@ public class Devices_activity extends AppCompatActivity{
     public static ListView simpleListShared;
     public static ArrayList<String> arrayListShared = new ArrayList<>();
     public static ArrayList<String> typeShared = new ArrayList<>();
-    public static ArrayList<Integer> iconsPrivate = new ArrayList<>();
+    public static ArrayList<Integer> iconsPrivate;
     public static ArrayList<Integer> iconsShared = new ArrayList<>();
     public static CustomAdapterDevicesPrivate customAdapterPrivat;
     public static CustomAdapterDevicesShared customAdapterShared;
+    public User mainUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
-        User mainUser = (User) getIntent().getSerializableExtra("user");
+        mainUser = (User) getIntent().getSerializableExtra("user");
 
         AddDeviceType_activity.setCheckedButton();
 
@@ -42,6 +43,8 @@ public class Devices_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Devices_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -51,6 +54,8 @@ public class Devices_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Devices_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -60,6 +65,8 @@ public class Devices_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Devices_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -69,6 +76,8 @@ public class Devices_activity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Devices_activity.this, AddDeviceType_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", mainUser);
                 startActivity(intent);
             }
         });
