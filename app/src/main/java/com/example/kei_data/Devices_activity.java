@@ -90,13 +90,17 @@ public class Devices_activity extends AppCompatActivity{
 
         simpleListPrivate = (ListView) findViewById(R.id.simpleListViewPrivate);
         customAdapterPrivat = new CustomAdapterDevicesPrivate(getApplicationContext(), mainUser.getDeviceList(), iconsPrivate, delete, mainUser);
-        simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildrenPrivate(simpleListPrivate,customAdapterPrivat));
+        setHeight();
         simpleListPrivate.setAdapter(customAdapterPrivat);
 
         simpleListShared = (ListView) findViewById(R.id.simpleListViewShared);
         customAdapterShared = new CustomAdapterDevicesShared(getApplicationContext(), arrayListShared, iconsShared, delete, mainUser);
         simpleListShared.setMinimumHeight(justifyListViewHeightBasedOnChildrenShared(simpleListShared, customAdapterShared));
         simpleListShared.setAdapter(customAdapterShared);
+    }
+
+    public static void setHeight(){
+        simpleListPrivate.setMinimumHeight(justifyListViewHeightBasedOnChildrenPrivate(simpleListPrivate,customAdapterPrivat));
     }
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661

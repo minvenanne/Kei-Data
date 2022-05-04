@@ -54,26 +54,23 @@ public class Household implements Serializable {
         user = name;
     }
 
+    // Add user to userlist for the household, based on a name
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addUser(String name){
-        //DONE
-        //System.out.println("addUser BEFORE: " + userList);
         userList.add(new User(name, Household.this));
         setNumberOfUsers();
-        System.out.println("addUser AFTER: " + userList);
     }
 
+    // add user to userlist of the household, based on a User
     public void addUser(User user){
         userList.add(user);
         setNumberOfUsers();
     }
 
+    // remove user from household, and the userlist
     public void removeUser(int user) {
-        //DONE
-        System.out.println("removeUser BEFORE: " + userList);
         userList.remove(user);
-        User_activity.customAdapterUsers.notifyDataSetChanged();
-        System.out.println("removeUser AFTER: " + userList);
+        User_activity.setHeight();
     }
 
     public ArrayList<User> getUserList(){

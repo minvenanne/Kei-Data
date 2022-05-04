@@ -75,8 +75,6 @@ public class AddDeviceIP_activity extends AppCompatActivity {
                 Add_device.setEnabled(true);
                 ip = arrayList.get(position);
                 setBackground(position, view);
-                System.out.println(position);
-                System.out.println(l);
             }
         });
 
@@ -103,6 +101,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         });
 
     }
+
 
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
 
@@ -131,16 +130,13 @@ public class AddDeviceIP_activity extends AppCompatActivity {
 
     public void setBackground(int position, View view){
         for (int i = 0; i < 5; i++){
-            if(position == clickedButton) {
+            if(i == position && position == clickedButton) {
                 view.setBackgroundResource(R.drawable.radiobutton1_selected);
                 System.out.println("It is clicked: " + i);
             }
-            else if (position != clickedButton) {
-                view.setBackgroundResource(R.drawable.round_corners);
-                System.out.println("It is not clicked: " + i);
-            }
             else{
                 System.out.println("LORT");
+                view.setBackgroundResource(R.drawable.round_corners);
             }
         }
 
@@ -150,7 +146,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
     public ArrayList<String> findIPArrayList() {
         String type = AddDeviceType_activity.getDeviceType();
         System.out.println(type);
-        if (Objects.equals(type, "Computer")) {
+        if (type.equals("Computer")) {
             return arrayListComputer();
         }
         else if (type.equals("Phone")) {

@@ -122,15 +122,19 @@ public class User_activity extends AppCompatActivity{
             System.out.println("Jeg fjerner Roy");
         }
         customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), icon, delete, temp, testHousehold);
-        simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
+        setHeight();
         simpleListviewUsers.setAdapter(customAdapterUsers);
 
         Name = findViewById(R.id.userName);
         Name.setText(mainUser.userName);
     }
 
+    public static void setHeight(){
+        simpleListviewUsers.setMinimumHeight(justifyListViewHeightBasedOnChildren (simpleListviewUsers,customAdapterUsers));
+    }
+
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
-    public int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
+    public static int justifyListViewHeightBasedOnChildren (ListView listView, CustomAdapterUsers customAdapterUsers) {
 
         if (customAdapterUsers == null) {
             return 0;
