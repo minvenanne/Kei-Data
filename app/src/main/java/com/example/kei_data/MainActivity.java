@@ -7,7 +7,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -78,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("number of users = " + testHousehold.numberOfUsers);
         System.out.println("Userlist size = " + testHousehold.userList.size());
 
-        if (mainUser.deviceList.size()==0){
+        if (mainUser.deviceList.size() == 0) {
             mainUser.addDevice("Computer", "345.982.41", "Per's laptop", mainUser);
             mainUser.addDevice("Phone", "584.682.91", "Per's Iphone 11", mainUser);
             mainUser.addDevice("TV", "675.892.34", "Per's bedroom TV", mainUser);
@@ -86,11 +88,11 @@ public class MainActivity extends AppCompatActivity {
             mainUser.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom", mainUser);
         }
 
-        if (Devices_activity.arrayListShared.size()==0){
+        if (Devices_activity.arrayListShared.size() == 0) {
             Devices_activity.addElementsToArrayShared();
         }
 
-        if (testHousehold.userList.size()<=1){
+        if (testHousehold.userList.size() <= 1) {
             testHousehold.addUser("Mother Julie");
             testHousehold.addUser("Father Dennis");
             System.out.println("print if added");
@@ -219,6 +221,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //indsæt testkode her
+
+        for (int r = 0; r < 4320; r++) {
+            int minutes = mainUser.currentDate.getMinute();
+
+//herover indsættes current time
+//tjekker om minuttallet er 0 eller 30
+            if (minutes == 0 || minutes == 30) {
+//opdater current time her i steder for i user
+                for (int i = 0; i < testHousehold.userList.size(); i++) {
+
+                    // specifying the user
+                    User user = testHousehold.userList.get(i);
+
+                    // hvis user id er 1 (altså vores main user)
+                    if (user.userID == 0) {
+                        user.updateCurrentDataUseStandpointAndCo2();
+                    }
+
+                    //ellers er det en "household user" og så får de bare tildelt random data
+                    else {
+                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
+
+                    }
+
+                    System.out.println(" my name is" + user.userName);
+                    System.out.println(" the clock is" + mainUser.currentDate);
+                    System.out.println("and your Co2 use is now " + user.currentCo2);
+
+                    if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
+                        user.currentDataUseStandpoint = (float) 0;
+                        System.out.println("new day");
+                    }
+
+                }
+
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+
+            else {
+                // creating a variable to hold the updated time
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

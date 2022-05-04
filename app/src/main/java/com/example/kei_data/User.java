@@ -87,8 +87,6 @@ public class User implements Serializable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
 
-        // creating a variable to hold the updated time
-        LocalDateTime newTime = (currentDate).plusMinutes(1);
 
         //beregn random værdig mellem 0 og 3000
         float newStandPoint= (float)Math.floor(Math.random()*(3000-0+1)+0);
@@ -98,8 +96,7 @@ public class User implements Serializable {
 
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
-        System.out.println("current co2 is now:" + currentCo2);
-
+/*
         Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
         Date date1 = Date.from(instant1);
 
@@ -115,7 +112,7 @@ public class User implements Serializable {
         }
         else {
             currentDate = newTime;
-        }
+        }*/
 
     }
     //add a device to the list of devices
@@ -172,8 +169,6 @@ public class User implements Serializable {
         // creating a variable to hold the date at this exact moment
 
         //adding x minute
-        LocalDateTime newTime = currentDate.plusMinutes(1);
-
         //going through each individual device
         for (int i = 0; i < deviceList.size(); i++) {
 
@@ -187,9 +182,10 @@ public class User implements Serializable {
                 DataUse dataUse = device.dataUseList.get(i);
 
                 // tjekker om tidspunktet i datause listen ligger inden for det gældende interval (for det givne tidspunkt og periode), og lægger tallet oven i standpoint, hvis det er.
-                if (dataUse.dataUsageTimeSlot.isAfter(newTime.minusMinutes(1)) && dataUse.dataUsageTimeSlot.isBefore(newTime))
+                if (dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+                }
 
                 //setting the data use amount to 0 to start over - tror ikke det er nødvendigt
                 //dataUse.dataUsageAmount = (float) 0;
@@ -198,15 +194,13 @@ public class User implements Serializable {
 
         //adding the new data use to the current data use
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
-        System.out.println("current data is now:" + currentDataUseStandpoint);
-
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
-        System.out.println("current co2 is now:" + currentCo2);
 
         // checking if the day has shifted
         // if yes it will update the current date and set the current standpoint to 0 before continuing
         //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
+        /*
         Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
         Date date1 = Date.from(instant1);
 
@@ -221,6 +215,8 @@ public class User implements Serializable {
         else {
             currentDate = newTime;
         }
+
+         */
     }
 
 
@@ -264,7 +260,8 @@ if (minutes == 0 || minutes == 30) {
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
                     }
                     System.out.println(" the clock is" + User.currentDate);
-                    System.out.println("and your Co2 use is now" + User.currentCo2);                }
+                    System.out.println("and your Co2 use is now" + User.currentCo2);
+                    }
             }
         }
 
