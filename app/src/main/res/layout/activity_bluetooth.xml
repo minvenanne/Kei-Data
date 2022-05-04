@@ -96,38 +96,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="monospace"
-        android:text="Available Bluetooth Devices"
+        android:text="Succes! You have connected to your Mini-data Device!"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.29" />
-
-    <Button
-        android:id="@+id/search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="268dp"
-        android:fontFamily="monospace"
-        android:text="Search for Kei-Data"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/connect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="268dp"
-        android:fontFamily="monospace"
-        android:text="Connect to Kei-Data"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.387" />
 
     <ListView
         android:id="@+id/bluetoothdevices"
