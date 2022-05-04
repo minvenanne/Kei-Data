@@ -140,7 +140,7 @@ public class User implements Serializable {
         user.deviceList.remove(position);
         Devices_activity.iconsPrivate.remove(position);
         Devices_activity.customAdapterPrivat.notifyDataSetChanged();
-        Devices_activity.simpleListPrivate.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenPrivate(Devices_activity.simpleListPrivate, Devices_activity.customAdapterPrivat));
+        Devices_activity.setHeight();
     }
 
     public void removeDeviceShared(int position){
