@@ -98,24 +98,6 @@ public class User implements Serializable {
 
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
-        System.out.println("current co2 is now:" + currentCo2);
-
-        Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
-        Date date1 = Date.from(instant1);
-
-        Instant instant2 = newTime.atZone(ZoneId.systemDefault()).toInstant();
-        Date date2 = Date.from(instant2);
-
-        // checking if the day has shifted
-        // if yes it will update the current date and set the current standpoint to 0 before continuing
-        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
-        if (date1.compareTo(date2) != 0) {
-            currentDate = newTime;
-            currentDataUseStandpoint = (float) 0;
-        }
-        else {
-            currentDate = newTime;
-        }
 
     }
     //add a device to the list of devices
