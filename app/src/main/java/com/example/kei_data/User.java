@@ -5,6 +5,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -64,13 +66,13 @@ public class User {
     // set the date added to date of creation
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDateAdded() {
-        dateAdded = LocalDateTime.now();
+        dateAdded = LocalDateTime.parse("2022-04-01 00:00:00");
     }
 
     // set the current date to the date of creation
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setCurrentDate() {
-        currentDate = LocalDateTime.now();
+        currentDate = LocalDateTime.parse("2022-04-01 00:00:00");
     }
 
     //Danner tilfældig værdi som ligges oveni current datause, for alle andre brugere end main bruger
@@ -78,16 +80,8 @@ public class User {
     public static void updateCurrentDataUseStandpointAndCo2NotMainUser() {
         // creating a variable to hold the value of the new standpoint
 
-
-        // creating a variable to hold the date at this exact moment
-        LocalDateTime newDate = LocalDateTime.now();
-        // checking if the day has shifted
-        // if yes it will update the current date and set the current standpoint to 0 before continuing
-        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
-        if (currentDate.compareTo(newDate) != 0) {
-            currentDate = newDate;
-            currentDataUseStandpoint = (float) 0;
-        }
+        // creating a variable to hold the updated time
+        LocalDateTime newTime = (currentDate).plusMinutes(1);
 
         //beregn random værdig mellem 0 og 3000
         float newStandPoint= (float)Math.floor(Math.random()*(3000-0+1)+0);
@@ -98,6 +92,24 @@ public class User {
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
+
+        Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
+        Date date1 = Date.from(instant1);
+
+        Instant instant2 = newTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date2 = Date.from(instant2);
+
+
+        // checking if the day has shifted
+        // if yes it will update the current date and set the current standpoint to 0 before continuing
+        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
+        if (date1.compareTo(date2) != 0) {
+            currentDate = newTime;
+            currentDataUseStandpoint = (float) 0;
+        }
+        else {
+            currentDate = newTime;
+        }
     }
     //add a device to the list of devices
     public static void addDevice(String type, String IP, String name){
@@ -150,36 +162,29 @@ public class User {
         float newStandPoint;
         newStandPoint = 0;
         // creating a variable to hold the date at this exact moment
-        LocalDateTime newDate = LocalDateTime.now();
-        // checking if the day has shifted
-        // if yes it will update the current date and set the current standpoint to 0 before continuing
-        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
-        if (currentDate.compareTo(newDate) != 0) {
-            currentDate = newDate;
-            currentDataUseStandpoint = (float) 0;
-        }
+
+        //adding x minute
+        LocalDateTime newTime = currentDate.plusMinutes(1);
 
         //going through each individual device
-        for(int i = 0; i < deviceList.size(); i++) {
+        for (int i = 0; i < deviceList.size(); i++) {
 
             // specifying the device
             Device device = deviceList.get(i); // the current element
 
             //cykling through each datause on data use list
-            for(int f = 0; f < Device.dataUseList.size(); f++) {
+            for (int f = 0; f < Device.dataUseList.size(); f++) {
 
                 //specifying the datause
                 DataUse dataUse = Device.dataUseList.get(i);
 
-                // tjekker om tidspunktet i datause listen er det samme som det nu værende tidspunkt, og lægger tallet oven i standpoint, hvis det er.
-                if (newDate.equals(dataUse.dataUsageTimeSlot)) {
-
+                // tjekker om tidspunktet i datause listen ligger inden for det gældende interval (for det givne tidspunkt og periode), og lægger tallet oven i standpoint, hvis det er.
+                if (dataUse.dataUsageTimeSlot.isAfter(newTime.minusMinutes(1)) && dataUse.dataUsageTimeSlot.isBefore(newTime))
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
 
-                    //setting the data use amount to 0 to start over
-                    dataUse.dataUsageAmount = (float) 0;
-                }
+                //setting the data use amount to 0 to start over - tror ikke det er nødvendigt
+                //dataUse.dataUsageAmount = (float) 0;
             }
         }
 
@@ -190,6 +195,24 @@ public class User {
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
         System.out.println("current co2 is now:" + currentCo2);
+
+        // checking if the day has shifted
+        // if yes it will update the current date and set the current standpoint to 0 before continuing
+        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
+        Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
+        Date date1 = Date.from(instant1);
+
+        Instant instant2 = newTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date2 = Date.from(instant2);
+
+
+        if (date1.compareTo(date2) != 0) {
+            currentDate = newTime;
+            currentDataUseStandpoint = (float) 0;
+        }
+        else {
+            currentDate = newTime;
+        }
     }
 
 
@@ -217,22 +240,24 @@ int minutes = LocalDateTime.now().getMinute();
 //tjekker om minuttallet er 0 eller 30
 if (minutes == 0 || minutes == 30) {
 
-    //Ruller igennem alle Users
-    for(int i = 0; i < userList.size(); i++) {
+                //Ruller igennem alle Users
+                for(int i = 0; i < Household.userList.size(); i++) {
 
-        // specifying the user
-        User user = userList.get(i)
+                    // specifying the user
+                    User user = Household.userList.get(i);
 
-        // hvis user id er 1 (altså vores main user)
-        if (user.userID == 1) {
-            updateCurrentDataUseStandpointAndCo2()
+                    // hvis user id er 1 (altså vores main user)
+                    if (user.userID == 1) {
+                        user.updateCurrentDataUseStandpointAndCo2();
+                    }
+
+                    //ellers er det en "household user" og så får de bare tildelt random data
+                    else {
+                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
+                    }
+                    System.out.println(" the clock is" + User.currentDate);
+                    System.out.println("and your Co2 use is now" + User.currentCo2);                }
+            }
         }
-
-        //ellers er det en "household user" og så får de bare tildelt random data
-        else {
-            updateCurrentDataUseStandpointAndCo2NotMainUser()
-        }
-    }
-}
 
 */

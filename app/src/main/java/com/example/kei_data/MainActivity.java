@@ -51,9 +51,39 @@ public class MainActivity extends AppCompatActivity {
     SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        while (true) {
+
+// får det gældende minut-tal
+            //int minutes = LocalDateTime.now().getMinute();
+
+//tjekker om minuttallet er 0 eller 30
+            //if (minutes == 0 || minutes == 30) {
+
+                //Ruller igennem alle Users
+                for(int i = 0; i < Household.userList.size(); i++) {
+
+                    // specifying the user
+                    User user = Household.userList.get(i);
+
+                    // hvis user id er 1 (altså vores main user)
+                    if (user.userID == 1) {
+                        User.updateCurrentDataUseStandpointAndCo2();
+                    }
+
+                    //ellers er det en "household user" og så får de bare tildelt random data
+                    else {
+                        User.updateCurrentDataUseStandpointAndCo2NotMainUser();
+                    }
+                    System.out.println(" the clock is" + User.currentDate);
+                    System.out.println("and your Co2 use is now" + User.currentCo2);
+                }
+            }
+        }
 
          /*int minutes = LocalDateTime.now().getMinute();
         System.out.println("minutes is now" + minutes);
@@ -65,8 +95,9 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(user.userName);
         //*/ // her tester vi kode
 
-        setContentView(R.layout.activity_main);
+        //setContentView(R.layout.activity_main);
 
+        /*
         //TEST//
         Household testHousehold = new Household();
         testHousehold.setCurrentUserName("Roy Hudson");
@@ -75,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         testHousehold.addRouter(1234);
         testHousehold.removeUser("Klaus");*/
 
-
+    /*
         //END TEST//
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
@@ -188,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+*/
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static void readMockData(Device device) {
         InputStream is = App.getRes().openRawResource(R.raw.data_usage_yes);
@@ -212,7 +243,7 @@ public class MainActivity extends AppCompatActivity {
                 data.setDataUsageAmount(Integer.parseInt(tokens[3]));
                 data.setDataUsageType(tokens[4]);*/
                 if (device.getDeviceType().equals(data.getDataUsageDeviceType())){
-                    device.addDataUse(data);
+                    Device.addDataUse(data);
                 }
                 else {
                     System.out.println("IKKE TILFØJET");
@@ -226,7 +257,7 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+/*
     //Creates the different datasets for the graph.
 
     LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
@@ -295,5 +326,5 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
+*/
 }
