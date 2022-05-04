@@ -8,6 +8,7 @@ import androidx.annotation.RequiresApi;
 import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -71,13 +72,15 @@ public class User implements Serializable {
     // set the date added to date of creation
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setDateAdded() {
-        dateAdded = LocalDateTime.parse("2022-04-01 00:00:00");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        dateAdded = LocalDateTime.parse("2022-04-01 00:00:00",formatter);
     }
 
     // set the current date to the date of creation
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void setCurrentDate() {
-        currentDate = LocalDateTime.parse("2022-04-01 00:00:00");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        currentDate = LocalDateTime.parse("2022-04-01 00:00:00", formatter);
     }
 
     //Danner tilfældig værdi som ligges oveni current datause, for alle andre brugere end main bruger
