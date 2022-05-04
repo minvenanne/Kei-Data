@@ -70,13 +70,19 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        testHousehold = new Household();
-        mainUser = new User("Roy Hudson", testHousehold);
-        testHousehold.addUser(mainUser);
-        testHousehold.familyName = "Hudson";
-        System.out.println("Userlist = " + testHousehold.getUserList());
-        System.out.println("number of users = " + testHousehold.numberOfUsers);
-        System.out.println("Userlist size = " + testHousehold.userList.size());
+        if (getIntent().getSerializableExtra("user") != null){
+            mainUser = (User) getIntent().getSerializableExtra("user");
+            testHousehold = (Household) getIntent().getSerializableExtra("household");
+        }
+        else{
+            testHousehold = new Household();
+            mainUser = new User("Roy Hudson", testHousehold);
+            testHousehold.addUser(mainUser);
+            testHousehold.familyName = "Hudson";
+            System.out.println("Userlist = " + testHousehold.getUserList());
+            System.out.println("number of users = " + testHousehold.numberOfUsers);
+            System.out.println("Userlist size = " + testHousehold.userList.size());
+        }
 
         if (mainUser.deviceList.size()==0){
             mainUser.addDevice("Computer", "345.982.41", "Per's laptop", mainUser);
@@ -90,10 +96,9 @@ public class MainActivity extends AppCompatActivity {
             Devices_activity.addElementsToArrayShared();
         }
 
-        if (testHousehold.userList.size()<=1){
+        if (testHousehold.userList.size()==1){
             testHousehold.addUser("Mother Julie");
             testHousehold.addUser("Father Dennis");
-            System.out.println("print if added");
             testHousehold.addUser("Little sister Laura");
             testHousehold.addUser("Big brother Jacob");
             testHousehold.addUser("Baby sister Ida");

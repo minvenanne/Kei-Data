@@ -13,6 +13,7 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AddDeviceIP_activity extends AppCompatActivity {
 
@@ -84,6 +85,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceName_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
                 intent.putExtra("user", mainUser);
                 startActivity(intent);
             }
@@ -94,6 +96,8 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceType_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -146,7 +150,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
     public ArrayList<String> findIPArrayList() {
         String type = AddDeviceType_activity.getDeviceType();
         System.out.println(type);
-        if (type.equals("Computer")) {
+        if (Objects.equals(type, "Computer")) {
             return arrayListComputer();
         }
         else if (type.equals("Phone")) {

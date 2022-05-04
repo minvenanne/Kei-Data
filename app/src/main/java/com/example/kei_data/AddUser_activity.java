@@ -22,7 +22,6 @@ public class AddUser_activity extends AppCompatActivity {
     ImageButton categoriesButton;
     EditText UserName;
     String NameofHouseholdMember;
-    int IdofHouseholdMember = -1;
     Button AddUser;
 
 
@@ -30,7 +29,7 @@ public class AddUser_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
-        Household testHousehold = (Household) getIntent().getSerializableExtra("house");
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
         User mainUser = (User) getIntent().getSerializableExtra("user");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);

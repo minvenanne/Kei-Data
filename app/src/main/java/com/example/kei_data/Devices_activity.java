@@ -28,6 +28,7 @@ public class Devices_activity extends AppCompatActivity{
     public static CustomAdapterDevicesPrivate customAdapterPrivat;
     public static CustomAdapterDevicesShared customAdapterShared;
     public User mainUser;
+    public Household testHousehold;
 
 
     @Override
@@ -35,6 +36,7 @@ public class Devices_activity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devices);
         mainUser = (User) getIntent().getSerializableExtra("user");
+        testHousehold = (Household) getIntent().getSerializableExtra("household");
 
         AddDeviceType_activity.setCheckedButton();
 

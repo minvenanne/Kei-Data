@@ -26,6 +26,7 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_devicesuccess);
         User mainUser = (User) getIntent().getSerializableExtra("user");
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
 
         settingsButton = (ImageButton) findViewById(R.id.Settings);
         settingsButton.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +68,7 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         System.out.println(AddDeviceType_activity.getDeviceType());
         System.out.println(AddDeviceIP_activity.getDeviceIp());
 
-        int size = mainUser.getDeviceList().size();
+        int size = mainUser.getDeviceList().size()-1;
         Name.setText(mainUser.deviceList.get(size).deviceName);
         Type.setText(mainUser.deviceList.get(size).deviceType);
         IP.setText(mainUser.deviceList.get(size).deviceIP);
@@ -78,6 +79,7 @@ public class DeviceSuccess_activity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DeviceSuccess_activity.this, Devices_activity.class);
                 intent.putExtra("user", mainUser);
+                intent.putExtra("household", testHousehold);
                 startActivity(intent);
             }
         });
