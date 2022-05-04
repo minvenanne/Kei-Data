@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        for (int r = 0; r < 4320; r++) {
+        for (int r = 0; r < 4320; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
 
             //herover indsættes current time
@@ -234,32 +234,25 @@ public class MainActivity extends AppCompatActivity {
             if (minutes == 0 || minutes == 30) {
                 //opdater current time her i steder for i user
                 for (int i = 0; i < testHousehold.userList.size(); i++) {
-
                     // specifying the user
                     User user = testHousehold.userList.get(i);
-
-                    // hvis user id er 1 (altså vores main user)
+                    // hvis user id er 0 (altså vores main user)
                     if (user.userID == 0) {
                         user.updateCurrentDataUseStandpointAndCo2();
                     }
-
                     //ellers er det en "household user" og så får de bare tildelt random data
                     else {
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
-
                     }
-
                     System.out.println(" my name is" + user.userName);
                     System.out.println(" the clock is" + mainUser.currentDate);
                     System.out.println("and your Co2 use is now " + user.currentCo2);
 
                     if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
                         user.currentDataUseStandpoint = (float) 0;
-                        System.out.println("new day");
+                        //System.out.println("new day");
                     }
-
                 }
-
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
 

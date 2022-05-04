@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.ArrayList;
 import java.time.LocalDateTime;
@@ -87,9 +88,6 @@ public class User implements Serializable {
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
 
-        // creating a variable to hold the updated time
-        LocalDateTime newTime = (currentDate).plusMinutes(1);
-
         //beregn random værdig mellem 0 og 3000
         float newStandPoint= (float)Math.floor(Math.random()*(3000-0+1)+0);
 
@@ -152,27 +150,28 @@ public class User implements Serializable {
         float newStandPoint;
         newStandPoint = 0;
         // creating a variable to hold the date at this exact moment
-
         //going through each individual device
         for (int i = 0; i < deviceList.size(); i++) {
 
             // specifying the device
             Device device = deviceList.get(i); // the current element
 
+           // System.out.println(device.deviceType);
+
             //cykling through each datause on data use list
             for (int f = 0; f < device.dataUseList.size(); f++) {
 
                 //specifying the datause
-                DataUse dataUse = device.dataUseList.get(i);
+                DataUse dataUse = device.dataUseList.get(f);
 
                 // tjekker om tidspunktet i datause listen ligger inden for det gældende interval (for det givne tidspunkt og periode), og lægger tallet oven i standpoint, hvis det er.
-                if (dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
+
+                // herunder at det går
+                if(dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+                    System.out.println("======== ny data til ROY");
                 }
-
-                //setting the data use amount to 0 to start over - tror ikke det er nødvendigt
-                //dataUse.dataUsageAmount = (float) 0;
             }
         }
 
