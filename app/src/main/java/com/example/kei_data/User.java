@@ -153,9 +153,6 @@ public class User implements Serializable {
         newStandPoint = 0;
         // creating a variable to hold the date at this exact moment
 
-        //adding x minute
-        LocalDateTime newTime = currentDate.plusMinutes(1);
-
         //going through each individual device
         for (int i = 0; i < deviceList.size(); i++) {
 
@@ -169,9 +166,10 @@ public class User implements Serializable {
                 DataUse dataUse = device.dataUseList.get(i);
 
                 // tjekker om tidspunktet i datause listen ligger inden for det gældende interval (for det givne tidspunkt og periode), og lægger tallet oven i standpoint, hvis det er.
-                if (dataUse.dataUsageTimeSlot.isAfter(newTime.minusMinutes(1)) && dataUse.dataUsageTimeSlot.isBefore(newTime))
+                if (dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
+                }
 
                 //setting the data use amount to 0 to start over - tror ikke det er nødvendigt
                 //dataUse.dataUsageAmount = (float) 0;
@@ -180,29 +178,8 @@ public class User implements Serializable {
 
         //adding the new data use to the current data use
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
-        System.out.println("current data is now:" + currentDataUseStandpoint);
-
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
-        System.out.println("current co2 is now:" + currentCo2);
-
-        // checking if the day has shifted
-        // if yes it will update the current date and set the current standpoint to 0 before continuing
-        //this depends on the fact that we update 23:59 instead of 00:00 - else data is logged on the wrong day
-        Instant instant1 = currentDate.atZone(ZoneId.systemDefault()).toInstant();
-        Date date1 = Date.from(instant1);
-
-        Instant instant2 = newTime.atZone(ZoneId.systemDefault()).toInstant();
-        Date date2 = Date.from(instant2);
-
-
-        if (date1.compareTo(date2) != 0) {
-            currentDate = newTime;
-            currentDataUseStandpoint = (float) 0;
-        }
-        else {
-            currentDate = newTime;
-        }
     }
 
 
