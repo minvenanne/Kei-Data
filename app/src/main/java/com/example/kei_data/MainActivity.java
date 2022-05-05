@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     public User mainUser;
 
 
+    LineGraphSeries<DataPoint> dSeries;
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +116,52 @@ public class MainActivity extends AppCompatActivity {
         //END TEST//
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        initGraph(graph);
+        dSeries = new LineGraphSeries<DataPoint>();
 
+        for (int r = 0; r < 900; r++) { //4320
+            int minutes = mainUser.currentDate.getMinute();
+
+            //herover indsættes current time
+            //tjekker om minuttallet er 0 eller 30
+            if (minutes == 0) {
+                //opdater current time her i steder for i user
+                for (int i = 0; i < testHousehold.userList.size(); i++) {
+                    // specifying the user
+                    User user = testHousehold.userList.get(i);
+                    // hvis user id er 0 (altså vores main user)
+                    if (user.userID == 0) {
+                        user.updateCurrentDataUseStandpointAndCo2();
+
+                        int currentHour = mainUser.currentDate.getHour();
+
+                        dSeries.appendData(new DataPoint(currentHour, user.currentCo2), true, 800);
+                    }
+                    //ellers er det en "household user" og så får de bare tildelt random data
+                    else {
+                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
+                    }
+
+                    System.out.println(" my name is " + user.userName);
+                    System.out.println(" the clock is " + mainUser.currentDate);
+                    System.out.println(" and your Co2 use is now " + user.currentCo2);
+
+                    if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
+                        user.currentDataUseStandpoint = (float) 0;
+                        //System.out.println("new day");
+                    }
+                }
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+
+            else {
+                // creating a variable to hold the updated time
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+        }
+
+        graph.addSeries(dSeries);
+
+        /*
         //Creates a timestamp from the Date object
         graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
             @Override
@@ -134,9 +180,8 @@ public class MainActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setNumHorizontalLabels(4);
         graph.getGridLabelRenderer().setHumanRounding(false);
         graph.getGridLabelRenderer().setNumVerticalLabels(10);
+*/
 
-
-        graph.addSeries(dSeries);
 
         //Connects the radiobutton group with the onCheckedChange method.
         //When a radiobutton is checked, it removes the past series, and adds a new.
@@ -225,43 +270,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        for (int r = 0; r < 800; r++) { //4320
-            int minutes = mainUser.currentDate.getMinute();
-
-            //herover indsættes current time
-            //tjekker om minuttallet er 0 eller 30
-            if (minutes == 0 || minutes == 30) {
-                //opdater current time her i steder for i user
-                for (int i = 0; i < testHousehold.userList.size(); i++) {
-                    // specifying the user
-                    User user = testHousehold.userList.get(i);
-                    // hvis user id er 0 (altså vores main user)
-                    if (user.userID == 0) {
-                        user.updateCurrentDataUseStandpointAndCo2();
-                    }
-                    //ellers er det en "household user" og så får de bare tildelt random data
-                    else {
-                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
-                    }
-
-                    System.out.println(" my name is " + user.userName);
-                    System.out.println(" the clock is " + mainUser.currentDate);
-                    System.out.println(" and your Co2 use is now " + user.currentCo2);
-
-                    if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
-                        user.currentDataUseStandpoint = (float) 0;
-                        //System.out.println("new day");
-                    }
-                }
-                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
-            }
-
-            else {
-                // creating a variable to hold the updated time
-                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
-            }
-        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -304,13 +312,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Creates the different datasets for the graph.
-    LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
+    /*LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
             new DataPoint (new Date().getTime(), 42.9),
             new DataPoint (new Date().getTime(), 68.5),
             new DataPoint (new Date().getTime(), 147),
             new DataPoint (new Date().getTime(), 50),
     });
-
+*/
     BarGraphSeries<DataPoint> weekSeries = new BarGraphSeries<>(new DataPoint[] {
             new DataPoint(0, -2),
             new DataPoint(1, 5),
@@ -363,13 +371,4 @@ public class MainActivity extends AppCompatActivity {
     public User getMainUser(){
         return mainUser;
     }
-
-
-
-
-
-
-
-
-
 }

@@ -168,7 +168,7 @@ public class User implements Serializable {
                 // tjekker om tidspunktet i datause listen ligger inden for det gældende interval (for det givne tidspunkt og periode), og lægger tallet oven i standpoint, hvis det er.
 
                 // herunder at det går
-                if(dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
+                if(dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(60)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
                     System.out.println("======== ny data til ROY");
