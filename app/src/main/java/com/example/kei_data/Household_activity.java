@@ -1,9 +1,11 @@
 package com.example.kei_data;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -33,11 +36,89 @@ public class Household_activity extends AppCompatActivity {
     public ImageButton householdSettingsButton;
     public ImageButton householdCategoriesButton;
 
+    BarGraphSeries<DataPoint> dSeriesHousehold;
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_household);
+
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
+        User mainUser = (User) getIntent().getSerializableExtra("name");
+
+        Switch householdHouseholdSwitch = (Switch) findViewById(R.id.householdHousehold);
+//            Lets the user switch between two modes.
+        householdHouseholdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if (householdHouseholdSwitch.isChecked()) {
+                    Log.d("Success", "Household");
+
+
+                } else {
+                    Log.d("Success", "you");
+                    Intent intent = new Intent(Household_activity.this, MainActivity.class);
+                    intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                    intent.putExtra("user", getIntent().getSerializableExtra("user"));
+                    startActivity(intent);
+
+                }
+            }
+        });
+        //END// SWITCH BETWEEN YOU AND HOUSEHOLD
+
+        householdSettingsButton = (ImageButton) findViewById(R.id.householdSettings);
+        householdSettingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Household_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
+                startActivity(intent);
+            }
+        });
+
+        householdCategoriesButton = (ImageButton) findViewById(R.id.householdCategories);
+        householdCategoriesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Household_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
+                startActivity(intent);
+            }
+        });
+
+        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
+
+        dSeriesHousehold = new BarGraphSeries<DataPoint>();
+        initGraphHousehold(householdGraph);
+        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
+        householdGraph.getGridLabelRenderer().setHumanRounding(false);
+        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
+        householdGraph.getViewport().setMinY(1750);
+        householdGraph.getViewport().setMaxY(3000);
+        //householdGraph.getViewport().setMaxX(5.4);
+       // householdGraph.getViewport().setMinX(-0.3);
+       // householdGraph.getViewport().setXAxisBoundsManual(true);
+        householdGraph.getViewport().setYAxisBoundsManual(true);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
+        staticLabelsFormatter.setHorizontalLabels(testHousehold.getArraylistOfUserName());
+        householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+
+        householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+
+        for (int i = 0; i < testHousehold.userList.size(); i++) {
+            // specifying the user
+            User user = testHousehold.userList.get(i);
+            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+        }
+        householdGraph.addSeries(dSeriesHousehold);
+
 
 //        Calendar calendar = Calendar.getInstance();
 //
@@ -50,24 +131,11 @@ public class Household_activity extends AppCompatActivity {
 //        Date d4 = calendar.getTime();
 
         //Initilizing the householdGraph and calls the styling method -> initGraphHousehold
-        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
-        initGraphHousehold(householdGraph);
-
 
 
         // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
         // setHumanRounding enables the rounding of the numbers on the x-axis
         // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
-        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(4);
-        householdGraph.getGridLabelRenderer().setHumanRounding(false);
-        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
-
-
-
-
-
-
-        householdGraph.addSeries(dSeriesHousehold);
 
 
         //Connects the radiobutton group with the onCheckedChange method.
@@ -77,7 +145,7 @@ public class Household_activity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
-                if ( checkedId == R.id.householdRadioButton) {
+                if (checkedId == R.id.householdRadioButton) {
                     Log.d("Success", "D was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(dSeriesHousehold);
@@ -118,70 +186,20 @@ public class Household_activity extends AppCompatActivity {
             }
         });
 
-
-        Switch householdHouseholdSwitch = (Switch) findViewById(R.id.householdHousehold);
-//            Lets the user switch between two modes.
-        householdHouseholdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-                if (householdHouseholdSwitch.isChecked()) {
-                    Log.d("Success", "Household");
-
-
-                } else {
-                    Log.d("Success", "you");
-                    Intent intentHousehold = new Intent(Household_activity.this, MainActivity.class);
-                    startActivity(intentHousehold);
-
-                }
-            }
-        });
-        //END// SWITCH BETWEEN YOU AND HOUSEHOLD
-
-        householdSettingsButton = (ImageButton) findViewById(R.id.householdSettings);
-        householdSettingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Household_activity.this, Settings_activity1.class);
-                intent.putExtra("household", getIntent().getSerializableExtra("household"));
-                intent.putExtra("user", getIntent().getSerializableExtra("user"));
-                startActivity(intent);
-            }
-        });
-
-        householdCategoriesButton = (ImageButton) findViewById(R.id.householdCategories);
-        householdCategoriesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Household_activity.this, Categories_activity.class);
-                intent.putExtra("household", getIntent().getSerializableExtra("household"));
-                intent.putExtra("user", getIntent().getSerializableExtra("user"));
-                startActivity(intent);
-            }
-        });
-
-
     }
 
 
     //Creates the different datasets for the graph.
 
-    BarGraphSeries<DataPoint> dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint (1, 5),
-            new DataPoint (2, 42),
-            new DataPoint (3, 10),
-            new DataPoint (4, 85),
 
-    });
-
-
+// der rydes op i de her grafer
     BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, 2),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 13000),
+            new DataPoint(1, 11000),
+            new DataPoint(2, 10000),
+            new DataPoint(3, 10000),
+            new DataPoint(4, 11000),
+            new DataPoint(5, 12000)
     });
 
     BarGraphSeries<DataPoint> mSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
@@ -217,7 +235,7 @@ public class Household_activity extends AppCompatActivity {
         ySeriesHousehold.setColor(Color.rgb(120,150,111));
 
         //Thickness of graph
-        //dSeriesHousehold.setSpacing(50);
+        dSeriesHousehold.setSpacing(-30);
         weekSeriesHousehold.setSpacing(25);
         mSeriesHousehold.setSpacing(25);
         sixMSeriesHousehold.setSpacing(25);
