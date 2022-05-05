@@ -146,6 +146,7 @@ public class User implements Serializable {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
+
     public void updateCurrentDataUseStandpointAndCo2() {
         // creating a variable to hold the value of the new standpoint
         float newStandPoint;

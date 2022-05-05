@@ -44,99 +44,6 @@ public class Household_activity extends AppCompatActivity {
         Household testHousehold = (Household) getIntent().getSerializableExtra("household");
         User mainUser = (User) getIntent().getSerializableExtra("name");
 
-        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
-        dSeriesHousehold = new BarGraphSeries<DataPoint>();
-        initGraphHousehold(householdGraph);
-        for (int i = 0; i < testHousehold.userList.size(); i++) {
-            // specifying the user
-            User user = testHousehold.userList.get(i);
-
-
-dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
-
-                    new DataPoint (user.userID, user.currentCo2)
-            }
-        }
-
-//        Calendar calendar = Calendar.getInstance();
-//
-//        Date d1 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d2 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d3 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d4 = calendar.getTime();
-
-        //Initilizing the householdGraph and calls the styling method -> initGraphHousehold
-
-
-
-
-        // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
-        // setHumanRounding enables the rounding of the numbers on the x-axis
-        // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
-        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(4);
-        householdGraph.getGridLabelRenderer().setHumanRounding(false);
-        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
-
-
-
-
-
-
-        householdGraph.addSeries(dSeriesHousehold);
-
-
-        //Connects the radiobutton group with the onCheckedChange method.
-        //When a radiobutton is checked, it removes the past series, and adds a new.
-        RadioGroup householdRadioGroup = (RadioGroup) findViewById(R.id.householdRadioGroup);
-        householdRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-
-                if ( checkedId == R.id.householdRadioButton) {
-                    Log.d("Success", "D was pressed");
-                    householdGraph.removeAllSeries();
-                    householdGraph.addSeries(dSeriesHousehold);
-                    dSeriesHousehold.setAnimated(true);
-                    calculateWinner();
-
-
-                } else if (checkedId == R.id.householdRadioButton2) {
-                    Log.d("Success", "W was pressed");
-                    householdGraph.removeAllSeries();
-                    householdGraph.addSeries(weekSeriesHousehold);
-                    weekSeriesHousehold.setAnimated(true);
-
-                } else if (checkedId == R.id.householdRadioButton3) {
-                    Log.d("Success", "M was pressed");
-                    householdGraph.removeAllSeries();
-                    householdGraph.addSeries(mSeriesHousehold);
-                    mSeriesHousehold.setAnimated(true);
-
-
-                } else if (checkedId == R.id.householdRadioButton4) {
-                    Log.d("Success", "6M was pressed");
-                    householdGraph.removeAllSeries();
-                    householdGraph.addSeries(sixMSeriesHousehold);
-                    sixMSeriesHousehold.setAnimated(true);
-
-
-                } else if (checkedId == R.id.householdRadioButton5) {
-                    Log.d("Success", "Y was pressed");
-                    householdGraph.removeAllSeries();
-                    householdGraph.addSeries(ySeriesHousehold);
-                    ySeriesHousehold.setAnimated(true);
-
-
-                }
-
-
-            }
-        });
-
-
         Switch householdHouseholdSwitch = (Switch) findViewById(R.id.householdHousehold);
 //            Lets the user switch between two modes.
         householdHouseholdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -179,6 +86,88 @@ dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
             }
         });
 
+        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
+
+        dSeriesHousehold = new BarGraphSeries<DataPoint>();
+        initGraphHousehold(householdGraph);
+        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
+        householdGraph.getGridLabelRenderer().setHumanRounding(false);
+        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
+
+            for (int i = 0; i < testHousehold.userList.size(); i++) {
+                // specifying the user
+                User user = testHousehold.userList.get(i);
+
+                dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+            }
+            householdGraph.addSeries(dSeriesHousehold);
+
+
+//        Calendar calendar = Calendar.getInstance();
+//
+//        Date d1 = calendar.getTime();
+//        calendar.add(Calendar.DATE, 1);
+//        Date d2 = calendar.getTime();
+//        calendar.add(Calendar.DATE, 1);
+//        Date d3 = calendar.getTime();
+//        calendar.add(Calendar.DATE, 1);
+//        Date d4 = calendar.getTime();
+
+        //Initilizing the householdGraph and calls the styling method -> initGraphHousehold
+
+
+        // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
+        // setHumanRounding enables the rounding of the numbers on the x-axis
+        // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
+
+
+        //Connects the radiobutton group with the onCheckedChange method.
+        //When a radiobutton is checked, it removes the past series, and adds a new.
+        RadioGroup householdRadioGroup = (RadioGroup) findViewById(R.id.householdRadioGroup);
+        householdRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+                if (checkedId == R.id.householdRadioButton) {
+                    Log.d("Success", "D was pressed");
+                    householdGraph.removeAllSeries();
+                    householdGraph.addSeries(dSeriesHousehold);
+                    dSeriesHousehold.setAnimated(true);
+                    calculateWinner();
+
+
+                } else if (checkedId == R.id.householdRadioButton2) {
+                    Log.d("Success", "W was pressed");
+                    householdGraph.removeAllSeries();
+                    householdGraph.addSeries(weekSeriesHousehold);
+                    weekSeriesHousehold.setAnimated(true);
+
+                } else if (checkedId == R.id.householdRadioButton3) {
+                    Log.d("Success", "M was pressed");
+                    householdGraph.removeAllSeries();
+                    householdGraph.addSeries(mSeriesHousehold);
+                    mSeriesHousehold.setAnimated(true);
+
+
+                } else if (checkedId == R.id.householdRadioButton4) {
+                    Log.d("Success", "6M was pressed");
+                    householdGraph.removeAllSeries();
+                    householdGraph.addSeries(sixMSeriesHousehold);
+                    sixMSeriesHousehold.setAnimated(true);
+
+
+                } else if (checkedId == R.id.householdRadioButton5) {
+                    Log.d("Success", "Y was pressed");
+                    householdGraph.removeAllSeries();
+                    householdGraph.addSeries(ySeriesHousehold);
+                    ySeriesHousehold.setAnimated(true);
+
+
+                }
+
+
+            }
+        });
 
     }
 
@@ -186,13 +175,14 @@ dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
     //Creates the different datasets for the graph.
 
 
-
+// der rydes op i de her grafer
     BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, 2),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 13000),
+            new DataPoint(1, 11000),
+            new DataPoint(2, 10000),
+            new DataPoint(3, 10000),
+            new DataPoint(4, 11000),
+            new DataPoint(5, 12000)
     });
 
     BarGraphSeries<DataPoint> mSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
