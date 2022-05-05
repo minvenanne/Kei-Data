@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Switch householdSwitch = (Switch) findViewById(R.id.household);
+        Switch householdSwitch = (Switch) findViewById(R.id.HouseholdSwitch);
 //            Lets the user switch between two modes.
         householdSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
