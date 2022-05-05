@@ -140,11 +140,11 @@ public class MainActivity extends AppCompatActivity {
 
                 float currentMinute = mainUser.currentDate.getMinute();
                 float half = 0.5F;
-                dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
                 if (currentMinute == 30) {
                     currentHour = currentHour + half;
                 }
+                dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
                 System.out.println(" my name is " + mainUser.userName);
                 System.out.println(" the clock is " + mainUser.currentDate);

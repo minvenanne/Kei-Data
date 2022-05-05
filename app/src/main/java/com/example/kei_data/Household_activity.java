@@ -1,9 +1,11 @@
 package com.example.kei_data;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -36,6 +39,7 @@ public class Household_activity extends AppCompatActivity {
     BarGraphSeries<DataPoint> dSeriesHousehold;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,14 +99,25 @@ public class Household_activity extends AppCompatActivity {
         householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
         householdGraph.getGridLabelRenderer().setHumanRounding(false);
         householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
+        householdGraph.getViewport().setMinY(1750);
+        householdGraph.getViewport().setMaxY(3000);
+        //householdGraph.getViewport().setMaxX(5.4);
+       // householdGraph.getViewport().setMinX(-0.3);
+       // householdGraph.getViewport().setXAxisBoundsManual(true);
+        householdGraph.getViewport().setYAxisBoundsManual(true);
 
-            for (int i = 0; i < testHousehold.userList.size(); i++) {
-                // specifying the user
-                User user = testHousehold.userList.get(i);
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
+        staticLabelsFormatter.setHorizontalLabels(testHousehold.getArraylistOfUserName());
+        householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-                dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
-            }
-            householdGraph.addSeries(dSeriesHousehold);
+        householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+
+        for (int i = 0; i < testHousehold.userList.size(); i++) {
+            // specifying the user
+            User user = testHousehold.userList.get(i);
+            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+        }
+        householdGraph.addSeries(dSeriesHousehold);
 
 
 //        Calendar calendar = Calendar.getInstance();
@@ -220,7 +235,7 @@ public class Household_activity extends AppCompatActivity {
         ySeriesHousehold.setColor(Color.rgb(120,150,111));
 
         //Thickness of graph
-        //dSeriesHousehold.setSpacing(50);
+        dSeriesHousehold.setSpacing(-30);
         weekSeriesHousehold.setSpacing(25);
         mSeriesHousehold.setSpacing(25);
         sixMSeriesHousehold.setSpacing(25);

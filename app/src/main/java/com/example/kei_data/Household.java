@@ -81,6 +81,15 @@ public class Household implements Serializable {
         userList = new ArrayList<>();
     }
 
+    public String[] getArraylistOfUserName(){
+        String[] array = new String[userList.size()];
+        for (int i = 0; i < userList.size(); i++){
+            array[i] = userList.get(i).userName;
+            System.out.println(array[i]);
+        }
+        return array;
+    }
+
     public void setNumberOfUsers() {
         numberOfUsers = userList.size(); //fejl når vi sletter en bruger - skal forbedres.
     }

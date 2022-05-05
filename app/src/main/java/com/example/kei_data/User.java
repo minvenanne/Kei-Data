@@ -89,7 +89,7 @@ public class User implements Serializable {
     public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
 
         //beregn random værdig mellem 0 og 3000
-        float newStandPoint= (float)Math.floor(Math.random()*(3000-0+1)+0);
+        float newStandPoint= (float)Math.floor(Math.random()*(2000-0+1)+0);
 
         //Update standpoint med tilfældigt tal
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
@@ -115,6 +115,7 @@ public class User implements Serializable {
         System.out.println(device.deviceRemoved);
 
         setNumberOfDevices();
+        updateCurrentDataUseStandpointAndCo2();
     }
 
     public void removeDevicePrivate(int position, User user){
