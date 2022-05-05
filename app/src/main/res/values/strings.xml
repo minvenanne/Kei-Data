@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">Kei-Data</string>
+    <string name="Title">Kei-Data</string>
+    <string name="Day">D</string>
+    <string name="Week">W</string>
+    <string name="Month">M</string>
+    <string name="Six_months">6M</string>
+    <string name="Year">Y</string>
 </resources>

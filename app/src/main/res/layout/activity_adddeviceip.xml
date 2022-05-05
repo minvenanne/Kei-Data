@@ -28,9 +28,9 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Kei-Data"
-        android:textSize="50dp"
-        android:textStyle="bold"
+        android:text="@string/Title"
+        android:textSize="50sp"
+        android:fontFamily="@font/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -99,6 +99,7 @@
         android:gravity="center"
         android:text="Pick an available device"
         android:textSize="35sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,33 +125,20 @@
             android:layout_height="fill_parent"
             android:foregroundTint="#8BC34A">
 
-            <RadioGroup
-                android:id="@+id/radioGroup2"
-                android:layout_width="fill_parent"
+            <ListView
+                android:id="@+id/device_address"
+                android:layout_width="317dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginEnd="30dp"
-                android:gravity="center"
-                android:orientation="vertical"
+                android:clickable="true"
+                android:divider="#b5d1b2"
+                android:dividerHeight="10dp"
+                android:listSelector="@drawable/radiobutton1_selector"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <ListView
-                    android:id="@+id/device_address"
-                    android:layout_width="317dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:clickable="true"
-                    android:divider="#b5d1b2"
-                    android:dividerHeight="10dp"
-                    android:scrollbars="vertical"
-                    android:listSelector="@drawable/radiobutton1_selector"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:viewBindingType="android.widget.ListView" />
-
-            </RadioGroup>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:viewBindingType="android.widget.ListView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
@@ -164,6 +152,7 @@
         android:textSize="20sp"
         android:text="Next"
         android:textAllCaps="false"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.448"
@@ -179,6 +168,7 @@
         android:text="Back"
         android:textSize="20sp"
         android:textAllCaps="false"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.278"

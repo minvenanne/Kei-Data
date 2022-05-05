@@ -15,9 +15,9 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Kei-Data"
-        android:textSize="50dp"
-        android:textStyle="bold"
+        android:text="@string/Title"
+        android:textSize="50sp"
+        android:fontFamily="@font/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,11 +41,12 @@
             android:id="@+id/householdRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5px"
+            android:layout_margin="2dp"
+            android:fontFamily="@font/other_text"
             android:background="@drawable/radiobutton_selector"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:text="D"
+            android:text="@string/Day"
             android:checked="true"
             android:textColor="@drawable/radiobutton_textcolor" />
 
@@ -53,44 +54,48 @@
             android:id="@+id/householdRadioButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5px"
+            android:layout_margin="2dp"
+            android:fontFamily="@font/other_text"
             android:background="@drawable/radiobutton_selector"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:text="W"
+            android:text="@string/Week"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
             android:id="@+id/householdRadioButton3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5px"
+            android:layout_margin="2dp"
+            android:fontFamily="@font/other_text"
             android:background="@drawable/radiobutton_selector"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:text="M"
+            android:text="@string/Month"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
             android:id="@+id/householdRadioButton4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5px"
+            android:layout_margin="2dp"
+            android:fontFamily="@font/other_text"
             android:background="@drawable/radiobutton_selector"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:text="6M"
+            android:text="@string/Six_months"
             android:textColor="@drawable/radiobutton_textcolor" />
 
         <RadioButton
             android:id="@+id/householdRadioButton5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="5px"
+            android:layout_margin="2dp"
+            android:fontFamily="@font/other_text"
             android:background="@drawable/radiobutton_selector"
             android:button="@android:color/transparent"
             android:gravity="center"
-            android:text="Y"
+            android:text="@string/Year"
             android:textColor="@drawable/radiobutton_textcolor" />
 
     </RadioGroup>
@@ -103,7 +108,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="180dp"
         android:text="Total:"
-        android:textSize="14dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +123,8 @@
         android:layout_marginEnd="180dp"
         android:layout_marginBottom="3dp"
         android:text="20 g CO2"
-        android:textSize="24dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toTopOf="@+id/householdDay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -131,7 +138,8 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="180dp"
         android:text="Tuesday"
-        android:textSize="14dp"
+        android:textSize="14sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,8 +147,8 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/householdGraph"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="351dp"
+        android:layout_height="313dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,6 +159,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/switch_normal"
+        android:checked="true"
         android:scaleX="2"
         android:scaleY="2"
         android:thumbTint="#B5D1B2"
@@ -158,8 +167,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
-        android:checked="true"
-        app:layout_constraintTop_toBottomOf="@+id/householdGraph" />
+        app:layout_constraintTop_toBottomOf="@+id/householdGraph"
+        app:layout_constraintVertical_bias="0.343"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/householdTextView14"
@@ -167,20 +177,25 @@
         android:layout_height="wrap_content"
         android:text="You"
         android:textAlignment="textEnd"
-        android:textSize="24dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="@+id/householdImageView2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/householdImageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/householdImageView2"
+        tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/householdTextView15"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Household"
-        android:textSize="24dp"
+        android:textSize="24sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/householdBackground"
-        app:layout_constraintTop_toBottomOf="@+id/householdBackground" />
+        app:layout_constraintTop_toBottomOf="@+id/householdBackground"
+        tools:ignore="HardcodedText" />
+
 
     <ImageView
         android:id="@+id/householdImageView2"
@@ -191,8 +206,8 @@
         app:layout_constraintEnd_toStartOf="@+id/householdHousehold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/householdGraph"
+        app:layout_constraintVertical_bias="0.326"
         app:srcCompat="@drawable/ic_baseline_person_24_small" />
-
 
     <ImageView
         android:id="@+id/householdBackground"
@@ -201,8 +216,10 @@
         android:layout_marginEnd="30dp"
         app:layout_constraintBottom_toTopOf="@+id/householdCategories"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/householdHousehold"
         app:layout_constraintTop_toBottomOf="@+id/householdGraph"
+        app:layout_constraintVertical_bias="0.326"
         app:srcCompat="@drawable/ic_baseline_group_24" />
 
     <TextView
@@ -214,6 +231,7 @@
         android:gravity="center"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -223,7 +241,7 @@
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="240dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
@@ -231,16 +249,16 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="@+id/householdMenu"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/menu"
+        app:layout_constraintTop_toBottomOf="@+id/householdHousehold"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_settings" />
 
     <ImageButton
         android:id="@+id/householdTotalButton"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround_pressed"
@@ -249,7 +267,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/householdMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/householdMenu"
+        app:layout_constraintTop_toBottomOf="@+id/householdHousehold"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/home_pressed" />
 
     <ImageButton
@@ -257,7 +276,7 @@
         android:layout_width="65dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="240dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="@drawable/allround"
@@ -265,9 +284,9 @@
         android:scaleType="fitCenter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/householdMenu"
+        app:layout_constraintTop_toBottomOf="@+id/householdHousehold"
+        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_category" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

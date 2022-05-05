@@ -47,6 +47,8 @@
         <entry key="app/src/main/res/drawable/settings_pressed.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/trashcan.xml" value="0.118" />
+        <entry key="app/src/main/res/font/other_text.xml" value="0.23854166666666668" />
+        <entry key="app/src/main/res/font/title.xml" value="0.287962962962963" />
         <entry key="app/src/main/res/layout/activity_add_user.xml" value="0.25925925925925924" />
         <entry key="app/src/main/res/layout/activity_adddevice.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_adddevice2.xml" value="0.1962962962962963" />
