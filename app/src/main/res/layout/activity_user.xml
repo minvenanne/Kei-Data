@@ -25,7 +25,6 @@
         android:background="@drawable/title_kei_data"
         android:ems="30"
         android:gravity="center"
-        android:inputType="textPersonName"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Kei-Data"

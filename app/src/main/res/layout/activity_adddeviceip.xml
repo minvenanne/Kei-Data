@@ -26,7 +26,6 @@
         android:background="@drawable/title_kei_data"
         android:ems="30"
         android:gravity="center"
-        android:inputType="textPersonName"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
         android:text="Kei-Data"
@@ -146,6 +145,7 @@
                     android:divider="#b5d1b2"
                     android:dividerHeight="10dp"
                     android:scrollbars="vertical"
+                    android:listSelector="@drawable/radiobutton1_selector"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     tools:viewBindingType="android.widget.ListView" />
