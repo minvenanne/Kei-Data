@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        for (int r = 0; r < 4320; r++) { //4320
+        for (int r = 0; r < 800; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
 
             //herover indsættes current time
@@ -244,9 +244,10 @@ public class MainActivity extends AppCompatActivity {
                     else {
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
                     }
-                    System.out.println(" my name is" + user.userName);
-                    System.out.println(" the clock is" + mainUser.currentDate);
-                    System.out.println("and your Co2 use is now " + user.currentCo2);
+
+                    System.out.println(" my name is " + user.userName);
+                    System.out.println(" the clock is " + mainUser.currentDate);
+                    System.out.println(" and your Co2 use is now " + user.currentCo2);
 
                     if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
                         user.currentDataUseStandpoint = (float) 0;
@@ -303,7 +304,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Creates the different datasets for the graph.
-
     LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
             new DataPoint (new Date().getTime(), 42.9),
             new DataPoint (new Date().getTime(), 68.5),

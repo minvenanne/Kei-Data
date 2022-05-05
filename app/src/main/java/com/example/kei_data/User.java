@@ -98,6 +98,7 @@ public class User implements Serializable {
         calculateCurrentCo2(currentDataUseStandpoint);
 
     }
+
     //add a device to the list of devices
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void addDevice(String type, String IP, String name, User user){

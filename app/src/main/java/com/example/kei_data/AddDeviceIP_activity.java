@@ -71,10 +71,18 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         devices_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                view.setBackgroundResource(R.drawable.round_corners);
                 clickedButton = position;
                 Add_device.setEnabled(true);
                 ip = arrayList.get(position);
-                setBackground(position, view);
+                if (position == clickedButton)
+                {
+                    view.setBackgroundResource(R.drawable.radiobutton1_selected);
+                }
+                else{
+                    System.out.println("LORT");
+                    view.setBackgroundResource(R.drawable.round_corners);
+                }
             }
         });
 
