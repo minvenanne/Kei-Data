@@ -26,12 +26,12 @@
         android:background="@drawable/title_kei_data"
         android:ems="30"
         android:gravity="center"
-        android:inputType="textPersonName"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Kei-Data"
-        android:textSize="50dp"
-        android:textStyle="bold"
+        android:text="@string/Title"
+        android:textSize="50sp"
+        android:fontFamily="@font/title"
+        android:textColor="#4F4D4C"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -41,56 +41,59 @@
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/ic_baseline_group_24"
-        android:fontFamily="monospace"
+        android:drawableStart="@drawable/ic_baseline_group_24"
         android:padding="10dp"
         android:text="User"
         android:textAllCaps="false"
-        android:textColor="#000"
+        android:fontFamily="@font/other_text"
+        android:textColor="#4F4D4C"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="80dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Devices" />
+        app:layout_constraintTop_toBottomOf="@+id/Devices"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/Devices"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/device_settings"
-        android:fontFamily="monospace"
+        android:drawableStart="@drawable/device_settings"
+        android:fontFamily="@font/other_text"
         android:padding="10dp"
         android:text="Devices"
         android:textAlignment="center"
         android:textAllCaps="false"
-        android:textColor="#000"
+        android:textColor="#4F4D4C"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/User"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_display" />
+        app:layout_constraintTop_toBottomOf="@+id/add_display"
+        tools:ignore="HardcodedText" />
 
     <Button
         android:id="@+id/add_display"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:background="@drawable/round_corners"
-        android:drawableLeft="@drawable/display"
+        android:drawableStart="@drawable/display"
         android:layout_marginTop="0dp"
-        android:fontFamily="monospace"
+        android:fontFamily="@font/other_text"
         android:padding="10dp"
         android:text="Display"
         android:textAllCaps="false"
-        android:textColor="#000"
+        android:textColor="#4F4D4C"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/Devices"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         android:id="@+id/Settings"
@@ -108,7 +111,8 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:srcCompat="@drawable/settings_pressed" />
+        app:srcCompat="@drawable/settings_pressed"
+        />
 
     <ImageButton
         android:id="@+id/Total"
@@ -151,14 +155,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="170dp"
         android:text="Settings"
-        android:textColor="#000"
-        android:textSize="48sp"
-        android:typeface="monospace"
+        android:textSize="55sp"
+        android:fontFamily="@font/other_text"
+        android:textColor="#4F4D4C"
         app:layout_constraintBottom_toTopOf="@+id/add_display"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Title" />
+        app:layout_constraintTop_toTopOf="@+id/Title"
+        tools:ignore="HardcodedText" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

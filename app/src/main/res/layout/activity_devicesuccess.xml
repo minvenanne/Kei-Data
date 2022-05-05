@@ -24,12 +24,11 @@
         android:background="@drawable/title_kei_data"
         android:ems="30"
         android:gravity="center"
-        android:inputType="textPersonName"
         android:paddingTop="10dp"
         android:paddingBottom="10dp"
-        android:text="Kei-Data"
-        android:textSize="50dp"
-        android:textStyle="bold"
+        android:text="@string/Title"
+        android:textSize="50sp"
+        android:fontFamily="@font/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -97,9 +96,10 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:padding="20dp"
-        android:text="Your deviceY has been added successfully"
+        android:text="Your device has been added successfully"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,9 +116,11 @@
         android:textAlignment="viewStart"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+        app:layout_constraintTop_toBottomOf="@+id/textView20"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textView13"
@@ -130,9 +132,11 @@
         android:textAlignment="viewStart"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="@+id/Background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewName"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textView16"
@@ -144,9 +148,11 @@
         android:textAlignment="viewStart"
         android:textSize="25sp"
         android:textStyle="bold"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewType" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewType"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textViewName"
@@ -154,12 +160,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Hej med dig"
+        android:text=""
         android:textAlignment="viewStart"
         android:textSize="20sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textViewType"
@@ -167,12 +175,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Hej med dig"
+        android:text=""
         android:textAlignment="viewStart"
         android:textSize="20sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+        app:layout_constraintTop_toBottomOf="@+id/textView13"
+        tools:ignore="RtlCompat" />
 
     <TextView
         android:id="@+id/textViewIP"
@@ -180,12 +190,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="Hej med dig"
+        android:text=""
+        android:fontFamily="@font/other_text"
         android:textAlignment="viewStart"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+        app:layout_constraintTop_toBottomOf="@+id/textView16"
+        tools:ignore="RtlCompat" />
 
     <Button
         android:id="@+id/GoToMyDevices"
@@ -195,6 +207,7 @@
         android:text="Go to my devices"
         android:textAllCaps="false"
         android:textSize="20sp"
+        android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

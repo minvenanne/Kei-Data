@@ -13,12 +13,11 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class AddDeviceIP_activity extends AppCompatActivity {
 
     public ListView devices_available;
-    public Button Add_device;
+    public Button Next2;
     public Button back;
     public static String ip;
     public static int clickedButton = -1;
@@ -37,6 +36,8 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, Settings_activity1.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -46,6 +47,8 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, MainActivity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -55,6 +58,8 @@ public class AddDeviceIP_activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, Categories_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
                 startActivity(intent);
             }
         });
@@ -71,23 +76,22 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         devices_available.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                view.setBackgroundResource(R.drawable.round_corners);
+                for (int i = 0; i < devices_available.getChildCount(); i++) {
+                    if(position == i ){
+                        devices_available.getChildAt(i).setBackgroundResource(R.drawable.radiobutton1_selected);
+                    }else{
+                        devices_available.getChildAt(i).setBackgroundResource(R.drawable.round_corners);
+                    }
+                }
                 clickedButton = position;
-                Add_device.setEnabled(true);
+                Next2.setEnabled(true);
                 ip = arrayList.get(position);
-                if (position == clickedButton)
-                {
-                    view.setBackgroundResource(R.drawable.radiobutton1_selected);
-                }
-                else{
-                    System.out.println("LORT");
-                    view.setBackgroundResource(R.drawable.round_corners);
-                }
+                AdapterDevices.notifyDataSetChanged();
             }
         });
 
-        Add_device = (Button) findViewById(R.id.Next2);
-        Add_device.setOnClickListener(new View.OnClickListener() {
+        Next2 = (Button) findViewById(R.id.Next2);
+        Next2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AddDeviceIP_activity.this, AddDeviceName_activity.class);
@@ -114,7 +118,6 @@ public class AddDeviceIP_activity extends AppCompatActivity {
     //https://stackoverflow.com/questions/12212890/disable-scrolling-of-a-listview-contained-within-a-scrollview/27818661#27818661
 
     private int justifyListViewHeightBasedOnChildren(ListView listView, ArrayAdapter adapter) {
-
         if (adapter == null) {
             return 0;
         }
@@ -132,6 +135,7 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         listView.requestLayout();
         return totalHeight;
     }
+
     public static String getDeviceIp(){
         return ip;
     }
@@ -149,7 +153,6 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         }
 
     }
-
 
     public ArrayList<String> findIPArrayList() {
         String type = AddDeviceType_activity.getDeviceType();
