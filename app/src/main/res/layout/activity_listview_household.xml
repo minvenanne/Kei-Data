@@ -13,13 +13,26 @@
         android:src="@drawable/ic_launcher_background" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="220dp"
+        android:id="@+id/displayName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:padding="10dp"
+        android:background="@drawable/round_corners"
+        android:layout_gravity="center"
         android:textColor="@color/black"
-        android:textSize="20dp" />
+        android:textSize="20dp"/>
+
+    <EditText
+        android:id="@+id/editNameHouseholdmember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/round_corners"
+        android:layout_gravity="center"
+        android:singleLine="true"
+        android:hint="Enter name here"
+        android:textColor="@color/black"
+        android:textSize="20dp"/>
 
     <ImageButton
         android:id="@+id/Edit_Button2"
@@ -37,5 +50,7 @@
         android:background="@drawable/ic_baseline_delete_24"
         android:clickable="true"
         android:textColor="@color/black" />
+
+
 
 </LinearLayout>

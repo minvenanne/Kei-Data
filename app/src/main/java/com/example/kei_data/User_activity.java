@@ -154,7 +154,7 @@ public class User_activity extends AppCompatActivity{
         return totalHeight;
     }
 
-    private void closeKeyboard()
+    public void closeKeyboard()
     {
         // this will give us the view
         // which is currently focus
