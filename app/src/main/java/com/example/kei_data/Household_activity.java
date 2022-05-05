@@ -33,11 +33,30 @@ public class Household_activity extends AppCompatActivity {
     public ImageButton householdSettingsButton;
     public ImageButton householdCategoriesButton;
 
+    BarGraphSeries<DataPoint> dSeriesHousehold;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_household);
+
+        Household testHousehold = (Household) getIntent().getSerializableExtra("household");
+        User mainUser = (User) getIntent().getSerializableExtra("name");
+
+        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
+        dSeriesHousehold = new BarGraphSeries<DataPoint>();
+        initGraphHousehold(householdGraph);
+        for (int i = 0; i < testHousehold.userList.size(); i++) {
+            // specifying the user
+            User user = testHousehold.userList.get(i);
+
+
+dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
+
+                    new DataPoint (user.userID, user.currentCo2)
+            }
+        }
 
 //        Calendar calendar = Calendar.getInstance();
 //
@@ -50,8 +69,7 @@ public class Household_activity extends AppCompatActivity {
 //        Date d4 = calendar.getTime();
 
         //Initilizing the householdGraph and calls the styling method -> initGraphHousehold
-        GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
-        initGraphHousehold(householdGraph);
+
 
 
 
@@ -167,13 +185,6 @@ public class Household_activity extends AppCompatActivity {
 
     //Creates the different datasets for the graph.
 
-    BarGraphSeries<DataPoint> dSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint (1, 5),
-            new DataPoint (2, 42),
-            new DataPoint (3, 10),
-            new DataPoint (4, 85),
-
-    });
 
 
     BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {

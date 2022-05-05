@@ -116,15 +116,22 @@ public class MainActivity extends AppCompatActivity {
         //END TEST//
 
         GraphView graph = (GraphView) findViewById(R.id.graph);
-        dSeries = new LineGraphSeries<DataPoint>();
 
-        for (int r = 0; r < 900; r++) { //4320
+        dSeries = new LineGraphSeries<DataPoint>();
+        initGraph(graph);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(6);
+        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getGridLabelRenderer().setNumVerticalLabels(4);
+
+        //få fikset at vi kan vise alle 24 timer
+        for (int r = 0; r < 24*60; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
 
             //herover indsættes current time
             //tjekker om minuttallet er 0 eller 30
-            if (minutes == 0) {
+            if (minutes == 0 || minutes == 30) {
                 //opdater current time her i steder for i user
+
                 for (int i = 0; i < testHousehold.userList.size(); i++) {
                     // specifying the user
                     User user = testHousehold.userList.get(i);
@@ -132,9 +139,17 @@ public class MainActivity extends AppCompatActivity {
                     if (user.userID == 0) {
                         user.updateCurrentDataUseStandpointAndCo2();
 
-                        int currentHour = mainUser.currentDate.getHour();
+                        float currentHour = mainUser.currentDate.getHour();
 
-                        dSeries.appendData(new DataPoint(currentHour, user.currentCo2), true, 800);
+                        float currentMinute = mainUser.currentDate.getMinute();
+                        float half = 0.5F;
+
+                        if (currentMinute == 30) {
+                            currentHour = currentHour + half;
+                        }
+
+
+                        dSeries.appendData(new DataPoint(currentHour, user.currentCo2), true, 1440);
                     }
                     //ellers er det en "household user" og så får de bare tildelt random data
                     else {
@@ -145,10 +160,12 @@ public class MainActivity extends AppCompatActivity {
                     System.out.println(" the clock is " + mainUser.currentDate);
                     System.out.println(" and your Co2 use is now " + user.currentCo2);
 
-                    if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
-                        user.currentDataUseStandpoint = (float) 0;
+                    //indsættes måske igen ------------------
+                    //if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
+                        //user.currentDataUseStandpoint = (float) 0;
                         //System.out.println("new day");
-                    }
+                    //}
+
                 }
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
@@ -240,6 +257,8 @@ public class MainActivity extends AppCompatActivity {
                 if (householdSwitch.isChecked()) {
                     Log.d("Success", "Household");
                     Intent intent = new Intent(MainActivity.this, Household_activity.class);
+                    intent.putExtra("household", testHousehold);
+                    intent.putExtra("user", mainUser);
                     startActivity(intent);
 
                 } else {
@@ -320,34 +339,40 @@ public class MainActivity extends AppCompatActivity {
     });
 */
     BarGraphSeries<DataPoint> weekSeries = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, -2),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+
+            new DataPoint(0, 2000),
+            new DataPoint(1, 900),
+            new DataPoint(2, 5000),
+            new DataPoint(3, 3400),
+            new DataPoint(4, 1200),
+            new DataPoint(5, 4000),
+            new DataPoint(6, 4500)
     });
 
+    //pr uge i måneden
     BarGraphSeries<DataPoint> mSeries = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, 0),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 9000),
+            new DataPoint(1, 10000),
+            new DataPoint(2, 11000),
+            new DataPoint(3, 8000)
     });
+    //hver måned i 1000 x Y
     BarGraphSeries<DataPoint> sixMSeries = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, -10),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 40),
+            new DataPoint(1, 50),
+            new DataPoint(2, 35),
+            new DataPoint(3, 41),
+            new DataPoint(4, 33),
+            new DataPoint(4, 56)
     });
 
+    //kvartal per 1000 x Y
     BarGraphSeries<DataPoint> ySeries = new BarGraphSeries<>(new DataPoint[] {
-            new DataPoint(0, 12),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 200),
+            new DataPoint(1, 198),
+            new DataPoint(2, 150),
+            new DataPoint(3, 230),
+
     });
 
     //Styling of the graph
