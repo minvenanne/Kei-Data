@@ -56,8 +56,10 @@ public class Household_activity extends AppCompatActivity {
 
                 } else {
                     Log.d("Success", "you");
-                    Intent intentHousehold = new Intent(Household_activity.this, MainActivity.class);
-                    startActivity(intentHousehold);
+                    Intent intent = new Intent(Household_activity.this, MainActivity.class);
+                    intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                    intent.putExtra("user", getIntent().getSerializableExtra("user"));
+                    startActivity(intent);
 
                 }
             }
