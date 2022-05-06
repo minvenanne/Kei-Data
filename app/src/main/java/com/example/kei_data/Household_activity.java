@@ -95,21 +95,10 @@ public class Household_activity extends AppCompatActivity {
         GraphView householdGraph = (GraphView) findViewById(R.id.householdGraph);
 
         dSeriesHousehold = new BarGraphSeries<DataPoint>();
-        initGraphHousehold(householdGraph);
-        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
-        householdGraph.getGridLabelRenderer().setHumanRounding(false);
-        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
-        householdGraph.getViewport().setMinY(1750);
-        householdGraph.getViewport().setMaxY(3000);
-        //householdGraph.getViewport().setMaxX(5.4);
-       // householdGraph.getViewport().setMinX(-0.3);
-       // householdGraph.getViewport().setXAxisBoundsManual(true);
-        householdGraph.getViewport().setYAxisBoundsManual(true);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
         staticLabelsFormatter.setHorizontalLabels(testHousehold.getArraylistOfUserName());
         householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
         householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
 
         for (int i = 0; i < testHousehold.userList.size(); i++) {
@@ -118,6 +107,16 @@ public class Household_activity extends AppCompatActivity {
             dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
         }
         householdGraph.addSeries(dSeriesHousehold);
+        initGraphHousehold(householdGraph);
+        householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
+        householdGraph.getGridLabelRenderer().setHumanRounding(false);
+        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
+        householdGraph.getViewport().setMinY(dSeriesHousehold.getLowestValueY()-250);
+        householdGraph.getViewport().setMaxY(dSeriesHousehold.getHighestValueY() + 250);
+        householdGraph.getViewport().setMaxX(5.4);
+        householdGraph.getViewport().setMinX(-0.3);
+        householdGraph.getViewport().setXAxisBoundsManual(true);
+        householdGraph.getViewport().setYAxisBoundsManual(true);
 
 
 //        Calendar calendar = Calendar.getInstance();
@@ -240,6 +239,8 @@ public class Household_activity extends AppCompatActivity {
         mSeriesHousehold.setSpacing(25);
         sixMSeriesHousehold.setSpacing(25);
         ySeriesHousehold.setSpacing(25);
+
+        System.out.println(dSeriesHousehold.getHighestValueY());
 
         dSeriesHousehold.setDataWidth(0.5);
 
