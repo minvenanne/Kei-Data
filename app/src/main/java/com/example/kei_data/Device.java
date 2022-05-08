@@ -102,6 +102,12 @@ public class Device implements Serializable {
 
     public static void addDataUse(DataUse data, Device device) {
         device.dataUseList.add(data);
+        System.out.println("JEG ER TILFØJET");
+        //System.out.println("ID: " + data.getDataUsageID());
+        //System.out.println("Device Type: " + data.getDataUsageDeviceType());
+        //System.out.println("Time: " + data.getDataUsageTimeSlot());
+        //System.out.println("Amount: " + data.getDataUsageAmount());
+        //System.out.println("Type: "+ data.getDataUsageType());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
