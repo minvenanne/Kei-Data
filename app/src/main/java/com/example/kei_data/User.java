@@ -104,16 +104,6 @@ public class User implements Serializable {
     public void addDevice(String type, String IP, String name, User user){
         Device device = new Device(type, IP, name, user);
         user.deviceList.add(device);
-
-        // prints out the content of the added device
-
-        System.out.println(device.deviceType);
-        System.out.println(device.deviceIP);
-        System.out.println(device.dateAdded);
-        System.out.println(device.deviceName);
-        System.out.println(device.deviceAdded);
-        System.out.println(device.deviceRemoved);
-
         setNumberOfDevices();
         updateCurrentDataUseStandpointAndCo2();
     }

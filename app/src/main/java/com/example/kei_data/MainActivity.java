@@ -4,15 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,25 +16,19 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
-import android.widget.Button;
-
 import android.content.Intent;
 
 import android.view.View;
 import android.widget.ImageButton;
 
-import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.util.Log;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.CompoundButton;
 
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.ValueDependentColor;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
@@ -52,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
     public Household testHousehold;
     public User mainUser;
     public GraphView graph;
-
+    private int x;
+    BarGraphSeries<DataPoint> weekSeries;
 
     LineGraphSeries<DataPoint> dSeries;
 
@@ -73,6 +63,17 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        graph = (GraphView) findViewById(R.id.graph);
+
+        dSeries = new LineGraphSeries<DataPoint>();
+        weekSeries = new BarGraphSeries<DataPoint>();
+        initGraph(graph);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(6);
+        graph.getGridLabelRenderer().setHumanRounding(false);
+        graph.getGridLabelRenderer().setNumVerticalLabels(4);
+
+
+
         if (getIntent().getSerializableExtra("user") != null){
             mainUser = (User) getIntent().getSerializableExtra("user");
             testHousehold = (Household) getIntent().getSerializableExtra("household");
@@ -82,9 +83,6 @@ public class MainActivity extends AppCompatActivity {
             mainUser = new User("Roy Hudson", testHousehold);
             testHousehold.addUser(mainUser);
             testHousehold.familyName = "Hudson";
-            System.out.println("Userlist = " + testHousehold.getUserList());
-            System.out.println("number of users = " + testHousehold.numberOfUsers);
-            System.out.println("Userlist size = " + testHousehold.userList.size());
         }
 
         if (mainUser.deviceList.size()==0){
@@ -109,23 +107,7 @@ public class MainActivity extends AppCompatActivity {
 
         //TEST//
 
-        /*testHousehold.addUser("Camilla");
-        testHousehold.addRouter(1234);
-        testHousehold.removeUser("Klaus");*/
-
-
-        //END TEST//
-
-        graph = (GraphView) findViewById(R.id.graph);
-
-        dSeries = new LineGraphSeries<DataPoint>();
-        initGraph(graph);
-        graph.getGridLabelRenderer().setNumHorizontalLabels(6);
-        graph.getGridLabelRenderer().setHumanRounding(false);
-        graph.getGridLabelRenderer().setNumVerticalLabels(4);
-
-        System.out.println(mainUser.currentCo2);
-
+        //dSeries
         //få fikset at vi kan vise alle 24 timer
         for (int r = 0; r < 24*60; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
@@ -146,22 +128,32 @@ public class MainActivity extends AppCompatActivity {
                 }
                 dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
-                System.out.println(" my name is " + mainUser.userName);
-                System.out.println(" the clock is " + mainUser.currentDate);
-                System.out.println(" and your Co2 use is now " + mainUser.currentCo2);
+                //System.out.println(" my name is " + mainUser.userName);
+                //System.out.println(" the clock is " + mainUser.currentDate);
+                //System.out.println(" and your Co2 use is now " + mainUser.currentCo2);
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
             else {
                 // creating a variable to hold the updated time
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
-            if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
+            if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
                 mainUser.currentDataUseStandpoint = (float) 0;
-                System.out.println("new day");
                 mainUser.setCurrentDate();
+                break;
             }
         }
         graph.addSeries(dSeries);
+        graph.getGridLabelRenderer().setNumHorizontalLabels(6);
+        graph.getGridLabelRenderer().setHumanRounding(true, false);
+        graph.getGridLabelRenderer().setNumVerticalLabels(6);
+        graph.getViewport().setMinY(0);
+        graph.getViewport().setMaxY(dSeries.getHighestValueY() + 250);
+        graph.getViewport().setMaxX(24);
+        graph.getViewport().setMinX(4);
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setYAxisBoundsManual(true);
+
 
         if (getIntent().getSerializableExtra("user") == null){
             for (int r = 0; r < 24*60; r++) { //4320
@@ -178,9 +170,6 @@ public class MainActivity extends AppCompatActivity {
                         //ellers er det en "household user" og så får de bare tildelt random data
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
 
-                        System.out.println(" my name is " + user.userName);
-                        System.out.println(" the clock is " + mainUser.currentDate);
-                        System.out.println(" and your Co2 use is now " + user.currentCo2);
                     }
                     mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
                 }
@@ -190,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (mainUser.currentDate.getHour() == 0 && mainUser.currentDate.getMinute() == 0) {
                     mainUser.currentDataUseStandpoint = (float) 0;
-                    System.out.println("new day");
                 }
             }
         }
@@ -228,22 +216,68 @@ public class MainActivity extends AppCompatActivity {
 
                 if (checkedId == R.id.radioButton) {
                     Log.d("Success", "D was pressed");
+                    userCo2GraphDay();
                     graph.removeAllSeries();
                     graph.addSeries(dSeries);
                     dSeries.setAnimated(true);
+                    weekSeries.resetData(new DataPoint[] {});
+                    initGraph(graph);
+                    //SetGraphviewDay();
+                    graph.getGridLabelRenderer().setNumHorizontalLabels(6);
+                    graph.getGridLabelRenderer().setHumanRounding(true, false);
+                    graph.getGridLabelRenderer().setNumVerticalLabels(6);
+                    graph.getViewport().setMinY(0);
+                    graph.getViewport().setMaxY(dSeries.getHighestValueY() + 250);
+                    graph.getViewport().setMaxX(24);
+                    graph.getViewport().setMinX(4);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
 
 
                 } else if (checkedId == R.id.radioButton2) {
                     Log.d("Success", "W was pressed");
+                    x = 7;
+                    userCO2GraphWeek(x, weekSeries);
+                    dSeries.resetData(new DataPoint[]{});
                     graph.removeAllSeries();
                     graph.addSeries(weekSeries);
-                    weekSeries.setAnimated(true);
+                    //weekSeries.setAnimated(true);
+                    initGraph(graph);
+                    graph.getGridLabelRenderer().setNumHorizontalLabels(7);
+                    graph.getGridLabelRenderer().setHumanRounding(true);
+                    graph.getGridLabelRenderer().setNumVerticalLabels(6);
+                    graph.getViewport().setMinY(weekSeries.getLowestValueY()-500);
+                    graph.getViewport().setMaxY(weekSeries.getHighestValueY() + 250);
+                    graph.getViewport().setMaxX(x + 1);
+                    graph.getViewport().setMinX(-1);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+                    //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
+                    //staticLabelsFormatter.setHorizontalLabels(new String[]{"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"});
+                    //graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+                    //graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
 
                 } else if (checkedId == R.id.radioButton3) {
                     Log.d("Success", "M was pressed");
+                    x = 30;
+                    userCO2GraphWeek(x, mSeries);
+                    weekSeries.resetData(new DataPoint[] {});
+                    dSeries.resetData(new DataPoint[]{});
                     graph.removeAllSeries();
                     graph.addSeries(mSeries);
-                    mSeries.setAnimated(true);
+                    //mSeries.setAnimated(true);
+                    initGraph(graph);
+                    graph.getGridLabelRenderer().setNumHorizontalLabels(x/2);
+                    graph.getGridLabelRenderer().setHumanRounding(false);
+                    graph.getGridLabelRenderer().setNumVerticalLabels(8);
+                    graph.getViewport().setMinY(mSeries.getLowestValueY()-500);
+                    graph.getViewport().setMaxY(mSeries.getHighestValueY() + 250);
+                    graph.getViewport().setMaxX(x + 1);
+                    graph.getViewport().setMinX(-1);
+                    graph.getViewport().setXAxisBoundsManual(true);
+                    graph.getViewport().setYAxisBoundsManual(true);
+                    graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
 
 
                 } else if (checkedId == R.id.radioButton4) {
@@ -276,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 if (householdSwitch.isChecked()) {
                     Log.d("Success", "Household");
                     Intent intent = new Intent(MainActivity.this, Household_activity.class);
+                    dSeries.resetData(new DataPoint[]{});
                     intent.putExtra("household", testHousehold);
                     intent.putExtra("user", mainUser);
                     startActivity(intent);
@@ -356,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
             new DataPoint (new Date().getTime(), 147),
             new DataPoint (new Date().getTime(), 50),
     });
-*/
+
     BarGraphSeries<DataPoint> weekSeries = new BarGraphSeries<>(new DataPoint[] {
 
             new DataPoint(0, 2000),
@@ -367,7 +402,7 @@ public class MainActivity extends AppCompatActivity {
             new DataPoint(5, 4000),
             new DataPoint(6, 4500)
     });
-
+*/
     //pr uge i måneden
     BarGraphSeries<DataPoint> mSeries = new BarGraphSeries<>(new DataPoint[] {
             new DataPoint(0, 9000),
@@ -414,5 +449,96 @@ public class MainActivity extends AppCompatActivity {
 
     public User getMainUser(){
         return mainUser;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void userCO2GraphWeek(int x, BarGraphSeries<DataPoint> series){
+        series.resetData(new DataPoint[]{});
+        int currentDay = 0;
+        mainUser.setCurrentDate();
+        for (int r = 0; r < 24*60*x; r++) { //4320
+            int minutes = mainUser.currentDate.getMinute();
+            float currentHour = mainUser.currentDate.getHour();
+
+            //herover indsættes current time
+            //tjekker om minuttallet er 0 eller 30
+            if (minutes == 0 || minutes == 30) {
+                //opdater current time her i steder for i user
+                mainUser.updateCurrentDataUseStandpointAndCo2();
+                System.out.println(mainUser.currentCo2);
+                currentHour = mainUser.currentDate.getHour();
+
+                float currentMinute = mainUser.currentDate.getMinute();
+                float half = 0.5F;
+
+                if (currentMinute == 30) {
+                    currentHour = currentHour + half;
+                }
+
+
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+            else {
+                // creating a variable to hold the updated time
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+
+            if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
+                series.appendData(new DataPoint(currentDay, mainUser.currentCo2), true, x);
+                System.out.println(currentDay);
+                System.out.println(mainUser.currentCo2);
+                mainUser.currentDataUseStandpoint = (float) 0;
+                currentDay = currentDay + 1;
+
+                System.out.println("new day");
+            }
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void userCo2GraphDay(){
+        dSeries.resetData(new DataPoint[]{});
+        mainUser.setCurrentDate();
+        for (int r = 0; r < 24*60; r++) { //4320
+            int minutes = mainUser.currentDate.getMinute();
+
+            //herover indsættes current time
+            //tjekker om minuttallet er 0 eller 30
+            if (minutes == 0 || minutes == 30) {
+                //opdater current time her i steder for i user
+                mainUser.updateCurrentDataUseStandpointAndCo2();
+
+                float currentHour = mainUser.currentDate.getHour();
+
+                float currentMinute = mainUser.currentDate.getMinute();
+                float half = 0.5F;
+
+                if (currentMinute == 30) {
+                    currentHour = currentHour + half;
+                }
+                System.out.println(currentHour);
+                dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
+
+                //System.out.println(" my name is " + mainUser.userName);
+                //System.out.println(" the clock is " + mainUser.currentDate);
+                //System.out.println(" and your Co2 use is now " + mainUser.currentCo2);
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+            else {
+                // creating a variable to hold the updated time
+                mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+            }
+            if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
+                mainUser.currentDataUseStandpoint = (float) 0;
+                //System.out.println("new day");
+                mainUser.setCurrentDate();
+                break;
+            }
+        }
+        graph.addSeries(dSeries);
+    }
+
+    public void SetGraphviewDay(){
+
     }
 }

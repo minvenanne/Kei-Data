@@ -85,7 +85,6 @@ public class Household implements Serializable {
         String[] array = new String[userList.size()];
         for (int i = 0; i < userList.size(); i++){
             array[i] = userList.get(i).userName;
-            System.out.println(array[i]);
         }
         return array;
     }
