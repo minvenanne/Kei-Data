@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.LabelFormatter;
 import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.Viewport;
@@ -49,11 +50,9 @@ public class Household_activity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 if (householdHouseholdSwitch.isChecked()) {
-                    Log.d("Success", "Household");
 
 
                 } else {
-                    Log.d("Success", "you");
                     Intent intent = new Intent(Household_activity.this, MainActivity.class);
                     intent.putExtra("household", getIntent().getSerializableExtra("household"));
                     intent.putExtra("user", getIntent().getSerializableExtra("user"));
@@ -90,40 +89,54 @@ public class Household_activity extends AppCompatActivity {
 
         dSeriesHousehold = new BarGraphSeries<DataPoint>();
 
-        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
-        householdGraph.setLabelFor(R.id.householdGraph);
+        //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
+        //householdGraph.setLabelFor(R.id.householdGraph);
         //householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-        householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
 
 
         for (int i = 0; i < testHousehold.userList.size(); i++) {
             // specifying the user
             User user = testHousehold.userList.get(i);
-            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), false, testHousehold.userList.size());
+            System.out.println(i + " med værdien " + user.currentCo2 + " the name is " + user.userName);
         }
 
         householdGraph.addSeries(dSeriesHousehold);
         initGraphHousehold(householdGraph);
         calculateWinner();
         householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
-        householdGraph.getGridLabelRenderer().setHumanRounding(false);
-        householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
+        householdGraph.getGridLabelRenderer().setHumanRounding(true);
+        householdGraph.getGridLabelRenderer().setNumVerticalLabels(6);
         householdGraph.getViewport().setMinY(dSeriesHousehold.getLowestValueY() - 250);
         householdGraph.getViewport().setMaxY(dSeriesHousehold.getHighestValueY() + 250);
-        householdGraph.getViewport().setMaxX(5.4);
-        householdGraph.getViewport().setMinX(-0.3);
-        householdGraph.getViewport().setXAxisBoundsManual(true);
         householdGraph.getViewport().setYAxisBoundsManual(true);
-        double xInterval=1.0;
-        householdGraph.getViewport().setXAxisBoundsManual(true);
-        if (dSeriesHousehold instanceof BarGraphSeries ) {
-            // Shunt the viewport, per v3.1.3 to show the full width of the first and last bars.
-            householdGraph.getViewport().setMinX(dSeriesHousehold.getLowestValueX() - (xInterval/2.0));
-            householdGraph.getViewport().setMaxX(dSeriesHousehold.getHighestValueX() + (xInterval/2.0));
-        } else {
-            householdGraph.getViewport().setMinX(dSeriesHousehold.getLowestValueX() );
-            householdGraph.getViewport().setMaxX(dSeriesHousehold.getHighestValueX());
-        }
+        dSeriesHousehold.setDrawValuesOnTop(true);
+        dSeriesHousehold.setValuesOnTopColor(Color.BLACK);
+
+        householdGraph.getGridLabelRenderer().setLabelFormatter(new LabelFormatter() {
+            @Override
+            public String formatLabel(double value, boolean isValueX) {
+                String[] names = testHousehold.getArraylistOfUserName();
+                String name;
+                System.out.print(value);
+                System.out.println(isValueX);
+                if (value < testHousehold.userList.size()){
+                    name = names[(int) value];
+                    System.out.println(value + " tilhører " + name);
+                    return name;
+                }
+                else {
+                    return String.valueOf((int)value);
+                }
+            }
+
+            @Override
+            public void setViewport(Viewport viewport) {
+
+            }
+        });
+        householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(115);
+
 
         TextView CO2Number = findViewById(R.id.householdNumber);
         CO2Number.setText(Math.round(testHousehold.userList.get(0).currentCo2) + " g CO2 / " + Math.round(testHousehold.userList.get(0).currentKM) + " km in a car");
@@ -154,40 +167,74 @@ public class Household_activity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
                 if (checkedId == R.id.householdRadioButton) {
-                    Log.d("Success", "D was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(dSeriesHousehold);
-                    //dSeriesHousehold.setAnimated(true);
                     calculateWinner();
+                    initGraphHousehold(householdGraph);
+                    householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
+                    householdGraph.getGridLabelRenderer().setHumanRounding(true);
+                    householdGraph.getGridLabelRenderer().setNumVerticalLabels(6);
+                    householdGraph.getViewport().setMinY(dSeriesHousehold.getLowestValueY() - 250);
+                    householdGraph.getViewport().setMaxY(dSeriesHousehold.getHighestValueY() + 250);
+                    householdGraph.getViewport().setYAxisBoundsManual(true);
+                    dSeriesHousehold.setDrawValuesOnTop(true);
+                    dSeriesHousehold.setValuesOnTopColor(Color.BLACK);
 
+                    householdGraph.getGridLabelRenderer().setLabelFormatter(new LabelFormatter() {
+                        @Override
+                        public String formatLabel(double value, boolean isValueX) {
+                            String[] names = testHousehold.getArraylistOfUserName();
+                            String name;
+                            System.out.print(value);
+                            System.out.println(isValueX);
+                            if (value < testHousehold.userList.size()){
+                                name = names[(int) value];
+                                System.out.println(value + " tilhører " + name);
+                                return name;
+                            }
+                            else {
+                                return String.valueOf((int)value);
+                            }
+                        }
+
+                        @Override
+                        public void setViewport(Viewport viewport) {
+
+                        }
+                    });
+                    householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(115);
+                    householdGraph.getGridLabelRenderer().setHorizontalLabelsVisible(true);
 
                 } else if (checkedId == R.id.householdRadioButton2) {
-                    Log.d("Success", "W was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(weekSeriesHousehold);
+                    initGraphHousehold(householdGraph);
                     weekSeriesHousehold.setAnimated(true);
+                    householdGraph.getViewport().setMinY(weekSeriesHousehold.getLowestValueY() - 250);
+                    householdGraph.getViewport().setMaxY(weekSeriesHousehold.getHighestValueY() + 250);
+                    householdGraph.getViewport().setYAxisBoundsManual(true);
+                    householdGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
                 } else if (checkedId == R.id.householdRadioButton3) {
-                    Log.d("Success", "M was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(mSeriesHousehold);
+                    initGraphHousehold(householdGraph);
                     mSeriesHousehold.setAnimated(true);
+                    householdGraph.getViewport().setMinY(mSeriesHousehold.getLowestValueY() - 250);
+                    householdGraph.getViewport().setMaxY(mSeriesHousehold.getHighestValueY() + 250);
+                    householdGraph.getViewport().setYAxisBoundsManual(true);
+                    householdGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
 
 
                 } else if (checkedId == R.id.householdRadioButton4) {
-                    Log.d("Success", "6M was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(sixMSeriesHousehold);
                     sixMSeriesHousehold.setAnimated(true);
 
-
                 } else if (checkedId == R.id.householdRadioButton5) {
-                    Log.d("Success", "Y was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(ySeriesHousehold);
                     ySeriesHousehold.setAnimated(true);
-
-
                 }
 
 
@@ -202,20 +249,48 @@ public class Household_activity extends AppCompatActivity {
 
     // der rydes op i de her grafer
     BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
-            new DataPoint(0, 13000),
-            new DataPoint(1, 11000),
-            new DataPoint(2, 10000),
-            new DataPoint(3, 10000),
-            new DataPoint(4, 11000),
-            new DataPoint(5, 12000)
+            new DataPoint(0, 2100),
+            new DataPoint(1, 3200),
+            new DataPoint(2, 2300),
+            new DataPoint(3, 2450),
+            new DataPoint(4, 3120),
+            new DataPoint(5, 2800),
+            new DataPoint(6, 2300)
     });
 
     BarGraphSeries<DataPoint> mSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
-            new DataPoint(0, 0),
-            new DataPoint(1, 5),
-            new DataPoint(2, 3),
-            new DataPoint(3, 2),
-            new DataPoint(4, 6)
+            new DataPoint(0, 2100),
+            new DataPoint(1, 3200),
+            new DataPoint(2, 2300),
+            new DataPoint(3, 2450),
+            new DataPoint(4, 3120),
+            new DataPoint(5, 2800),
+            new DataPoint(6, 2140),
+            new DataPoint(7, 3240),
+            new DataPoint(8, 2120),
+            new DataPoint(9, 2950),
+            new DataPoint(10, 3240),
+            new DataPoint(11, 3400),
+            new DataPoint(12, 2100),
+            new DataPoint(13, 3200),
+            new DataPoint(14, 2300),
+            new DataPoint(15, 2450),
+            new DataPoint(16, 3120),
+            new DataPoint(17, 2800),
+            new DataPoint(18, 2140),
+            new DataPoint(19, 3240),
+            new DataPoint(20, 2120),
+            new DataPoint(21, 2950),
+            new DataPoint(22, 3240),
+            new DataPoint(23, 3400),
+            new DataPoint(24, 2140),
+            new DataPoint(25, 3240),
+            new DataPoint(26, 2120),
+            new DataPoint(27, 2950),
+            new DataPoint(28, 3240),
+            new DataPoint(29, 3400),
+            new DataPoint(30, 2100),
+            new DataPoint(31, 3200)
     });
     BarGraphSeries<DataPoint> sixMSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
             new DataPoint(0, 10),
@@ -243,15 +318,13 @@ public class Household_activity extends AppCompatActivity {
         ySeriesHousehold.setColor(Color.rgb(120, 150, 111));
 
         //Thickness of graph
-        dSeriesHousehold.setSpacing(-30);
+        dSeriesHousehold.setSpacing(25);
         weekSeriesHousehold.setSpacing(25);
         mSeriesHousehold.setSpacing(25);
         sixMSeriesHousehold.setSpacing(25);
         ySeriesHousehold.setSpacing(25);
 
-        System.out.println(dSeriesHousehold.getHighestValueY());
-
-        dSeriesHousehold.setDataWidth(0.5);
+        dSeriesHousehold.setDataWidth(1);
 
 
     }
@@ -264,13 +337,19 @@ public class Household_activity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public int get(DataPoint data) {
+                if (data.getY() == dSeriesHousehold.getLowestValueY()){
+                    return Color.rgb(103,205,87);
+                }
+                else if (data.getY() == dSeriesHousehold.getHighestValueY()){
+                    return Color.rgb(240,21,36);
+                }
+                else{
+                    return Color.rgb(255,235,69);
+                }
 
-                Log.d("Graph", "Y is " + String.valueOf(data.getY()));
-                Log.d("Graph", "Lowest Y is " + dSeriesHousehold.getLowestValueY());
-                dSeriesHousehold.setDrawValuesOnTop(true);
-                int Green = (int) Math.abs((data.getY() * 10) - 255);
+                //dSeriesHousehold.setDrawValuesOnTop(true);
 
-                return Color.rgb((int) data.getX() * 255 / 4, Green , 50);
+                //return Color.rgb((int) data.getX() * 255 / 4, (int) Math.abs(data.getY() * 255 / 6), 50);
 
             }
 

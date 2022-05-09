@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         //dSeries
         //få fikset at vi kan vise alle 24 timer
+        mainUser.setCurrentDate();
         for (int r = 0; r < 24*60; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
 
@@ -157,7 +158,6 @@ public class MainActivity extends AppCompatActivity {
 
         TextView CO2Number = findViewById(R.id.number);
         CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2 / " + Math.round(mainUser.currentKM) + " km in a car");
-
 
         if (getIntent().getSerializableExtra("user") == null){
             for (int r = 0; r < 24*60; r++) { //4320
@@ -256,7 +256,9 @@ public class MainActivity extends AppCompatActivity {
                     graph.getViewport().setMinX(-1);
                     graph.getViewport().setXAxisBoundsManual(true);
                     graph.getViewport().setYAxisBoundsManual(true);
-                    graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+                    //graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+                    weekSeries.setDrawValuesOnTop(true);
+                    weekSeries.setValuesOnTopColor(Color.BLACK);
                     //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
                     //staticLabelsFormatter.setHorizontalLabels(new String[]{"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"});
                     //graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
