@@ -1,6 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.kei_data">
+    <uses-feature
+        android:name="BLUETOOTH_SCAN"
+        android:required="true"
+        tools:ignore="ManifestOrder" />
+    <uses-feature
+        android:name="BLUETOOTH_ADVERTISE"
+        android:required="true"
+        tools:ignore="ManifestOrder" />
+
+    <uses-feature
+        android:name="BLUETOOTH_CONNECT"
+        android:required="true"
+        tools:ignore="ManifestOrder" />
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 
     <application
         android:allowBackup="true"
@@ -45,6 +68,9 @@
             android:name=".DeviceSuccess_activity"
             android:exported="false" />
         <activity
+            android:name=".Bluetooth_activity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -54,5 +80,4 @@
             </intent-filter>
         </activity>
     </application>
-
-</manifest>
+    </manifest>
