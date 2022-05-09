@@ -166,7 +166,6 @@ public class User implements Serializable {
                 if(dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
-                    System.out.println("======== ny data til ROY");
                 }
             }
         }

@@ -156,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
 
         TextView CO2Number = findViewById(R.id.number);
-        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2");
+        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2 / " + Math.round(mainUser.currentKM) + " km in a car");
 
 
         if (getIntent().getSerializableExtra("user") == null){

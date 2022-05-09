@@ -11,25 +11,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.LabelFormatter;
 import com.jjoe64.graphview.ValueDependentColor;
-import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.Viewport;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
-
-import java.lang.reflect.Array;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
 public class Household_activity extends AppCompatActivity {
 
@@ -97,15 +91,17 @@ public class Household_activity extends AppCompatActivity {
         dSeriesHousehold = new BarGraphSeries<DataPoint>();
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
-        staticLabelsFormatter.setHorizontalLabels(testHousehold.getArraylistOfUserName());
-        householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        householdGraph.setLabelFor(R.id.householdGraph);
+        //householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         householdGraph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+
 
         for (int i = 0; i < testHousehold.userList.size(); i++) {
             // specifying the user
             User user = testHousehold.userList.get(i);
             dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
         }
+
         householdGraph.addSeries(dSeriesHousehold);
         initGraphHousehold(householdGraph);
         calculateWinner();
@@ -118,7 +114,19 @@ public class Household_activity extends AppCompatActivity {
         householdGraph.getViewport().setMinX(-0.3);
         householdGraph.getViewport().setXAxisBoundsManual(true);
         householdGraph.getViewport().setYAxisBoundsManual(true);
+        double xInterval=1.0;
+        householdGraph.getViewport().setXAxisBoundsManual(true);
+        if (dSeriesHousehold instanceof BarGraphSeries ) {
+            // Shunt the viewport, per v3.1.3 to show the full width of the first and last bars.
+            householdGraph.getViewport().setMinX(dSeriesHousehold.getLowestValueX() - (xInterval/2.0));
+            householdGraph.getViewport().setMaxX(dSeriesHousehold.getHighestValueX() + (xInterval/2.0));
+        } else {
+            householdGraph.getViewport().setMinX(dSeriesHousehold.getLowestValueX() );
+            householdGraph.getViewport().setMaxX(dSeriesHousehold.getHighestValueX());
+        }
 
+        TextView CO2Number = findViewById(R.id.householdNumber);
+        CO2Number.setText(Math.round(testHousehold.userList.get(0).currentCo2) + " g CO2 / " + Math.round(testHousehold.userList.get(0).currentKM) + " km in a car");
 
 //        Calendar calendar = Calendar.getInstance();
 //
@@ -253,16 +261,16 @@ public class Household_activity extends AppCompatActivity {
 
 
         dSeriesHousehold.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public int get(DataPoint data) {
 
                 Log.d("Graph", "Y is " + String.valueOf(data.getY()));
                 Log.d("Graph", "Lowest Y is " + dSeriesHousehold.getLowestValueY());
                 dSeriesHousehold.setDrawValuesOnTop(true);
+                int Green = (int) Math.abs((data.getY() * 10) - 255);
 
-
-                return Color.rgb((int) data.getX() * 255 / 4, (int) Math.abs((data.getY() * 10) - 255), 50);
-
+                return Color.rgb((int) data.getX() * 255 / 4, Green , 50);
 
             }
 
