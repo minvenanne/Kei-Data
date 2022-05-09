@@ -108,10 +108,11 @@ public class Household_activity extends AppCompatActivity {
         }
         householdGraph.addSeries(dSeriesHousehold);
         initGraphHousehold(householdGraph);
+        calculateWinner();
         householdGraph.getGridLabelRenderer().setNumHorizontalLabels(testHousehold.userList.size());
         householdGraph.getGridLabelRenderer().setHumanRounding(false);
         householdGraph.getGridLabelRenderer().setNumVerticalLabels(5);
-        householdGraph.getViewport().setMinY(dSeriesHousehold.getLowestValueY()-250);
+        householdGraph.getViewport().setMinY(dSeriesHousehold.getLowestValueY() - 250);
         householdGraph.getViewport().setMaxY(dSeriesHousehold.getHighestValueY() + 250);
         householdGraph.getViewport().setMaxX(5.4);
         householdGraph.getViewport().setMinX(-0.3);
@@ -148,7 +149,7 @@ public class Household_activity extends AppCompatActivity {
                     Log.d("Success", "D was pressed");
                     householdGraph.removeAllSeries();
                     householdGraph.addSeries(dSeriesHousehold);
-                    dSeriesHousehold.setAnimated(true);
+                    //dSeriesHousehold.setAnimated(true);
                     calculateWinner();
 
 
@@ -191,8 +192,8 @@ public class Household_activity extends AppCompatActivity {
     //Creates the different datasets for the graph.
 
 
-// der rydes op i de her grafer
-    BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
+    // der rydes op i de her grafer
+    BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
             new DataPoint(0, 13000),
             new DataPoint(1, 11000),
             new DataPoint(2, 10000),
@@ -201,14 +202,14 @@ public class Household_activity extends AppCompatActivity {
             new DataPoint(5, 12000)
     });
 
-    BarGraphSeries<DataPoint> mSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
+    BarGraphSeries<DataPoint> mSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
             new DataPoint(0, 0),
             new DataPoint(1, 5),
             new DataPoint(2, 3),
             new DataPoint(3, 2),
             new DataPoint(4, 6)
     });
-    BarGraphSeries<DataPoint> sixMSeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
+    BarGraphSeries<DataPoint> sixMSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
             new DataPoint(0, 10),
             new DataPoint(1, 5),
             new DataPoint(2, 3),
@@ -216,7 +217,7 @@ public class Household_activity extends AppCompatActivity {
             new DataPoint(4, 6)
     });
 
-    BarGraphSeries<DataPoint> ySeriesHousehold = new BarGraphSeries<>(new DataPoint[] {
+    BarGraphSeries<DataPoint> ySeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
             new DataPoint(0, 12),
             new DataPoint(1, 5),
             new DataPoint(2, 3),
@@ -225,13 +226,13 @@ public class Household_activity extends AppCompatActivity {
     });
 
     //Styling of the graph
-    public void initGraphHousehold(GraphView householdGraph){
+    public void initGraphHousehold(GraphView householdGraph) {
         //Colors of the the graph
-        dSeriesHousehold.setColor(Color.rgb(120,150,111));
-        weekSeriesHousehold.setColor(Color.rgb(120,150,111));
-        mSeriesHousehold.setColor(Color.rgb(120,150,111));
-        sixMSeriesHousehold.setColor(Color.rgb(120,150,111));
-        ySeriesHousehold.setColor(Color.rgb(120,150,111));
+        dSeriesHousehold.setColor(Color.rgb(120, 150, 111));
+        weekSeriesHousehold.setColor(Color.rgb(120, 150, 111));
+        mSeriesHousehold.setColor(Color.rgb(120, 150, 111));
+        sixMSeriesHousehold.setColor(Color.rgb(120, 150, 111));
+        ySeriesHousehold.setColor(Color.rgb(120, 150, 111));
 
         //Thickness of graph
         dSeriesHousehold.setSpacing(-30);
@@ -245,24 +246,10 @@ public class Household_activity extends AppCompatActivity {
         dSeriesHousehold.setDataWidth(0.5);
 
 
-
-
-
-
-
-
-
-
     }
 
 
-
-
-
     public void calculateWinner() {
-
-        
-
 
 
         dSeriesHousehold.setValueDependentColor(new ValueDependentColor<DataPoint>() {
@@ -274,14 +261,13 @@ public class Household_activity extends AppCompatActivity {
                 dSeriesHousehold.setDrawValuesOnTop(true);
 
 
-                return Color.rgb((int) data.getX()*255/4, (int) Math.abs((data.getY()*10)-255), 50);
+                return Color.rgb((int) data.getX() * 255 / 4, (int) Math.abs((data.getY() * 10) - 255), 50);
 
 
             }
 
 
-    });
+        });
 
-
-}
+    }
 }

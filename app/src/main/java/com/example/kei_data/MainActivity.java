@@ -25,6 +25,7 @@ import android.util.Log;
 import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
 
 import com.jjoe64.graphview.GraphView;
@@ -153,6 +154,9 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setMinX(4);
         graph.getViewport().setXAxisBoundsManual(true);
         graph.getViewport().setYAxisBoundsManual(true);
+
+        TextView CO2Number = findViewById(R.id.number);
+        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2");
 
 
         if (getIntent().getSerializableExtra("user") == null){
