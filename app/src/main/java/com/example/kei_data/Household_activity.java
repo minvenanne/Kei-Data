@@ -97,8 +97,8 @@ public class Household_activity extends AppCompatActivity {
         for (int i = 0; i < testHousehold.userList.size(); i++) {
             // specifying the user
             User user = testHousehold.userList.get(i);
-            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), false, testHousehold.userList.size());
-            System.out.println(i + " med værdien " + user.currentCo2 + " the name is " + user.userName);
+            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+            System.out.println(i + user.currentCo2);
         }
 
         householdGraph.addSeries(dSeriesHousehold);
@@ -118,11 +118,8 @@ public class Household_activity extends AppCompatActivity {
             public String formatLabel(double value, boolean isValueX) {
                 String[] names = testHousehold.getArraylistOfUserName();
                 String name;
-                System.out.print(value);
-                System.out.println(isValueX);
-                if (value < testHousehold.userList.size()){
+                if (isValueX == true){
                     name = names[(int) value];
-                    System.out.println(value + " tilhører " + name);
                     return name;
                 }
                 else {

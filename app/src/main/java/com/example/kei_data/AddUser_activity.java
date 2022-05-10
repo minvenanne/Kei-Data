@@ -23,6 +23,7 @@ public class AddUser_activity extends AppCompatActivity {
     EditText UserName;
     String NameofHouseholdMember;
     Button AddUser;
+    Button back;
 
 
     @Override
@@ -84,7 +85,37 @@ public class AddUser_activity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
-                testHousehold.addUser(NameofHouseholdMember);
+                Intent intent = new Intent(AddUser_activity.this, User_activity.class);
+                intent.putExtra("household", getIntent().getSerializableExtra("household"));
+                intent.putExtra("user", getIntent().getSerializableExtra("user"));
+                User user = new User(NameofHouseholdMember, testHousehold);
+                for (int r = 0; r < 24*60; r++) { //4320
+                    int minutes = mainUser.currentDate.getMinute();
+
+                    //herover indsættes current time
+                    //tjekker om minuttallet er 0 eller 30
+                    if (minutes == 0 || minutes == 30) {
+                        //opdater current time her i steder for i user
+                        // specifying the user
+                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
+                        System.out.println(user.userName);
+                        System.out.println(user.currentCo2);
+                        mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+                    }
+                    else {
+                        // creating a variable to hold the updated time
+                        mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
+                    }
+                }
+                testHousehold.addUser(user);
+                startActivity(intent);
+            }
+        });
+
+        back = (Button) findViewById(R.id.Back2);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 Intent intent = new Intent(AddUser_activity.this, User_activity.class);
                 intent.putExtra("household", getIntent().getSerializableExtra("household"));
                 intent.putExtra("user", getIntent().getSerializableExtra("user"));

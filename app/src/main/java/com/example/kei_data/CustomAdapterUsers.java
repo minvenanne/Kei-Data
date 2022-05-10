@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class CustomAdapterUsers extends BaseAdapter {
     Context context;
-    ArrayList<User> arraylist;
+    ArrayList<String> arraylist;
     ImageView icon;
     ImageButton delete;
     ImageButton edit;
@@ -56,7 +56,7 @@ public class CustomAdapterUsers extends BaseAdapter {
 
         TextView user = (TextView) view.findViewById(R.id.displayName);
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
-        user.setText(arraylist.get(i).userName);
+        user.setText(arraylist.get(i));
         icon_user.setImageResource(R.drawable.ic_baseline_person_40_large);
 
         edit = (ImageButton) view.findViewById(R.id.Edit_Button2);
@@ -104,8 +104,10 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                testHousehold.removeUser(position);
+                testHousehold.removeUser(position + 1);
+                arraylist.remove(position);
                 System.out.println("I am in position " + position);
+                User_activity.customAdapterUsers.notifyDataSetChanged();
             }
         });
         return view;

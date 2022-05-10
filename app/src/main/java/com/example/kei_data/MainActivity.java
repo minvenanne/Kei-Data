@@ -170,8 +170,7 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 1; i < testHousehold.userList.size(); i++) {
                         // specifying the user
                         User user = testHousehold.userList.get(i);
-                        // hvis user id er 0 (altså vores main user)
-                        //ellers er det en "household user" og så får de bare tildelt random data
+                        System.out.println(user.userName);
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
 
                     }
