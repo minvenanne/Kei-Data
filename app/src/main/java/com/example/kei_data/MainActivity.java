@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             testHousehold = new Household();
-            mainUser = new User("Roy Hudson", testHousehold);
+            mainUser = new User("Lucas", testHousehold);
             testHousehold.addUser(mainUser);
             testHousehold.familyName = "Hudson";
         }
@@ -99,11 +99,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (testHousehold.userList.size()==1){
-            testHousehold.addUser("Mother Julie");
-            testHousehold.addUser("Father Dennis");
-            testHousehold.addUser("Little sister Laura");
-            testHousehold.addUser("Big brother Jacob");
-            testHousehold.addUser("Baby sister Ida");
+            testHousehold.addUser("Mother");
+            testHousehold.addUser("Father");
+            testHousehold.addUser("Julie");
+            testHousehold.addUser("Henry");
+            testHousehold.addUser("Karen");
         }
 
         //TEST//

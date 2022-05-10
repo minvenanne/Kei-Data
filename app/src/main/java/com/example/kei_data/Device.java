@@ -28,9 +28,6 @@ public class Device implements Serializable {
 
     public String deviceName;
 
-    public Boolean deviceAdded;
-
-    public Boolean deviceRemoved;
 
     // public Boolean statusPrivate;
 
@@ -43,8 +40,6 @@ public class Device implements Serializable {
         setDeviceID(user);
         setDateAdded();
         setDeviceIP(ip); // mangler alt - kan måske først sættes op når der er lavet en falsk database af IP ala den til datause som anne har lavet.
-        setDeviceAdded(true);
-        setDeviceRemoved(false);
         setDeviceType(type);
         setDataUseArray(Device.this);
         //setStatusPrivate(true);
@@ -73,16 +68,6 @@ public class Device implements Serializable {
 
         //device ID is set to number of devices in the list
         deviceID = mainUser.numberOfDevices;
-    }
-
-    //set status of added to true or false
-    public void setDeviceAdded (Boolean addedStatus) {
-        deviceAdded = addedStatus;
-    }
-
-    //set status of removed to true or false
-    public void setDeviceRemoved (Boolean removedStatus) {
-        deviceRemoved = removedStatus;
     }
 
     //set device type to fx tv or computer

@@ -81,7 +81,7 @@ public class CustomAdapterUsers extends BaseAdapter {
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
-                            testHousehold.userList.get(position).setUserName(changeName.getText().toString().trim());
+                            testHousehold.userList.get(position+1).setUserName(changeName.getText().toString().trim());
                             changeName.setWidth(0);
                             user.setWidth(800);
                             user.setHeight(160);
