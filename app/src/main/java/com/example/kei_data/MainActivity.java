@@ -87,11 +87,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (mainUser.deviceList.size()==0){
-            mainUser.addDevice("Computer", "345.982.41", "Per's laptop", mainUser);
-            mainUser.addDevice("Phone", "584.682.91", "Per's Iphone 11", mainUser);
-            mainUser.addDevice("TV", "675.892.34", "Per's bedroom TV", mainUser);
-            mainUser.addDevice("Other", "565.875.32", "Per's Ipad", mainUser);
-            mainUser.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom", mainUser);
+            mainUser.addDevice("Computer", "345.982.41", "Laptop", mainUser);
+            mainUser.addDevice("Phone", "584.682.91", "Iphone 11", mainUser);
+            //mainUser.addDevice("TV", "675.892.34", "Bedroom TV", mainUser);
+            mainUser.addDevice("Other", "565.875.32", "Ipad", mainUser);
+            mainUser.addDevice("Speaker", "623.769.99", "wifi speaker bedroom", mainUser);
         }
 
         if (Devices_activity.arrayListShared.size()==0){

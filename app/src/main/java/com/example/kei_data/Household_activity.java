@@ -30,6 +30,7 @@ public class Household_activity extends AppCompatActivity {
 
     public ImageButton householdSettingsButton;
     public ImageButton householdCategoriesButton;
+    public User mainUser;
 
     BarGraphSeries<DataPoint> dSeriesHousehold;
 
@@ -41,7 +42,7 @@ public class Household_activity extends AppCompatActivity {
         setContentView(R.layout.activity_household);
 
         Household testHousehold = (Household) getIntent().getSerializableExtra("household");
-        User mainUser = (User) getIntent().getSerializableExtra("name");
+        mainUser = (User) getIntent().getSerializableExtra("user");
 
         Switch householdHouseholdSwitch = (Switch) findViewById(R.id.householdHousehold);
 //            Lets the user switch between two modes.
@@ -93,12 +94,16 @@ public class Household_activity extends AppCompatActivity {
         //householdGraph.setLabelFor(R.id.householdGraph);
         //householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
 
-
         for (int i = 0; i < testHousehold.userList.size(); i++) {
             // specifying the user
-            User user = testHousehold.userList.get(i);
-            dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
-            System.out.println(i + user.currentCo2);
+            User user;
+            if (i == 0){
+                dSeriesHousehold.appendData(new DataPoint(i, mainUser.currentCo2), true, testHousehold.userList.size());
+            }
+            else{
+                user = testHousehold.userList.get(i);
+                dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+            }
         }
 
         householdGraph.addSeries(dSeriesHousehold);
@@ -136,7 +141,7 @@ public class Household_activity extends AppCompatActivity {
 
 
         TextView CO2Number = findViewById(R.id.householdNumber);
-        CO2Number.setText(Math.round(testHousehold.userList.get(0).currentCo2) + " g CO2 / " + Math.round(testHousehold.userList.get(0).currentKM) + " km in a car");
+        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2 / " + Math.round(mainUser.currentKM) + " km in a car");
 
 //        Calendar calendar = Calendar.getInstance();
 //

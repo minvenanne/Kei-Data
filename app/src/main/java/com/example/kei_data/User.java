@@ -92,7 +92,7 @@ public class User implements Serializable {
     public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
 
         //beregn random værdig mellem 0 og 3000
-        float newStandPoint= (float)Math.floor(Math.random()*(2000-0+1)+0);
+        float newStandPoint= (float)Math.floor(Math.random()*(1500-0+1)+0);
 
         //Update standpoint med tilfældigt tal
         System.out.println(currentDataUseStandpoint);
