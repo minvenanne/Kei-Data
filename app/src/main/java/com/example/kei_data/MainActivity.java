@@ -170,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 1; i < testHousehold.userList.size(); i++) {
                         // specifying the user
                         User user = testHousehold.userList.get(i);
-                        System.out.println(user.userName);
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
 
                     }
@@ -470,7 +469,6 @@ public class MainActivity extends AppCompatActivity {
             if (minutes == 0 || minutes == 30) {
                 //opdater current time her i steder for i user
                 mainUser.updateCurrentDataUseStandpointAndCo2();
-                System.out.println(mainUser.currentCo2);
                 currentHour = mainUser.currentDate.getHour();
 
                 float currentMinute = mainUser.currentDate.getMinute();
@@ -490,12 +488,8 @@ public class MainActivity extends AppCompatActivity {
 
             if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
                 series.appendData(new DataPoint(currentDay, mainUser.currentCo2), true, x);
-                System.out.println(currentDay);
-                System.out.println(mainUser.currentCo2);
                 mainUser.currentDataUseStandpoint = (float) 0;
                 currentDay = currentDay + 1;
-
-                System.out.println("new day");
             }
         }
     }
@@ -521,7 +515,6 @@ public class MainActivity extends AppCompatActivity {
                 if (currentMinute == 30) {
                     currentHour = currentHour + half;
                 }
-                System.out.println(currentHour);
                 dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
                 //System.out.println(" my name is " + mainUser.userName);

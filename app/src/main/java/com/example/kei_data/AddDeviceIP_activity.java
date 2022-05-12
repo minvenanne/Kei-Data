@@ -179,40 +179,40 @@ public class AddDeviceIP_activity extends AppCompatActivity {
 
     public ArrayList<String> arrayListComputer(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("726.371.91.24");
-        arrayList.add("637.392.34.22");
-        arrayList.add("273.384.21.78");
-        arrayList.add("273.293.23.38");
-        arrayList.add("293.234.21.95");
+        arrayList.add("126.251.91.24");
+        arrayList.add("37.32.234.22");
+        arrayList.add("243.184.21.178");
+        arrayList.add("273.23.23.138");
+        arrayList.add("23.234.121.95");
         return arrayList;
     }
 
     public ArrayList<String> arrayListPhone(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("637.823.92.09");
-        arrayList.add("283.384.13.94");
-        arrayList.add("918.294.14.98");
-        arrayList.add("283.942.24.63");
-        arrayList.add("283.298.32.74");
+        arrayList.add("37.123.92.39");
+        arrayList.add("213.184.13.94");
+        arrayList.add("18.94.114.198");
+        arrayList.add("23.242.24.263");
+        arrayList.add("235.28.32.74");
         return arrayList;
     }
 
     public ArrayList<String> arrayListSpeaker(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("723.182.12.61");
-        arrayList.add("928.342.24.23");
-        arrayList.add("823.273.24.21");
-        arrayList.add("923.73.14.91");
-        arrayList.add("283.942.24.42");
-        arrayList.add("283.298.32.96");
+        arrayList.add("123.182.12.61");
+        arrayList.add("28.142.24.23");
+        arrayList.add("123.223.24.121");
+        arrayList.add("242.73.14.91");
+        arrayList.add("213.942.24.42");
+        arrayList.add("183.28.232.96");
         return arrayList;
     }
 
     public ArrayList<String> arrayListTV(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("323.912.22.61");
-        arrayList.add("728.341.94.43");
-        arrayList.add("103.523.54.51");
+        arrayList.add("132.12.122.261");
+        arrayList.add("28.141.94.243");
+        arrayList.add("103.123.54.51");
         arrayList.add("243.142.24.42");
         arrayList.add("133.218.22.96");
         return arrayList;
@@ -220,10 +220,10 @@ public class AddDeviceIP_activity extends AppCompatActivity {
 
     public ArrayList<String> arrayListOther(){
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("323.112.22.71");
-        arrayList.add("303.533.54.51");
-        arrayList.add("253.12.24.42");
-        arrayList.add("133.28.22.926");
+        arrayList.add("123.112.22.71");
+        arrayList.add("103.233.54.51");
+        arrayList.add("253.12.224.42");
+        arrayList.add("133.28.22.226");
         return arrayList;
     }
 }

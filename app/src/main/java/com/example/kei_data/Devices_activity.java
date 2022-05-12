@@ -190,9 +190,6 @@ public class Devices_activity extends AppCompatActivity{
         arrayListShared.add("Wifi speaker office");
         typeShared.add("Speaker");
         iconsShared.add(R.drawable.ic_baseline_speaker_24);
-        arrayListShared.add("Shared Phone");
-        typeShared.add("Phone");
-        iconsShared.add(R.drawable.ic_baseline_smartphone_24);
     }
 
 }

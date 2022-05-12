@@ -95,9 +95,7 @@ public class User implements Serializable {
         float newStandPoint= (float)Math.floor(Math.random()*(1500-0+1)+0);
 
         //Update standpoint med tilfældigt tal
-        System.out.println(currentDataUseStandpoint);
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
-        System.out.println("Final: " + currentDataUseStandpoint);
 
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
