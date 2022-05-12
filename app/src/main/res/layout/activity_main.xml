@@ -259,7 +259,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
-        app:srcCompat="@drawable/ic_settings" />
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     <ImageButton
         android:id="@+id/Total"
@@ -294,6 +294,6 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
-        app:srcCompat="@drawable/ic_category" />
+        app:srcCompat="@drawable/ic_baseline_category_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
