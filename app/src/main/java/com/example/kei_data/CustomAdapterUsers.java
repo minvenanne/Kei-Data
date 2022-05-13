@@ -72,7 +72,6 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                System.out.println("I am in position " + position);
                 user.setVisibility(View.INVISIBLE);
                 user.setWidth(0);
                 user.setHeight(0);
@@ -106,13 +105,13 @@ public class CustomAdapterUsers extends BaseAdapter {
                 int position = listView.getPositionForView(parentRow);
                 testHousehold.removeUser(position + 1);
                 arraylist.remove(position);
-                System.out.println("I am in position " + position);
                 User_activity.customAdapterUsers.notifyDataSetChanged();
             }
         });
         return view;
-
+        
 
     }
+
 
 }

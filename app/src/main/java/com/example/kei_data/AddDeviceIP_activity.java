@@ -140,23 +140,8 @@ public class AddDeviceIP_activity extends AppCompatActivity {
         return ip;
     }
 
-    public void setBackground(int position, View view){
-        for (int i = 0; i < 5; i++){
-            if(i == position && position == clickedButton) {
-                view.setBackgroundResource(R.drawable.radiobutton1_selected);
-                System.out.println("It is clicked: " + i);
-            }
-            else{
-                System.out.println("LORT");
-                view.setBackgroundResource(R.drawable.round_corners);
-            }
-        }
-
-    }
-
     public ArrayList<String> findIPArrayList() {
         String type = AddDeviceType_activity.getDeviceType();
-        System.out.println(type);
         if (type.equals("Computer")) {
             return arrayListComputer();
         }

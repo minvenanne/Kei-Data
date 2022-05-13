@@ -74,7 +74,6 @@ public class AddDeviceType_activity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 checkedButton = checkedId;
-                System.out.println(checkedId);
                 if (checkedId == R.id.Computer){
                     type_device = "Computer";
                 }

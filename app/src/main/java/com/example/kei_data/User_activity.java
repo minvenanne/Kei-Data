@@ -121,12 +121,7 @@ public class User_activity extends AppCompatActivity{
             temp.add(i,testHousehold.userList.get(i).userName);
         }
         if (temp.get(0).equals(mainUser.userName)){
-            System.out.println(temp.get(0));
-            System.out.println(testHousehold.userList.get(0).userName);
             temp.remove(0);
-            System.out.println("Jeg fjerner Roy");
-            System.out.println(temp.get(0));
-            System.out.println(testHousehold.userList.get(0).userName);
         }
         customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), icon, delete, temp, testHousehold);
         setHeight();
