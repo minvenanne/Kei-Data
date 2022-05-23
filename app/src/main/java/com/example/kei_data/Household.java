@@ -22,7 +22,6 @@ public class Household implements Serializable {
     public ArrayList<User> userList;
     //public ArrayList<Integer> routerList = new ArrayList<>();
 
-
     //Constructor
     //String familyName, int numOfMembers, String householdID, String routerID
     public Household() {
@@ -33,19 +32,6 @@ public class Household implements Serializable {
         setUserList();
         setNumberOfUsers();
     }
-
-
-    /*public void addRouter(int router) {
-        //DONE
-        System.out.println("addRouter BEFORE" + routerList);
-        routerList.add(router);
-        System.out.println("addRouter AFTER" + routerList);
-    }
-
-    public String getRouterId() {
-        //DONE
-        return routerID;
-    }*/
 
     public void setCurrentUserName(String name){
         user = name;
@@ -89,24 +75,6 @@ public class Household implements Serializable {
     public void setNumberOfUsers() {
         numberOfUsers = userList.size(); //fejl når vi sletter en bruger - skal forbedres.
     }
-
-    //    public String calculateFamilyWinner(DataUse[] dataUse) {
-//        //TODO
-//
-//        return  userID;
-//    }
-//
-//    public void displayBarchart(DataUse [] dataUse) {
-//        //TODO
-//
-//    }
-    public void colorChangeWinner(String userID) {
-        //TODO
-
-    }
-
-
-
 
 }
 

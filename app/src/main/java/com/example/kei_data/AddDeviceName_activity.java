@@ -112,7 +112,6 @@ public class AddDeviceName_activity extends AppCompatActivity {
     }
 
     public static String getDeviceName(){
-        System.out.println(deviceName);
         return deviceName;
     }
 

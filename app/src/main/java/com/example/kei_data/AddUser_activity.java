@@ -98,8 +98,6 @@ public class AddUser_activity extends AppCompatActivity {
                         //opdater current time her i steder for i user
                         // specifying the user
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
-                        System.out.println(user.userName);
-                        System.out.println(user.currentCo2);
                         mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
                     }
                     else {

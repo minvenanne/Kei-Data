@@ -103,7 +103,7 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                testHousehold.removeUser(position + 1);
+                testHousehold.removeUser(position);
                 arraylist.remove(position);
                 User_activity.customAdapterUsers.notifyDataSetChanged();
             }

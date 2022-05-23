@@ -38,7 +38,6 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 public class MainActivity extends AppCompatActivity {
     public ImageButton settingsButton;
     public ImageButton categoriesButton;
-    SimpleDateFormat sdf = new SimpleDateFormat("K mm:ss");
     public Household testHousehold;
     public User mainUser;
     public GraphView graph;
@@ -52,16 +51,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-         /*int minutes = LocalDateTime.now().getMinute();
-        System.out.println("minutes is now" + minutes);
-        // her tester vi kode
-        User user = new User();
-        user.currentDataUseStandpoint = (float) 0;
-        user.currentCo2 = (float) 0;
-        user.updateCurrentDataUseStandpointAndCo2();
-        System.out.println(user.userName);
-        //*/ // her tester vi kode
-
         setContentView(R.layout.activity_main);
 
         graph = (GraphView) findViewById(R.id.graph);
@@ -72,9 +61,7 @@ public class MainActivity extends AppCompatActivity {
         graph.getGridLabelRenderer().setNumHorizontalLabels(6);
         graph.getGridLabelRenderer().setHumanRounding(false);
         graph.getGridLabelRenderer().setNumVerticalLabels(4);
-
-
-
+        
         if (getIntent().getSerializableExtra("user") != null){
             mainUser = (User) getIntent().getSerializableExtra("user");
             testHousehold = (Household) getIntent().getSerializableExtra("household");
@@ -89,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         if (mainUser.deviceList.size()==0){
             mainUser.addDevice("Computer", "345.982.41", "Laptop", mainUser);
             mainUser.addDevice("Phone", "584.682.91", "Iphone 11", mainUser);
-            //mainUser.addDevice("TV", "675.892.34", "Bedroom TV", mainUser);
             mainUser.addDevice("Other", "565.875.32", "Ipad", mainUser);
             mainUser.addDevice("Speaker", "623.769.99", "wifi speaker bedroom", mainUser);
         }
@@ -105,8 +91,6 @@ public class MainActivity extends AppCompatActivity {
             testHousehold.addUser("Henry");
             testHousehold.addUser("Karen");
         }
-
-        //TEST//
 
         //dSeries
         //få fikset at vi kan vise alle 24 timer
@@ -130,9 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
-                //System.out.println(" my name is " + mainUser.userName);
-                //System.out.println(" the clock is " + mainUser.currentDate);
-                //System.out.println(" and your Co2 use is now " + mainUser.currentCo2);
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
             else {
@@ -185,30 +166,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
-
-        /*
-        //Creates a timestamp from the Date object
-        graph.getGridLabelRenderer().setLabelFormatter(new DefaultLabelFormatter() {
-            @Override
-            public String formatLabel(double value, boolean isValueX) {
-                if (isValueX) {
-                    return sdf.format(new Date((long) value));
-                } else {
-                    return super.formatLabel(value, isValueX);
-                }
-            }
-
-        });
-        // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
-        // setHumanRounding enables the rounding of the numbers on the x-axis
-        // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
-        graph.getGridLabelRenderer().setNumHorizontalLabels(4);
-        graph.getGridLabelRenderer().setHumanRounding(false);
-        graph.getGridLabelRenderer().setNumVerticalLabels(10);
-*/
-
-
         //Connects the radiobutton group with the onCheckedChange method.
         //When a radiobutton is checked, it removes the past series, and adds a new.
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -217,14 +174,12 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
 
                 if (checkedId == R.id.radioButton) {
-                    Log.d("Success", "D was pressed");
                     userCo2GraphDay();
                     graph.removeAllSeries();
                     graph.addSeries(dSeries);
                     dSeries.setAnimated(true);
                     weekSeries.resetData(new DataPoint[] {});
                     initGraph(graph);
-                    //SetGraphviewDay();
                     graph.getGridLabelRenderer().setNumHorizontalLabels(6);
                     graph.getGridLabelRenderer().setHumanRounding(true, false);
                     graph.getGridLabelRenderer().setNumVerticalLabels(6);
@@ -234,16 +189,13 @@ public class MainActivity extends AppCompatActivity {
                     graph.getViewport().setMinX(4);
                     graph.getViewport().setXAxisBoundsManual(true);
                     graph.getViewport().setYAxisBoundsManual(true);
-
-
-                } else if (checkedId == R.id.radioButton2) {
-                    Log.d("Success", "W was pressed");
+                }
+                else if (checkedId == R.id.radioButton2) {
                     x = 7;
                     userCO2GraphWeek(x, weekSeries);
                     dSeries.resetData(new DataPoint[]{});
                     graph.removeAllSeries();
                     graph.addSeries(weekSeries);
-                    //weekSeries.setAnimated(true);
                     initGraph(graph);
                     graph.getGridLabelRenderer().setNumHorizontalLabels(7);
                     graph.getGridLabelRenderer().setHumanRounding(true);
@@ -254,23 +206,16 @@ public class MainActivity extends AppCompatActivity {
                     graph.getViewport().setMinX(-1);
                     graph.getViewport().setXAxisBoundsManual(true);
                     graph.getViewport().setYAxisBoundsManual(true);
-                    //graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
                     weekSeries.setDrawValuesOnTop(true);
                     weekSeries.setValuesOnTopColor(Color.BLACK);
-                    //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
-                    //staticLabelsFormatter.setHorizontalLabels(new String[]{"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"});
-                    //graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-                    //graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
-
-                } else if (checkedId == R.id.radioButton3) {
-                    Log.d("Success", "M was pressed");
+                }
+                else if (checkedId == R.id.radioButton3) {
                     x = 30;
                     userCO2GraphWeek(x, mSeries);
                     weekSeries.resetData(new DataPoint[] {});
                     dSeries.resetData(new DataPoint[]{});
                     graph.removeAllSeries();
                     graph.addSeries(mSeries);
-                    //mSeries.setAnimated(true);
                     initGraph(graph);
                     graph.getGridLabelRenderer().setNumHorizontalLabels(x/2);
                     graph.getGridLabelRenderer().setHumanRounding(false);
@@ -282,22 +227,16 @@ public class MainActivity extends AppCompatActivity {
                     graph.getViewport().setXAxisBoundsManual(true);
                     graph.getViewport().setYAxisBoundsManual(true);
                     graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
-
-
-                } else if (checkedId == R.id.radioButton4) {
-                    Log.d("Success", "6M was pressed");
+                }
+                else if (checkedId == R.id.radioButton4) {
                     graph.removeAllSeries();
                     graph.addSeries(sixMSeries);
                     sixMSeries.setAnimated(true);
-
-
-                } else if (checkedId == R.id.radioButton5) {
-                    Log.d("Success", "Y was pressed");
+                }
+                else if (checkedId == R.id.radioButton5) {
                     graph.removeAllSeries();
                     graph.addSeries(ySeries);
                     ySeries.setAnimated(true);
-
-
                 }
 
 
@@ -312,15 +251,11 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
 
                 if (householdSwitch.isChecked()) {
-                    Log.d("Success", "Household");
                     Intent intent = new Intent(MainActivity.this, Household_activity.class);
                     dSeries.resetData(new DataPoint[]{});
                     intent.putExtra("household", testHousehold);
                     intent.putExtra("user", mainUser);
                     startActivity(intent);
-
-                } else {
-                    Log.d("Success", "you");
                 }
             }
         });
@@ -365,48 +300,16 @@ public class MainActivity extends AppCompatActivity {
                 String[] tokens = line.split(";");
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 DataUse data = new DataUse(tokens[0], tokens[1], LocalDateTime.parse(tokens[2], formatter), Float.parseFloat(tokens[3]), tokens[4]);
-                //System.out.println(data.getDataUsageAmount());
-                /*data.setDataUsageID();
-                data.setDataUsageDeviceType(tokens[1]);
-                data.setDataUsageTimeSlot(tokens[2]);
-                data.setDataUsageAmount(Integer.parseInt(tokens[3]));
-                data.setDataUsageType(tokens[4]);*/
                 if (device.getDeviceType().equals(data.getDataUsageDeviceType())){
                     device.addDataUse(data, device);
                 }
-                else {
-                    //System.out.println("IKKE TILFØJET");
-                    //System.out.println("ID: " + data.getDataUsageID());
-                    //System.out.println("Device Type:" + data.getDataUsageDeviceType());
-                }
-                //System.out.println(device.dataUseList);
             }
 
         } catch (IOException e) {
-            Log.wtf("Main Activity", "Error Reading Data File on line" + line, e);
             e.printStackTrace();
         }
     }
 
-    //Creates the different datasets for the graph.
-    /*LineGraphSeries<DataPoint> dSeries = new LineGraphSeries<>(new DataPoint[] {
-            new DataPoint (new Date().getTime(), 42.9),
-            new DataPoint (new Date().getTime(), 68.5),
-            new DataPoint (new Date().getTime(), 147),
-            new DataPoint (new Date().getTime(), 50),
-    });
-
-    BarGraphSeries<DataPoint> weekSeries = new BarGraphSeries<>(new DataPoint[] {
-
-            new DataPoint(0, 2000),
-            new DataPoint(1, 900),
-            new DataPoint(2, 5000),
-            new DataPoint(3, 3400),
-            new DataPoint(4, 1200),
-            new DataPoint(5, 4000),
-            new DataPoint(6, 4500)
-    });
-*/
     //pr uge i måneden
     BarGraphSeries<DataPoint> mSeries = new BarGraphSeries<>(new DataPoint[] {
             new DataPoint(0, 9000),
@@ -434,13 +337,13 @@ public class MainActivity extends AppCompatActivity {
     });
 
     //Styling of the graph
-    public void initGraph(GraphView graph){
+    public void initGraph(GraphView graph) {
         //Colors of the the graph
-        dSeries.setColor(Color.rgb(120,150,111));
-        weekSeries.setColor(Color.rgb(120,150,111));
-        mSeries.setColor(Color.rgb(120,150,111));
-        sixMSeries.setColor(Color.rgb(120,150,111));
-        ySeries.setColor(Color.rgb(120,150,111));
+        dSeries.setColor(Color.rgb(120, 150, 111));
+        weekSeries.setColor(Color.rgb(120, 150, 111));
+        mSeries.setColor(Color.rgb(120, 150, 111));
+        sixMSeries.setColor(Color.rgb(120, 150, 111));
+        ySeries.setColor(Color.rgb(120, 150, 111));
 
         //Thickness of graph
         dSeries.setThickness(10);
@@ -448,7 +351,6 @@ public class MainActivity extends AppCompatActivity {
         mSeries.setSpacing(25);
         sixMSeries.setSpacing(25);
         ySeries.setSpacing(25);
-
     }
 
     public User getMainUser(){
@@ -477,8 +379,6 @@ public class MainActivity extends AppCompatActivity {
                 if (currentMinute == 30) {
                     currentHour = currentHour + half;
                 }
-
-
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
             else {
@@ -517,9 +417,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
-                //System.out.println(" my name is " + mainUser.userName);
-                //System.out.println(" the clock is " + mainUser.currentDate);
-                //System.out.println(" and your Co2 use is now " + mainUser.currentCo2);
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }
             else {
@@ -528,15 +425,10 @@ public class MainActivity extends AppCompatActivity {
             }
             if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
                 mainUser.currentDataUseStandpoint = (float) 0;
-                //System.out.println("new day");
                 mainUser.setCurrentDate();
                 break;
             }
         }
         graph.addSeries(dSeries);
-    }
-
-    public void SetGraphviewDay(){
-
     }
 }

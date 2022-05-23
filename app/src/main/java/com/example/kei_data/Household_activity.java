@@ -90,10 +90,6 @@ public class Household_activity extends AppCompatActivity {
 
         dSeriesHousehold = new BarGraphSeries<DataPoint>();
 
-        //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(householdGraph);
-        //householdGraph.setLabelFor(R.id.householdGraph);
-        //householdGraph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
-
         for (int i = 0; i < testHousehold.userList.size(); i++) {
             // specifying the user
             User user;
@@ -143,24 +139,6 @@ public class Household_activity extends AppCompatActivity {
         TextView CO2Number = findViewById(R.id.householdNumber);
         CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2 / " + Math.round(mainUser.currentKM) + " km in a car");
 
-//        Calendar calendar = Calendar.getInstance();
-//
-//        Date d1 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d2 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d3 = calendar.getTime();
-//        calendar.add(Calendar.DATE, 1);
-//        Date d4 = calendar.getTime();
-
-        //Initilizing the householdGraph and calls the styling method -> initGraphHousehold
-
-
-        // setNumHorizontalLabels determines the amount of labes on the y-axis that will be visible
-        // setHumanRounding enables the rounding of the numbers on the x-axis
-        // setNumVerticalLabels determines the amount of labes on the x-axis that will be visible
-
-
         //Connects the radiobutton group with the onCheckedChange method.
         //When a radiobutton is checked, it removes the past series, and adds a new.
         RadioGroup householdRadioGroup = (RadioGroup) findViewById(R.id.householdRadioGroup);
@@ -187,11 +165,8 @@ public class Household_activity extends AppCompatActivity {
                         public String formatLabel(double value, boolean isValueX) {
                             String[] names = testHousehold.getArraylistOfUserName();
                             String name;
-                            System.out.print(value);
-                            System.out.println(isValueX);
                             if (value < testHousehold.userList.size()){
                                 name = names[(int) value];
-                                System.out.println(value + " tilhører " + name);
                                 return name;
                             }
                             else {
@@ -244,10 +219,6 @@ public class Household_activity extends AppCompatActivity {
         });
 
     }
-
-
-    //Creates the different datasets for the graph.
-
 
     // der rydes op i de her grafer
     BarGraphSeries<DataPoint> weekSeriesHousehold = new BarGraphSeries<>(new DataPoint[]{
@@ -328,13 +299,10 @@ public class Household_activity extends AppCompatActivity {
 
         dSeriesHousehold.setDataWidth(1);
 
-
     }
 
 
     public void calculateWinner() {
-
-
         dSeriesHousehold.setValueDependentColor(new ValueDependentColor<DataPoint>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -348,10 +316,6 @@ public class Household_activity extends AppCompatActivity {
                 else{
                     return Color.rgb(255,235,69);
                 }
-
-                //dSeriesHousehold.setDrawValuesOnTop(true);
-
-                //return Color.rgb((int) data.getX() * 255 / 4, (int) Math.abs(data.getY() * 255 / 6), 50);
 
             }
 

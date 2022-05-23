@@ -90,8 +90,10 @@ public class User_activity extends AppCompatActivity{
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
                             testHousehold.setCurrentUserName(editText.getText().toString().trim());
+                            mainUser.setUserName(editText.getText().toString().trim());
+                            testHousehold.getUserList().get(0).setUserName(mainUser.userName);
                             editText.setVisibility(View.INVISIBLE);
-                            Name.setText(testHousehold.user);
+                            Name.setText(mainUser.userName);
                             closeKeyboard();
                             return true;
                         }

@@ -125,7 +125,6 @@ public class User implements Serializable {
         Devices_activity.simpleListShared.setMinimumHeight(Devices_activity.justifyListViewHeightBasedOnChildrenShared(Devices_activity.simpleListShared, Devices_activity.customAdapterShared));
     }
 
-
     public Device removeDevice(String currentDevice) {
         for(int i = 0; i < deviceList.size(); i++){
             Device device = deviceList.get(i); // the current element
@@ -151,8 +150,6 @@ public class User implements Serializable {
 
             // specifying the device
             Device device = deviceList.get(i); // the current element
-
-           // System.out.println(device.deviceType);
 
             //cykling through each datause on data use list
             for (int f = 0; f < device.dataUseList.size(); f++) {
@@ -196,36 +193,3 @@ public class User implements Serializable {
 
 }
 
-/*
-Kode til main:
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-
-// får det gældende minut-tal
-int minutes = LocalDateTime.now().getMinute();
-
-//tjekker om minuttallet er 0 eller 30
-if (minutes == 0 || minutes == 30) {
-
-                //Ruller igennem alle Users
-                for(int i = 0; i < Household.userList.size(); i++) {
-
-                    // specifying the user
-                    User user = Household.userList.get(i);
-
-                    // hvis user id er 1 (altså vores main user)
-                    if (user.userID == 1) {
-                        user.updateCurrentDataUseStandpointAndCo2();
-                    }
-
-                    //ellers er det en "household user" og så får de bare tildelt random data
-                    else {
-                        user.updateCurrentDataUseStandpointAndCo2NotMainUser();
-                    }
-                    System.out.println(" the clock is" + User.currentDate);
-                    System.out.println("and your Co2 use is now" + User.currentCo2);                }
-            }
-        }
-
-
-*/

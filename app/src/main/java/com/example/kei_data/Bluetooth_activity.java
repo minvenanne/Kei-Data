@@ -27,19 +27,15 @@ public class Bluetooth_activity extends AppCompatActivity {
         setContentView(R.layout.activity_bluetooth);
 
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        System.out.println(btAdapter.getBondedDevices());
 
         BluetoothDevice hc05 = btAdapter.getRemoteDevice("98:D3:31:F7:73:55");
-        System.out.println(hc05.getName());
 
         BluetoothSocket btSocket = null;
         int counter = 0;
         do {
             try {
                 btSocket = hc05.createRfcommSocketToServiceRecord(mUUID);
-                System.out.println(btSocket);
                 btSocket.connect();
-                System.out.println(btSocket.isConnected());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -48,7 +44,6 @@ public class Bluetooth_activity extends AppCompatActivity {
 
         try {
             btSocket.close();
-            System.out.println(btSocket.isConnected());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -58,10 +58,6 @@ public class Device implements Serializable {
         dateAdded = new Date();
     }
 
-    //add a device to the list of devices
-    /*public void addDataUse(DataUse dataUse){
-        dataUseList.add(dataUse);
-    }*/
     public void setDeviceID(User mainUser) {
         //length of arraylist device
         mainUser.setNumberOfDevices();
