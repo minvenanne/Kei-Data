@@ -133,33 +133,28 @@ ImageReturnCode stat; // Status from image-reading functions
   ///Tegn det billede der svarer til counter
   while (counter == 1){
      // Serial.println(F("Loading image1.bmp to screen..."));
-  stat = reader.drawBMP("/image1.bmp", tft, 0, 0);
+  stat = reader.drawBMP("/4.bmp", tft, 0, 0);
   break;
   }
   
 
 while (counter == 2) {
    //Serial.println(F("Loading image2.bmp to screen..."));
-  stat = reader.drawBMP("/image2.bmp", tft, 0, 0);  
+  stat = reader.drawBMP("/2.bmp", tft, 0, 0);  
   break;
 }
 
 while (counter == 3) {
   //  Serial.println(F("Loading image3.bmp to screen..."));
-  stat = reader.drawBMP("/image3.bmp", tft, 0, 0);  
+  stat = reader.drawBMP("/3.bmp", tft, 0, 0);  
   break;
 }
 
-while (counter == 4) {
- // Serial.println(F("Loading image4.bmp to screen..."));
-  stat = reader.drawBMP("/image4.bmp", tft, 0, 0);  
-  break;
-}
 
 }
 
 void checking(){
-  if (counter > 4) {
+  if (counter > 3) {
     counter = 1;
     //Sætter counter til 1, i tilfælde af at counter er over 5, eller, returner til det første billede.
   }  
