@@ -28,6 +28,8 @@ public class User implements Serializable {
 
     public Float currentCo2;
 
+    public Float currentKM;
+
     public Integer numberOfDevices;
 
     public ArrayList<Device> deviceList = new ArrayList<>(); // made static to be able to use it across classes
@@ -42,6 +44,7 @@ public class User implements Serializable {
         setNumberOfDevices();
         currentDataUseStandpoint = (float) 0;
         currentCo2 = (float) 0;
+        currentKM = (float) 0;
 
         // creates list of class device
         deviceList = new ArrayList<>();
@@ -89,14 +92,14 @@ public class User implements Serializable {
     public void updateCurrentDataUseStandpointAndCo2NotMainUser() {
 
         //beregn random værdig mellem 0 og 3000
-        float newStandPoint= (float)Math.floor(Math.random()*(2000-0+1)+0);
+        float newStandPoint= (float)Math.floor(Math.random()*(1500-0+1)+0);
 
         //Update standpoint med tilfældigt tal
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
 
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
-
+        calculateKM(currentCo2);
     }
 
     //add a device to the list of devices
@@ -163,7 +166,6 @@ public class User implements Serializable {
                 if(dataUse.dataUsageTimeSlot.isAfter(currentDate.minusMinutes(30)) && dataUse.dataUsageTimeSlot.isBefore(currentDate)) {
                     //tallying up all the datause from each device
                     newStandPoint = newStandPoint + dataUse.dataUsageAmount;
-                    System.out.println("======== ny data til ROY");
                 }
             }
         }
@@ -172,6 +174,7 @@ public class User implements Serializable {
         currentDataUseStandpoint = newStandPoint + currentDataUseStandpoint;
         //Calculating the co2 as a result of the current data use
         calculateCurrentCo2(currentDataUseStandpoint);
+        calculateKM(currentCo2);
     }
 
 
@@ -184,6 +187,11 @@ public class User implements Serializable {
         newCo2 = currentDataUseStandpoint*co2MB;
         // current co2 set equal to current data use in co2 format
         currentCo2 = newCo2;
+    }
+
+    public void calculateKM(float currentCo2) {
+        float kmG = (float) 0.0084;
+        currentKM = currentCo2 * kmG;
     }
 
 }

@@ -81,17 +81,17 @@ public class MainActivity extends AppCompatActivity {
         }
         else{
             testHousehold = new Household();
-            mainUser = new User("Roy Hudson", testHousehold);
+            mainUser = new User("Lucas", testHousehold);
             testHousehold.addUser(mainUser);
             testHousehold.familyName = "Hudson";
         }
 
         if (mainUser.deviceList.size()==0){
-            mainUser.addDevice("Computer", "345.982.41", "Per's laptop", mainUser);
-            mainUser.addDevice("Phone", "584.682.91", "Per's Iphone 11", mainUser);
-            mainUser.addDevice("TV", "675.892.34", "Per's bedroom TV", mainUser);
-            mainUser.addDevice("Other", "565.875.32", "Per's Ipad", mainUser);
-            mainUser.addDevice("Speaker", "623.769.99", "Per's wifi speaker bedroom", mainUser);
+            mainUser.addDevice("Computer", "345.982.41", "Laptop", mainUser);
+            mainUser.addDevice("Phone", "584.682.91", "Iphone 11", mainUser);
+            //mainUser.addDevice("TV", "675.892.34", "Bedroom TV", mainUser);
+            mainUser.addDevice("Other", "565.875.32", "Ipad", mainUser);
+            mainUser.addDevice("Speaker", "623.769.99", "wifi speaker bedroom", mainUser);
         }
 
         if (Devices_activity.arrayListShared.size()==0){
@@ -99,17 +99,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (testHousehold.userList.size()==1){
-            testHousehold.addUser("Mother Julie");
-            testHousehold.addUser("Father Dennis");
-            testHousehold.addUser("Little sister Laura");
-            testHousehold.addUser("Big brother Jacob");
-            testHousehold.addUser("Baby sister Ida");
+            testHousehold.addUser("Mother");
+            testHousehold.addUser("Father");
+            testHousehold.addUser("Julie");
+            testHousehold.addUser("Henry");
+            testHousehold.addUser("Karen");
         }
 
         //TEST//
 
         //dSeries
         //få fikset at vi kan vise alle 24 timer
+        mainUser.setCurrentDate();
         for (int r = 0; r < 24*60; r++) { //4320
             int minutes = mainUser.currentDate.getMinute();
 
@@ -156,8 +157,7 @@ public class MainActivity extends AppCompatActivity {
         graph.getViewport().setYAxisBoundsManual(true);
 
         TextView CO2Number = findViewById(R.id.number);
-        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2");
-
+        CO2Number.setText(Math.round(mainUser.currentCo2) + " g CO2 / " + Math.round(mainUser.currentKM) + " km in a car");
 
         if (getIntent().getSerializableExtra("user") == null){
             for (int r = 0; r < 24*60; r++) { //4320
@@ -170,8 +170,6 @@ public class MainActivity extends AppCompatActivity {
                     for (int i = 1; i < testHousehold.userList.size(); i++) {
                         // specifying the user
                         User user = testHousehold.userList.get(i);
-                        // hvis user id er 0 (altså vores main user)
-                        //ellers er det en "household user" og så får de bare tildelt random data
                         user.updateCurrentDataUseStandpointAndCo2NotMainUser();
 
                     }
@@ -256,7 +254,9 @@ public class MainActivity extends AppCompatActivity {
                     graph.getViewport().setMinX(-1);
                     graph.getViewport().setXAxisBoundsManual(true);
                     graph.getViewport().setYAxisBoundsManual(true);
-                    graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+                    //graph.getGridLabelRenderer().setHorizontalLabelsAngle(140);
+                    weekSeries.setDrawValuesOnTop(true);
+                    weekSeries.setValuesOnTopColor(Color.BLACK);
                     //StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(graph);
                     //staticLabelsFormatter.setHorizontalLabels(new String[]{"Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7"});
                     //graph.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
@@ -469,7 +469,6 @@ public class MainActivity extends AppCompatActivity {
             if (minutes == 0 || minutes == 30) {
                 //opdater current time her i steder for i user
                 mainUser.updateCurrentDataUseStandpointAndCo2();
-                System.out.println(mainUser.currentCo2);
                 currentHour = mainUser.currentDate.getHour();
 
                 float currentMinute = mainUser.currentDate.getMinute();
@@ -489,12 +488,8 @@ public class MainActivity extends AppCompatActivity {
 
             if (mainUser.currentDate.getHour() == 23 && mainUser.currentDate.getMinute() == 59) {
                 series.appendData(new DataPoint(currentDay, mainUser.currentCo2), true, x);
-                System.out.println(currentDay);
-                System.out.println(mainUser.currentCo2);
                 mainUser.currentDataUseStandpoint = (float) 0;
                 currentDay = currentDay + 1;
-
-                System.out.println("new day");
             }
         }
     }
@@ -520,7 +515,6 @@ public class MainActivity extends AppCompatActivity {
                 if (currentMinute == 30) {
                     currentHour = currentHour + half;
                 }
-                System.out.println(currentHour);
                 dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
 
                 //System.out.println(" my name is " + mainUser.userName);

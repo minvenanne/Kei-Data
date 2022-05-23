@@ -116,10 +116,12 @@ public class User_activity extends AppCompatActivity{
         ImageView icon = (ImageView) findViewById(R.id.icon2);
 
         simpleListviewUsers = (ListView) findViewById(R.id.simpleListViewUsers);
-        ArrayList<User> temp = testHousehold.getUserList();
-        if (temp.get(0).userName.equals(mainUser.userName)){
+        ArrayList<String> temp = new ArrayList<>();
+        for (int i = 0; i < testHousehold.userList.size(); i++){
+            temp.add(i,testHousehold.userList.get(i).userName);
+        }
+        if (temp.get(0).equals(mainUser.userName)){
             temp.remove(0);
-            System.out.println("Jeg fjerner Roy");
         }
         customAdapterUsers = new CustomAdapterUsers(getApplicationContext(), icon, delete, temp, testHousehold);
         setHeight();

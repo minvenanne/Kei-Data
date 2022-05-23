@@ -17,13 +17,10 @@ public class Household implements Serializable {
     public int numberOfUsers;
     public String householdID;
     public String user;
-    public String RouterID;
-
-    //public Users[] user;
-    private String routerID;
-
+    //public String RouterID;
+    //private String routerID;
     public ArrayList<User> userList;
-    public ArrayList<Integer> routerList = new ArrayList<>();
+    //public ArrayList<Integer> routerList = new ArrayList<>();
 
 
     //Constructor
@@ -32,7 +29,7 @@ public class Household implements Serializable {
         familyName = "Last Name";
         householdID = "1234";
         user = "No Name";
-        routerID = "2563";
+        //routerID = "2563";
         setUserList();
         setNumberOfUsers();
     }

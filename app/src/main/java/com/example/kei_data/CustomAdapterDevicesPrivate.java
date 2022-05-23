@@ -51,10 +51,9 @@ public class CustomAdapterDevicesPrivate extends BaseAdapter {
         }
         TextView device = (TextView) view.findViewById(R.id.textView);
         ImageView icon_device = (ImageView) view.findViewById(R.id.icon);
-        //System.out.println(User.deviceList.get(i).deviceName);
         device.setText(mainUser.deviceList.get(i).deviceName);
         icon_device.setImageResource(icon.get(i));
-        ImageButton delete = (ImageButton) view.findViewById(R.id.list_view_trashcan);
+        delete = (ImageButton) view.findViewById(R.id.list_view_trashcan);
         delete.setImageResource(R.drawable.trashcan);
 
         delete.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +63,6 @@ public class CustomAdapterDevicesPrivate extends BaseAdapter {
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
                 mainUser.removeDevicePrivate(position, mainUser);
-                System.out.println("I am in position " + position);
             }
         });
         return view;

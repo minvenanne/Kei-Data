@@ -127,10 +127,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="180dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="3dp"
         android:text="20 g CO2"
         android:textSize="24sp"
+        android:textColor="#FF0000"
         android:fontFamily="@font/other_text"
         app:layout_constraintBottom_toTopOf="@+id/day"
         app:layout_constraintEnd_toEndOf="parent"
@@ -154,8 +155,8 @@
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/graph"
-        android:layout_width="363dp"
-        android:layout_height="313dp"
+        android:layout_width="365dp"
+        android:layout_height="340dp"
         android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -258,7 +259,7 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
-        app:srcCompat="@drawable/ic_settings" />
+        app:srcCompat="@drawable/ic_baseline_settings_24" />
 
     <ImageButton
         android:id="@+id/Total"
@@ -293,6 +294,6 @@
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/menu"
-        app:srcCompat="@drawable/ic_category" />
+        app:srcCompat="@drawable/ic_baseline_category_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

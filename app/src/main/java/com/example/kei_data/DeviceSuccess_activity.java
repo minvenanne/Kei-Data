@@ -64,9 +64,6 @@ public class DeviceSuccess_activity extends AppCompatActivity {
         Name = findViewById(R.id.textViewName);
         Type = findViewById(R.id.textViewType);
         IP = findViewById(R.id.textViewIP);
-        System.out.println(AddDeviceName_activity.getDeviceName());
-        System.out.println(AddDeviceType_activity.getDeviceType());
-        System.out.println(AddDeviceIP_activity.getDeviceIp());
 
         int size = mainUser.getDeviceList().size()-1;
         Name.setText(mainUser.deviceList.get(size).deviceName);

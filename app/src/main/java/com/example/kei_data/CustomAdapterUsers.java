@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class CustomAdapterUsers extends BaseAdapter {
     Context context;
-    ArrayList<User> arraylist;
+    ArrayList<String> arraylist;
     ImageView icon;
     ImageButton delete;
     ImageButton edit;
@@ -56,7 +56,7 @@ public class CustomAdapterUsers extends BaseAdapter {
 
         TextView user = (TextView) view.findViewById(R.id.displayName);
         ImageView icon_user = (ImageView) view.findViewById(R.id.icon2);
-        user.setText(arraylist.get(i).userName);
+        user.setText(arraylist.get(i));
         icon_user.setImageResource(R.drawable.ic_baseline_person_40_large);
 
         edit = (ImageButton) view.findViewById(R.id.Edit_Button2);
@@ -72,7 +72,6 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                System.out.println("I am in position " + position);
                 user.setVisibility(View.INVISIBLE);
                 user.setWidth(0);
                 user.setHeight(0);
@@ -81,7 +80,7 @@ public class CustomAdapterUsers extends BaseAdapter {
                     @Override
                     public boolean onKey(View view, int i, KeyEvent keyEvent) {
                         if (i == KeyEvent.KEYCODE_ENTER){
-                            testHousehold.userList.get(position).setUserName(changeName.getText().toString().trim());
+                            testHousehold.userList.get(position+1).setUserName(changeName.getText().toString().trim());
                             changeName.setWidth(0);
                             user.setWidth(800);
                             user.setHeight(160);
@@ -104,13 +103,15 @@ public class CustomAdapterUsers extends BaseAdapter {
                 View parentRow = (View) v.getParent();
                 ListView listView = (ListView) parentRow.getParent();
                 int position = listView.getPositionForView(parentRow);
-                testHousehold.removeUser(position);
-                System.out.println("I am in position " + position);
+                testHousehold.removeUser(position + 1);
+                arraylist.remove(position);
+                User_activity.customAdapterUsers.notifyDataSetChanged();
             }
         });
         return view;
-
+        
 
     }
+
 
 }
