@@ -132,7 +132,7 @@
 
             <TextView
                 android:id="@+id/textView7"
-                android:layout_width="317dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Your private devices"
@@ -157,7 +157,7 @@
 
             <TextView
                 android:id="@+id/textView8"
-                android:layout_width="317dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Your shared devices"

@@ -28,6 +28,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 
+
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
@@ -112,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 if (currentMinute == 30) {
                     currentHour = currentHour + half;
                 }
-                dSeries.appendData(new DataPoint(currentHour, mainUser.currentCo2), true, 1440);
+                dSeries.appendData(new DataPoint(currentHour, Math.round(mainUser.currentCo2)), true, 1440);
 
                 mainUser.currentDate = (mainUser.currentDate).plusMinutes(1);
             }

@@ -65,6 +65,7 @@ public class CustomAdapterDevicesPrivate extends BaseAdapter {
                 mainUser.removeDevicePrivate(position, mainUser);
             }
         });
+
         return view;
 
     }

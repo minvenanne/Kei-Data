@@ -64,41 +64,43 @@ Blue.begin(2); //Gør det samme for bluetooth
   // The Adafruit_ImageReader constructor call (above, before setup())
   // accepts an uninitialized SdFat or FatFileSystem object. This MUST
   // BE INITIALIZED before using any of the image reader functions!
-  Serial.print(F("Initializing filesystem..."));
+  //Serial.print(F("Initializing filesystem..."));
 #if defined(USE_SD_CARD)
   // SD card is pretty straightforward, a single call...
   if(!SD.begin(SD_CS, SD_SCK_MHZ(10))) { // Breakouts require 10 MHz limit due to longer wires
-    Serial.println(F("SD begin() failed"));
+    //Serial.println(F("SD begin() failed"));
     for(;;); // Fatal error, do not continue
   }
 #else
   // SPI or QSPI flash requires two steps, one to access the bare flash
   // memory itself, then the second to access the filesystem within...
   if(!flash.begin()) {
-    Serial.println(F("flash begin() failed"));
+    //Serial.println(F("flash begin() failed"));
     for(;;);
   }
   if(!filesys.begin(&flash)) {
-    Serial.println(F("filesys begin() failed"));
+    //Serial.println(F("filesys begin() failed"));
     for(;;);
   }
 #endif
-  Serial.println(F("OK!"));
+  //Serial.println(F("OK!"));
 
   // Fill screen blue. Not a required step, this just shows that we're
   // successfully communicating with the screen.
   tft.fillScreen(ST77XX_RED);
-  delay(2000); // Pause 2 seconds before moving on to loop()
+  delay(100); // Pause 2 seconds before moving on to loop()
 }
 void loop() {
+
+Serial.println( 'Hello, world!');
 
   //while(Blue.available()==0) ; Gør intet, før bluetooth er connected.
 
  if(Blue.available()>0)  //Hvis bluetooth er tilgængelig, send da en værdi til Serial;
 {
     int bite = Blue.read();
-    Serial.println(bite);
-    Serial.println("1234");
+    //Serial.println(bite);
+    //Serial.println("1234");
     data = 30;
 
   } 
@@ -122,33 +124,33 @@ if (data == 30) //Hvis den modtagne værdi er korrekt, sæt newdata til true
 
 void showdata(){
   if (newData == true){ //Hvis newdata er true, inkrementer da counter med 1, og sæt newdata til false
-    counter = counter + 1;
+    //counter = counter + 1;
     newData = false;
     data=0; //Sæt data til 0, dermed "cleares" den senest modtagne bluetooth-værdi
   }  
 }
 
 void printing(){
-ImageReturnCode stat; // Status from image-reading functions
-  ///Tegn det billede der svarer til counter
-  while (counter == 1){
+    ImageReturnCode stat; // Status from image-reading functions
+      ///Tegn det billede der svarer til counter
+    while (counter == 1){
      // Serial.println(F("Loading image1.bmp to screen..."));
-  stat = reader.drawBMP("/4.bmp", tft, 0, 0);
-  break;
-  }
+    stat = reader.drawBMP("/4.bmp", tft, 0, 0);
+    break;
+    }
   
 
-while (counter == 2) {
-   //Serial.println(F("Loading image2.bmp to screen..."));
-  stat = reader.drawBMP("/2.bmp", tft, 0, 0);  
-  break;
-}
+    while (counter == 2) {
+       //Serial.println(F("Loading image2.bmp to screen..."));
+      stat = reader.drawBMP("/2.bmp", tft, 0, 0);
+      break;
+    }
 
-while (counter == 3) {
-  //  Serial.println(F("Loading image3.bmp to screen..."));
-  stat = reader.drawBMP("/3.bmp", tft, 0, 0);  
-  break;
-}
+    while (counter == 3) {
+      //  Serial.println(F("Loading image3.bmp to screen..."));
+      stat = reader.drawBMP("/3.bmp", tft, 0, 0);
+      break;
+    }
 
 
 }

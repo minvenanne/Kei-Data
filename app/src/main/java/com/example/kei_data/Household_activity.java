@@ -94,11 +94,11 @@ public class Household_activity extends AppCompatActivity {
             // specifying the user
             User user;
             if (i == 0){
-                dSeriesHousehold.appendData(new DataPoint(i, mainUser.currentCo2), true, testHousehold.userList.size());
+                dSeriesHousehold.appendData(new DataPoint(i, Math.round(mainUser.currentCo2)), true, testHousehold.userList.size());
             }
             else{
                 user = testHousehold.userList.get(i);
-                dSeriesHousehold.appendData(new DataPoint(i, user.currentCo2), true, testHousehold.userList.size());
+                dSeriesHousehold.appendData(new DataPoint(i, Math.round(user.currentCo2)), true, testHousehold.userList.size());
             }
         }
 
@@ -307,6 +307,7 @@ public class Household_activity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public int get(DataPoint data) {
+
                 if (data.getY() == dSeriesHousehold.getLowestValueY()){
                     return Color.rgb(103,205,87);
                 }

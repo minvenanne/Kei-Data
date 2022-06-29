@@ -34,18 +34,15 @@ public class Device implements Serializable {
     public ArrayList<DataUse> dataUseList = new ArrayList<>();
 
     //constructor creating a n0 user
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public Device (String type, String ip, String name, User user) {
-        setDeviceName(name); //skal kobles op med activity så den tager indput derfra
+        setDeviceName(name);
         setDeviceID(user);
         setDateAdded();
-        setDeviceIP(ip); // mangler alt - kan måske først sættes op når der er lavet en falsk database af IP ala den til datause som anne har lavet.
+        setDeviceIP(ip);
         setDeviceType(type);
-        setDataUseArray(Device.this);
-        //setStatusPrivate(true);
-
-        // creates list of class datause
-        //this.dataUseList = new ArrayList<DataUse>();
+        setDataUseArray(this);
     }
 
     //set device name to content of parenthesis

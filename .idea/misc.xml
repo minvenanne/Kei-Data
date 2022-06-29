@@ -3,44 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Helena/Documents/GitHub/P8_new/Kei-Data/app/src/main/res/layout/activity_main.xml" value="0.20878623188405798" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_device.xml" value="0.177" />
-        <entry key="app/src/main/res/drawable-anydpi/ic_display.xml" value="0.177" />
         <entry key="app/src/main/res/drawable-anydpi/ic_total.xml" value="0.2075" />
         <entry key="app/src/main/res/drawable-anydpi/ic_user.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable/allround.xml" value="0.1605" />
         <entry key="app/src/main/res/drawable/allround_pressed.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/boks.xml" value="0.175" />
         <entry key="app/src/main/res/drawable/categorybuttons copy.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/categorybuttons.xml" value="0.227" />
-        <entry key="app/src/main/res/drawable/device_settings.xml" value="0.177" />
-        <entry key="app/src/main/res/drawable/display.xml" value="0.177" />
         <entry key="app/src/main/res/drawable/globe.xml" value="0.256" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_circle_outline_24.xml" value="0.2115" />
-        <entry key="app/src/main/res/drawable/ic_baseline_category_24.xml" value="0.2355" />
-        <entry key="app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.181" />
-        <entry key="app/src/main/res/drawable/ic_baseline_computer_24.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/ic_baseline_bluetooth_24.xml" value="0.159" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.118" />
-        <entry key="app/src/main/res/drawable/ic_baseline_devices_other_24.xml" value="0.149" />
-        <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.225" />
         <entry key="app/src/main/res/drawable/ic_baseline_emoji_people_24.xml" value="0.1575" />
         <entry key="app/src/main/res/drawable/ic_baseline_group_24.xml" value="0.1575" />
-        <entry key="app/src/main/res/drawable/ic_baseline_group_add_24.xml" value="0.177" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.177" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_24_large.xml" value="0.1715" />
-        <entry key="app/src/main/res/drawable/ic_baseline_person_24_small.xml" value="0.1715" />
         <entry key="app/src/main/res/drawable/ic_baseline_play_circle_24.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_sentiment_very_satisfied_24.xml" value="0.227" />
-        <entry key="app/src/main/res/drawable/ic_baseline_smartphone_24.xml" value="0.2025" />
-        <entry key="app/src/main/res/drawable/ic_baseline_speaker_24.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/ic_baseline_sports_esports_24 copy.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_baseline_sports_esports_24.xml" value="0.227" />
-        <entry key="app/src/main/res/drawable/ic_baseline_tv_24.xml" value="0.149" />
         <entry key="app/src/main/res/drawable/ic_baseline_work_24 copy.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/navigationbar.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/outline_round_corners.xml" value="0.1575" />
-        <entry key="app/src/main/res/drawable/radiobutton1_selected.xml" value="0.177" />
-        <entry key="app/src/main/res/drawable/radiobutton1_selector.xml" value="0.177" />
         <entry key="app/src/main/res/drawable/radiobutton_normal.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/radiobutton_selected.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/radiobutton_selector.xml" value="0.1645" />
@@ -49,29 +30,21 @@
         <entry key="app/src/main/res/drawable/round_corners.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/settings_pressed.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/switch_normal.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/title_kei_data.xml" value="0.1525" />
         <entry key="app/src/main/res/drawable/trashcan.xml" value="0.118" />
-        <entry key="app/src/main/res/font/other_text.xml" value="0.23854166666666668" />
-        <entry key="app/src/main/res/font/title.xml" value="0.287962962962963" />
-        <entry key="app/src/main/res/layout/activity_add_user.xml" value="0.25925925925925924" />
-        <entry key="app/src/main/res/layout/activity_adddevice.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_adddevice2.xml" value="0.1962962962962963" />
-        <entry key="app/src/main/res/layout/activity_adddeviceip.xml" value="0.28703703703703703" />
-        <entry key="app/src/main/res/layout/activity_adddevicename.xml" value="0.18541666666666667" />
-        <entry key="app/src/main/res/layout/activity_adddevicetype.xml" value="0.18541666666666667" />
+        <entry key="app/src/main/res/font/title.xml" value="0.17465277777777777" />
+        <entry key="app/src/main/res/layout/activity_bluetooth.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_categories.xml" value="0.22993367513020838" />
-        <entry key="app/src/main/res/layout/activity_devicename.xml" value="0.196875" />
         <entry key="app/src/main/res/layout/activity_devices.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_devicesuccess.xml" value="0.3070053100585938" />
         <entry key="app/src/main/res/layout/activity_display.xml" value="0.2222860717773438" />
-        <entry key="app/src/main/res/layout/activity_household.xml" value="0.25925925925925924" />
+        <entry key="app/src/main/res/layout/activity_household.xml" value="0.1790893554687501" />
         <entry key="app/src/main/res/layout/activity_listview.xml" value="0.2431060791015625" />
-        <entry key="app/src/main/res/layout/activity_listview2.xml" value="0.23177083333333334" />
-        <entry key="app/src/main/res/layout/activity_listview_devices.xml" value="0.23645833333333333" />
-        <entry key="app/src/main/res/layout/activity_listview_household.xml" value="0.23645833333333333" />
-        <entry key="app/src/main/res/layout/activity_listview_ip.xml" value="0.23645833333333333" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.32002105712890627" />
+        <entry key="app/src/main/res/layout/activity_listview_devices.xml" value="0.12916666666666668" />
+        <entry key="app/src/main/res/layout/activity_listview_household.xml" value="0.15069444444444444" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20767364501953128" />
         <entry key="app/src/main/res/layout/activity_settings1.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_user.xml" value="0.3340782122905028" />
+        <entry key="app/src/main/res/layout/activity_user.xml" value="0.16405029296875" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.284" />
       </map>
     </option>
   </component>
